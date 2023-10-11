@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Calibri', 'Arial', sans-serif;
+  font-size: $font-size-md;
+  color: $color-grey-1;
+  overflow: overlay;
+}
+
+button, input, select, textarea {
+  // font: inherit;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: $color-grey-2;
+  transition: color 0.3s;
+
+  &:hover {
+    color: $color-green;
+  }
+}
+
+h1 {
+  font-size: $font-size-xxl;
+  margin: 0;
+  line-height: 2rem;
+}
+h2 {
+  font-size: $font-size-xl;
+  margin: 0;
+  line-height: 1.5rem;
+}
+h3 {
+  font-size: $font-size-lg;
+  margin: 0;
+  line-height: 1.3rem;
+}
+
+.wrapper {
+  max-width: calc($width-xl + 2rem);
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+// @include breakpoint-md {
+
+// }

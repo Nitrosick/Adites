@@ -1,0 +1,54 @@
+$color-white: #ffffff;
+$color-white-o: rgba(255, 255, 255, 0.5);
+$color-black: #000000;
+$color-grey-1: #333333;
+$color-grey-2: #555555;
+$color-grey-3: #f1f1f1;
+$color-green: #006633;
+
+// $blue-gradient: linear-gradient(150deg, $blue 15%, $blue-light);
+// $blue-acid-gradient: linear-gradient(90deg, $blue 60%, $acid);
+// $background-modal: rgba(0, 0, 0, 0.5);
+
+// $primary: $blue-main;
+// $danger: $red;
+// $warning: $yellow;
+$color-primary: $color-green;
+$color-background: $color-white;
+// $placeholder: $grey;
+
+// $border-radius: 4px;
+// $shadow: 0px 4px 20px -5px rgba(0, 0, 0, 0.25);
+
+$font-size-xsm: 0.6rem;
+$font-size-sm: 0.8rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.2rem;
+$font-size-xl: 1.6rem;
+$font-size-xxl: 2.2rem;
+
+$width-sm: 576px;
+$width-md: 768px;
+$width-lg: 992px;
+$width-xl: 1200px;
+$width-xxl: 1400px;
+$width-xxxl: 1800px;
+
+@mixin breakpoint-sm {
+  @media (max-width: $width-sm) { @content; }
+}
+@mixin breakpoint-md {
+  @media (max-width: $width-md) { @content; }
+}
+@mixin breakpoint-lg {
+  @media (max-width: $width-lg) { @content; }
+}
+@mixin breakpoint-xl {
+  @media (max-width: $width-xl) { @content; }
+}
+@mixin breakpoint-xxl {
+  @media (max-width: $width-xxl) { @content; }
+}
+@mixin breakpoint-xxxl {
+  @media (max-width: $width-xxxl) { @content; }
+}
