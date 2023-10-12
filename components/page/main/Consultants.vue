@@ -102,4 +102,22 @@
     }
   }
 }
+
+@include breakpoint-md {
+  .persons {
+    &-item {
+      gap: 1rem;
+      max-width: 25rem;
+      padding: 1rem;
+
+      &-name {
+        font-size: $font-size-lg;
+      }
+
+      &-contacts {
+        font-size: $font-size-md;
+      }
+    }
+  }
+}
 </style>

@@ -37,10 +37,10 @@ import { projects } from '@/const/projects'
 
 <style lang="scss" scoped>
 .projects {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   background: url(/assets/images/background_2.jpg) center / cover no-repeat;
   padding: 7rem 0 2rem 0;
 
@@ -77,11 +77,12 @@ import { projects } from '@/const/projects'
   &-item {
     position: relative;
     gap: 1rem;
-    min-width: 18rem;
-    max-width: 18rem;
-    height: 17rem;
+    min-width: 20rem;
+    max-width: 20rem;
+    height: 18rem;
     background-color: $color-white;
     box-shadow: $shadow;
+    overflow: hidden;
 
     &-image {
       height: 50%;
@@ -128,6 +129,20 @@ import { projects } from '@/const/projects'
     &:hover {
       .slider-item-overlay {
         opacity: 1;
+      }
+    }
+  }
+}
+
+@include breakpoint-md {
+  .slider {
+    &-item {
+      min-width: 15rem;
+      max-width: 15rem;
+      height: 16rem;
+
+      &-power {
+        font-size: $font-size-md;
       }
     }
   }

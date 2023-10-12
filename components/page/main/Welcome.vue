@@ -80,4 +80,33 @@
     background: url(/assets/images/transport.webp) left bottom / cover no-repeat;
   }
 }
+
+@include breakpoint-md {
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    &-text {
+      &-title {
+        h2 {
+          text-align: center;
+        }
+      }
+    }
+
+    &-item {
+      gap: 1rem;
+
+      &-content {
+        font-size: $font-size-md;
+        line-height: 1.2rem;
+      }
+    }
+
+    &-image {
+      min-height: 25rem;
+    }
+  }
+}
 </style>

@@ -97,4 +97,33 @@
     }
   }
 }
+
+
+@include breakpoint-md {
+  .about {
+    &-points {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+
+      &-item {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: repeat(2, auto);
+      }
+
+      &-icon {
+        width: 6rem;
+        height: 6rem;
+        border: 0.6rem solid $color-accent;
+      }
+
+      &-description {
+        grid-column: 1/3;
+        grid-row: 2/3;
+        text-align: justify;
+      }
+    }
+  }
+}
 </style>

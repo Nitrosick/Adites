@@ -40,6 +40,7 @@ const handleScroll = () => {
   background-color: $color-white;
   box-shadow: 0 0 0 0 transparent;
   transition: all 0.5s;
+  z-index: 5;
 
   &-content {
     display: flex;
