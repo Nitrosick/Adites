@@ -35,7 +35,7 @@ const items = [
   }
 
   .router-link-active {
-    color: $color-green;
+    color: $color-green-1;
     cursor: default;
   }
 }

@@ -37,7 +37,7 @@ const handleScroll = () => {
   left: 0;
   width: 100%;
   height: 6rem;
-  background-color: $color-white-o;
+  background-color: $color-white;
   box-shadow: 0 0 0 0 transparent;
   transition: all 0.5s;
 
@@ -56,7 +56,8 @@ const handleScroll = () => {
 
 .header-minimized {
   height: 3rem;
-  box-shadow: 0 2px 15px -5px $color-grey-2;
+  background-color: $color-white-o;
+  box-shadow: $shadow;
 
   .header-content {
     padding: 0.75rem 1rem;

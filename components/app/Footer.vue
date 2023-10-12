@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-
 </script>
 
 <style lang="scss" scoped>
@@ -29,11 +28,11 @@
     padding: 3rem 1rem;
   }
 
-  &-icon {
-    filter: drop-shadow(0 0 3px $color-black);
-  }
-
   &-text {
+    h2 {
+      text-align: left;
+    }
+
     color: $color-white;
   }
 }
