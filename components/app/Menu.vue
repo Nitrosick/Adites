@@ -44,7 +44,7 @@ const items = [
   { id: 1, title: 'start', to: '/' },
   { id: 2, title: 'about us', to: '/about' },
   { id: 3, title: 'credentials', to: '/credentials' },
-  { id: 4, title: 'contact', to: '/contact' }
+  { id: 4, title: 'contacts', to: '/contacts' }
 ]
 </script>
 
