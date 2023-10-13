@@ -70,7 +70,6 @@
 .about {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin-top: 6rem;
   padding: 2rem 1rem;
 
@@ -88,7 +87,6 @@
 
   &-history {
     padding-top: 3rem;
-    align-self: flex-start;
     border-top: 2px solid $color-grey-3;
 
     &-title {

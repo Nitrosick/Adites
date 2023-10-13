@@ -49,7 +49,6 @@ const selected = ref(null)
 .credentials {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin-top: 6rem;
   padding: 2rem 1rem;
   width: 100%;
