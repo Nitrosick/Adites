@@ -14,10 +14,6 @@ body {
   overflow: overlay;
 }
 
-button, input, select, textarea {
-  // font: inherit;
-}
-
 button {
   border: none;
   background-color: transparent;
@@ -55,6 +51,7 @@ h1 {
   margin: 0;
   line-height: 2.3rem;
 }
+
 h2 {
   text-align: center;
   font-size: $font-size-xxl;
@@ -62,6 +59,7 @@ h2 {
   line-height: 1.8rem;
   font-weight: 500;
 }
+
 h3 {
   text-align: center;
   font-size: $font-size-xl;
@@ -76,14 +74,21 @@ h3 {
   margin: 0 auto;
 }
 
+.page-title {
+  display: inline-block;
+  padding-bottom: 1.5rem;
+  border-bottom: 0.3rem solid $color-primary;
+  font-weight: 500;
+}
+
 ::selection {
   color: $color-white;
-  background: $color-primary;
+  background-color: $color-primary;
 }
 
 ::-moz-selection {
   color: $color-white;
-  background: $color-primary;
+  background-color: $color-primary;
 }
 
 ::-webkit-scrollbar {
@@ -93,21 +98,9 @@ h3 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $color-grey-2;
+  background-color: $color-grey-2;
 }
 
 ::-webkit-scrollbar-thumb:window-inactive {
-  background: none;
+  background-color: $color-grey-3;
 }
-
-// :-webkit-autofill,
-// :-webkit-autofill:hover,
-// :-webkit-autofill:focus {
-//   -webkit-text-fill-color: @color-main-text;
-//   -webkit-box-shadow: 0 0 0px 1000px #000 @color-highlighted;
-//   transition: background-color 5000s ease-in-out 0s;
-// }
-
-// @include breakpoint-md {
-
-// }
