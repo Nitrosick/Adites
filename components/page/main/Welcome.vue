@@ -3,7 +3,7 @@
     <div class="welcome-text">
       <div class="welcome-text-title">
         <h2>Welcome to ADITES</h2>
-        <h2 class="green">with us SIMPLY energy freedom</h2>
+        <h2 class="primary-color">with us SIMPLY energy freedom</h2>
       </div>
       <div class="welcome-item">
         <img
@@ -57,8 +57,7 @@
         text-align: left;
       }
 
-      .green {
-        color: $color-green-1;
+      .primary-color {
         margin-top: 1rem;
       }
     }

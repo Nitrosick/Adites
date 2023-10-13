@@ -44,7 +44,7 @@
     </div>
     <div class="about-history">
       <h2 class="about-history-title">The company history of ADITES GmbH</h2>
-      <h2 class="about-history-subtitle">... how it all began!</h2>
+      <h2 class="about-history-subtitle">...how it all began!</h2>
       <p class="about-history-text">
         The company's history begins in 2011 when Dieter Esau founded his sole proprietorship in the field of energy consulting. The focus of the advice was in the area of ​​electrical energy and renewable energies, especially photovoltaics. As early as 2012, Dieter Esau advised and trained large companies such as BELECTRIC GmbH on technical and legal issues.<br><br>
         In 2014, Alexei Erlich joined the business. His idea was to build plus-energy houses that run on solar power. A property development company was then founded in the form of a GbR, which also carries out electrical installations and photovoltaic systems and operates online trading.<br><br>

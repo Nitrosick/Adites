@@ -2,7 +2,7 @@
   <div class="about">
     <div class="about-content wrapper">
       <h2>WE ARE HERE FOR YOU</h2>
-      <h2 class="green">from advice to implementation</h2>
+      <h2 class="primary-color">from advice to implementation</h2>
       <div class="about-points">
         <div class="about-points-item">
           <div class="about-points-icon">
@@ -64,8 +64,7 @@
     padding: 2rem 1rem;
   }
 
-  .green {
-    color: $color-green-1;
+  .primary-color {
     margin: 1rem 0 5rem 0;
   }
 

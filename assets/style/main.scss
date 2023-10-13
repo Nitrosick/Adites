@@ -41,6 +41,12 @@ a {
   }
 }
 
+.active-link,
+.exact-active-link {
+  color: $color-primary;
+  cursor: default;
+}
+
 p {
   margin: 0;
 }
@@ -79,6 +85,10 @@ h3 {
   padding-bottom: 1.5rem;
   border-bottom: 0.3rem solid $color-primary;
   font-weight: 500;
+}
+
+.primary-color {
+  color: $color-primary;
 }
 
 ::selection {

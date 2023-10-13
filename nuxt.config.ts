@@ -29,5 +29,11 @@ export default defineNuxtConfig({
         },
       },
     },
+  },
+  router: {
+    options: {
+      linkActiveClass: 'active-link',
+      linkExactActiveClass: 'exact-active-link',
+    }
   }
 })

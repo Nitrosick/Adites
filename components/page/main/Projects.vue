@@ -21,7 +21,7 @@
             loading="lazy"
           >
         </div>
-        <span class="slider-item-power">{{ project.power }}kWp</span>
+        <span class="slider-item-power">{{ project.power ? `${project.power} kWp` : '-'  }}</span>
         <p class="slider-item-description">{{ project.description }}</p>
         <div class="slider-item-overlay">
           <Icon icon="fas fa-link" />

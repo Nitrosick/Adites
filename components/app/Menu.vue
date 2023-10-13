@@ -65,11 +65,6 @@ const items = [
   &-burger {
     display: none;
   }
-
-  .router-link-active {
-    color: $color-green-1;
-    cursor: default;
-  }
 }
 
 .menu-popup-overlay,
