@@ -9,7 +9,7 @@
         v-for="project in projects"
         :key="project.id"
         class="project"
-        @click.prevent="selected = project.image"
+        @click.prevent="selected = project"
       >
         <div class="project-image">
           <img
@@ -32,12 +32,20 @@
     class="credentials-viewer"
     @click="selected = null"
   >
-    <img
-      :src="`/images/projects/${selected}`"
-      alt="project photo"
-      class="credentials-viewer-image"
-      loading="lazy"
-    >
+    <div class="credentials-viewer-content">
+      <img
+        :src="`/images/projects/${selected.image}`"
+        alt="project photo"
+        class="credentials-viewer-image"
+        loading="lazy"
+      >
+      <div class="credentials-viewer-description">
+        <b v-if="selected.power">
+          {{ selected.power }} kWp
+        </b>
+        <span v-html="selected.description[ln]" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -132,8 +140,16 @@ const translates = {
   align-items: center;
   justify-content: center;
 
-  &-image {
-    border: 0.3rem solid $color-white;
+  &-content {
+    padding: 0.3rem;
+    background-color: $color-white;
+  }
+
+  &-description {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
 }
 </style>
