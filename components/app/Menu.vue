@@ -6,8 +6,9 @@
       :to="item.to"
       class="menu-item"
     >
-      {{ item.title }}
+      {{ item.title[ln] }}
     </NuxtLink>
+    <LangSwitcher />
     <button
       class="menu-burger"
       @click.prevent="menuOpened = !menuOpened"
@@ -31,20 +32,24 @@
       class="menu-popup-item"
       @click="menuOpened = false"
     >
-      {{ item.title }}
+      {{ item.title[ln] }}
     </NuxtLink>
   </nav>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import LangSwitcher from '@/components/app/LangSwitcher.vue';
 
+const store = useMainStore()
+const ln = computed(() => store.language)
 const menuOpened = ref(false)
+
 const items = [
-  { id: 1, title: 'start', to: '/' },
-  { id: 2, title: 'about us', to: '/about' },
-  { id: 3, title: 'credentials', to: '/credentials' },
-  { id: 4, title: 'contacts', to: '/contacts' }
+  { id: 1, title: { en: 'start', de: 'start', hr: 'početak' }, to: '/' },
+  { id: 2, title: { en: 'about us', de: 'über uns', hr: 'o nama' }, to: '/about' },
+  { id: 3, title: { en: 'credentials', de: 'referenzen', hr: 'ovlasti' }, to: '/credentials' },
+  { id: 4, title: { en: 'contacts', de: 'kontakt', hr: 'kontakti' }, to: '/contacts' }
 ]
 </script>
 

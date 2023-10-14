@@ -10,17 +10,24 @@
         <h2 class="summary-title">
           10561
         </h2>
-        <span class="summary-text">
-          The number of batteries<br>
-          we have installed
-        </span>
+        <span
+          class="summary-text"
+          v-html="translates[ln].text"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+const store = useMainStore()
+const ln = computed(() => store.language)
 
+const translates = {
+  en: { text: 'The number of batteries<br>we have installed' },
+  de: { text: 'Die Anzahl der Batterien,<br>die wir installiert haben' },
+  hr: { text: 'Broj baterija<br>koje smo instalirali' }
+}
 </script>
 
 <style lang="scss" scoped>

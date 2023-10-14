@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
   devtools: { enabled: true },
   app: {
     head: {
@@ -20,7 +21,14 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/style-resources',
+    '@pinia/nuxt'
   ],
+  router: {
+    options: {
+      linkActiveClass: 'active-link',
+      linkExactActiveClass: 'exact-active-link'
+    }
+  },
   vite: {
     css: {
       preprocessorOptions: {
@@ -30,10 +38,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  router: {
-    options: {
-      linkActiveClass: 'active-link',
-      linkExactActiveClass: 'exact-active-link',
-    }
+  imports: {
+    dirs: ['store']
   }
 })

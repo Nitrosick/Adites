@@ -2,13 +2,14 @@
   <div class="consultants">
     <div class="consultants-background" />
     <div class="consultants-content wrapper">
-      <h2 class="consultants-title">
-        Our solar consultants in your region
-      </h2>
+      <h2
+        class="consultants-title"
+        v-html="translates[ln].title"
+      />
       <div class="persons">
         <div class="persons-item">
           <img
-            src="@/assets/images/vilvovskiy.jpg"
+            src="/images/persons/vilvovskiy.jpg"
             alt="photo"
             class="persons-item-photo"
           >
@@ -16,12 +17,12 @@
             Ilya Vilvovskiy
           </span>
           <span class="persons-item-contacts">
-            from Amberg +49 (0) 151 68565004 ilya.vilvovskiy@adites.de
+            {{ translates[ln].person1 }} +49 (0) 151 68565004 ilya.vilvovskiy@adites.de
           </span>
         </div>
         <div class="persons-item">
           <img
-            src="@/assets/images/dambrowski.jpg"
+            src="/images/persons/dambrowski.jpg"
             alt="photo"
             class="persons-item-photo"
           >
@@ -29,7 +30,7 @@
             Kevin Dambrowski
           </span>
           <span class="persons-item-contacts">
-            from Nuremberg +49 (0) 174 9544379 KevinDambrowski@gmail.com
+            {{ translates[ln].person2 }} +49 (0) 174 9544379 KevinDambrowski@gmail.com
           </span>
         </div>
       </div>
@@ -38,7 +39,26 @@
 </template>
 
 <script setup>
+const store = useMainStore()
+const ln = computed(() => store.language)
 
+const translates = {
+  en: {
+    title: 'Our solar consultants in your region',
+    person1: 'from Amberg',
+    person2: 'from Nuremberg',
+  },
+  de: {
+    title: 'Unsere Solarberater in Ihrer Region',
+    person1: 'aus Amberg',
+    person2: 'aus Nürnberg',
+  },
+  hr: {
+    title: 'Naši savjetnici za solarnu energiju u vašem području',
+    person1: 'iz Amberga',
+    person2: 'iz Nirnberga',
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -7,7 +7,7 @@
         class="footer-icon"
       >
       <div class="footer-text">
-        <h2>Adite's advice</h2>
+        <h2 v-html="translates[ln].title" />
         <span>Heroldstraße 8, 90408 Nürnberg</span>
       </div>
     </div>
@@ -15,6 +15,14 @@
 </template>
 
 <script setup>
+const store = useMainStore()
+const ln = computed(() => store.language)
+
+const translates = {
+  en: { title: "Adite's advice" },
+  de: { title: 'Adites beratung' },
+  hr: { title: 'Urednički savjet' }
+}
 </script>
 
 <style lang="scss" scoped>

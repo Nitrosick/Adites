@@ -1,12 +1,14 @@
 <template>
   <div class="projects">
     <div class="projects-background" />
-    <h2 class="projects-title">
-      Our latest projects
-    </h2>
-    <h2 class="projects-subtitle">
-      Broad portfolio of technologies, products and solutions
-    </h2>
+    <h2
+      class="projects-title"
+      v-html="translates[ln].title[0]"
+    />
+    <h2
+      class="projects-subtitle"
+      v-html="translates[ln].title[1]"
+    />
     <div class="slider">
       <NuxtLink
         v-for="project in projects"
@@ -22,7 +24,10 @@
           >
         </div>
         <span class="slider-item-power">{{ project.power ? `${project.power} kWp` : '-'  }}</span>
-        <p class="slider-item-description">{{ project.description }}</p>
+        <p
+          class="slider-item-description"
+          v-html="project.description[ln]"
+        />
         <div class="slider-item-overlay">
           <Icon icon="fas fa-link" />
         </div>
@@ -33,6 +38,15 @@
 
 <script setup>
 import { projects } from '@/const/projects'
+
+const store = useMainStore()
+const ln = computed(() => store.language)
+
+const translates = {
+  en: { title: ['Our latest projects', 'Broad portfolio of technologies, products and solutions'] },
+  de: { title: ['Unsere neuesten Projekte', 'Breites Portfolio an Technologien, Produkten und Lösungen'] },
+  hr: { title: ['Naši najnoviji projekti', 'Širok raspon tehnologija, proizvoda i rješenja'] }
+}
 </script>
 
 <style lang="scss" scoped>

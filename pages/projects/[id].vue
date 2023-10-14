@@ -11,7 +11,10 @@
         loading="lazy"
       >
     </div>
-    <span class="project-description">{{ project.description }}</span>
+    <span
+      class="project-description"
+      v-html="project.description[ln]"
+    />
   </div>
 </template>
 
@@ -20,7 +23,10 @@ import { projects } from '@/const/projects'
 
 const { id } = useRoute().params
 const project = projects.find(p => p.id === +id)
-if (!project) throw createError({ statusCode: 404, statusMessage: 'Page not found' })
+if (!project) throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+
+const store = useMainStore()
+const ln = computed(() => store.language)
 </script>
 
 <style lang="scss" scoped>

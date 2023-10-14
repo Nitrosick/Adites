@@ -1,6 +1,9 @@
 <template>
   <div class="credentials wrapper">
-    <h1 class="page-title">CREDENTIALS</h1>
+    <h1
+      class="page-title"
+      v-html="translates[ln].title"
+    />
     <div class="credentials-projects">
       <button
         v-for="project in projects"
@@ -18,7 +21,7 @@
         <div class="project-overlay">
           <p class="project-description">
             {{ project.power ? `${project.power} kWp` : '' }}
-            {{ project.description }}
+            <span v-html="project.description[ln]" />
           </p>
         </div>
       </button>
@@ -43,6 +46,14 @@ import { projects } from '@/const/projects'
 import { ref } from 'vue'
 
 const selected = ref(null)
+const store = useMainStore()
+const ln = computed(() => store.language)
+
+const translates = {
+  en: { title: 'CREDENTIALS' },
+  de: { title: 'REFERENZEN' },
+  hr: { title: 'OVLASTI' }
+}
 </script>
 
 <style lang="scss" scoped>

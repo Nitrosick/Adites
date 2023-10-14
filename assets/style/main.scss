@@ -53,14 +53,14 @@ p {
 
 h1 {
   text-align: center;
-  font-size: clamp($font-size-xxl, 5vw, $font-size-xxxl);
+  font-size: clamp($font-size-xxl, 6vw, $font-size-xxxl);
   margin: 0;
   line-height: 2.3rem;
 }
 
 h2 {
   text-align: center;
-  font-size: clamp($font-size-xl, 3.5vw, $font-size-xxl);
+  font-size: clamp($font-size-xl, 4.5vw, $font-size-xxl);
   margin: 0;
   line-height: 1.8rem;
   font-weight: 500;
