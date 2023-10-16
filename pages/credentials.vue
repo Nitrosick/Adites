@@ -58,10 +58,13 @@ const store = useMainStore()
 const ln = computed(() => store.language)
 
 const translates = {
-  en: { title: 'CREDENTIALS' },
-  de: { title: 'REFERENZEN' },
-  hr: { title: 'OVLASTI' }
+  en: { title: 'Credentials' },
+  de: { title: 'Referenzen' },
+  hr: { title: 'Ovlasti' }
 }
+
+const { projectTitle } = useRuntimeConfig().public
+useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 </script>
 
 <style lang="scss" scoped>

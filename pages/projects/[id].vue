@@ -27,9 +27,22 @@ if (!project) throw createError({ statusCode: 404, statusMessage: 'Page Not Foun
 
 const store = useMainStore()
 const ln = computed(() => store.language)
+
+const translates = {
+  en: { title: 'Projects' },
+  de: { title: 'Forschungsprojekte' },
+  hr: { title: 'Projekti' }
+}
+
+const { projectTitle } = useRuntimeConfig().public
+useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 </script>
 
 <style lang="scss" scoped>
+.page-title {
+  text-transform: none;
+}
+
 .project {
   display: flex;
   flex-direction: column;

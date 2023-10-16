@@ -37,24 +37,27 @@ const ln = computed(() => store.language)
 
 const translates = {
   en: {
-    title: 'CONTACTS',
+    title: 'Contacts',
     subtitle: 'You can choose a consultant in our region.',
     contact1: 'From Amberg Berator',
     contact2: 'From Nuremberg Berator'
   },
   de: {
-    title: 'KONTAKT',
+    title: 'Kontakt',
     subtitle: 'Sie können einen Berater in unserer Region auswählen.',
     contact1: 'Aus Amberg Berator',
     contact2: 'Aus Nürnberg Berator'
   },
   hr: {
-    title: 'KONTAKTI',
+    title: 'Kontakti',
     subtitle: 'Možete odabrati savjetnika u našoj regiji.',
     contact1: 'Iz Amberga Beratora',
     contact2: 'Iz Nirnberškog Beratora'
   }
 }
+
+const { projectTitle } = useRuntimeConfig().public
+useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 </script>
 
 <style lang="scss" scoped>
@@ -83,6 +86,7 @@ const translates = {
     width: 100%;
     height: 25rem;
     border: none;
+    background-color: $color-grey-3;
     margin: 1rem 0;
   }
 }

@@ -1,15 +1,19 @@
+const title = 'Adites'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      projectTitle: title
+    }
+  },
   app: {
     head: {
-      meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-      ],
-      noscript: [
-        { children: 'JavaScript is required' }
-      ]
+      title: title,
+      meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+      noscript: [{ children: 'JavaScript is required' }]
     }
   },
   css: [

@@ -74,7 +74,7 @@ const persons = [
 
 const translates = {
   en: {
-    title: 'ABOUT US',
+    title: 'About Us',
     subtitle: 'ADITES – A team for your energy freedom!',
     historyTitle: 'The company history of ADITES GmbH',
     historySubtitle: '...how it all began!',
@@ -84,7 +84,7 @@ const translates = {
     ]
   },
   de: {
-    title: 'ÜBER UNS',
+    title: 'Über Uns',
     subtitle: 'ADITES – Ein team für ihre energiefreiheit!',
     historyTitle: 'Die Firmengeschichte der ADITES GmbH',
     historySubtitle: '...wie alles began!',
@@ -94,7 +94,7 @@ const translates = {
     ]
   },
   hr: {
-    title: 'O NAMA',
+    title: 'O Nama',
     subtitle: 'ADITES – Tim za vašu energetsku slobodu!',
     historyTitle: 'Povijest tvrtke ADITES GmbH',
     historySubtitle: '...kako je sve počelo!',
@@ -104,6 +104,9 @@ const translates = {
     ]
   }
 }
+
+const { projectTitle } = useRuntimeConfig().public
+useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 </script>
 
 <style lang="scss" scoped>
