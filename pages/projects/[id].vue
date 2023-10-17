@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="project"
-    class="project wrapper"
+    class="project wrapper margined"
   >
     <h1 class="page-title">{{ project.power }}kWp</h1>
     <div class="project-image">
@@ -46,7 +46,6 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 .project {
   display: flex;
   flex-direction: column;
-  margin-top: 6rem;
   padding: 2rem 1rem;
   width: 100%;
 

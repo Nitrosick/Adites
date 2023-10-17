@@ -1,5 +1,5 @@
 <template>
-  <div class="credentials wrapper">
+  <div class="credentials wrapper margined">
     <h1
       class="page-title"
       v-html="translates[ln].title"
@@ -71,7 +71,6 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 .credentials {
   display: flex;
   flex-direction: column;
-  margin-top: 6rem;
   padding: 2rem 1rem;
   width: 100%;
 

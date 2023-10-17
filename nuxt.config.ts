@@ -16,10 +16,6 @@ export default defineNuxtConfig({
       noscript: [{ children: 'JavaScript is required' }]
     }
   },
-  css: [
-    '@/assets/style/main.scss',
-    '@fortawesome/fontawesome-svg-core/styles.css'
-  ],
   components: {
     dirs: ['components/ui']
   },
@@ -42,6 +38,10 @@ export default defineNuxtConfig({
       },
     },
   },
+  css: [
+    '@/assets/style/main.scss',
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ],
   imports: {
     dirs: ['store']
   }

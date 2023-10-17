@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main margined">
     <Poster />
     <Welcome />
     <Consultants />
@@ -19,7 +19,4 @@ import About from '@/components/page/main/About.vue';
 </script>
 
 <style lang="scss" scoped>
-.main {
-  margin-top: 6rem;
-}
 </style>

@@ -18,7 +18,7 @@
             class="persons-item-photo"
           >
           <NuxtLink
-            :to="`/persons/${person.id}`"
+            :to="`/${person.id}`"
             class="persons-item-name"
           >
             {{ person.name }}

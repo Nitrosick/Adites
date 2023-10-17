@@ -1,5 +1,5 @@
 <template>
-  <div class="contacts wrapper">
+  <div class="contacts wrapper margined">
     <h1
       class="page-title"
       v-html="translates[ln].title"
@@ -15,7 +15,7 @@
     >
       <span class="contacts-item-title">
         {{ person.berator[ln] }}:
-        <NuxtLink :to="`/persons/${person.id}`">
+        <NuxtLink :to="`/${person.id}`">
           {{ person.name }}
         </NuxtLink>
       </span>
@@ -59,7 +59,6 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 .contacts {
   display: flex;
   flex-direction: column;
-  margin-top: 6rem;
   padding: 2rem 1rem;
   width: 100%;
 

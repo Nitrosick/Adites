@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="person"
-    class="person wrapper"
+    class="person wrapper margined"
   >
     <h1 class="page-title">{{ person.name }}</h1>
     <div class="person-data">
@@ -32,8 +32,8 @@
 <script setup>
 import { persons } from '@/const/persons'
 
-const { id } = useRoute().params
-const person = persons.find(p => p.id === +id)
+const id = useRoute().params.person
+const person = persons.find(p => p.id === id)
 if (!person) throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
 
 const store = useMainStore()
@@ -58,7 +58,6 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
 .person {
   display: flex;
   flex-direction: column;
-  margin-top: 6rem;
   padding: 2rem 1rem;
   width: 100%;
 

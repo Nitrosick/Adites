@@ -1,5 +1,5 @@
 <template>
-  <div class="about wrapper">
+  <div class="about wrapper margined">
     <h1
       class="page-title"
       v-html="translates[ln].title"
@@ -113,7 +113,6 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 .about {
   display: flex;
   flex-direction: column;
-  margin-top: 6rem;
   padding: 2rem 1rem;
 
   &-team {

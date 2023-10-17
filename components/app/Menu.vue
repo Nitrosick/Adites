@@ -1,7 +1,7 @@
 <template>
   <nav class="menu">
     <NuxtLink
-      v-for="item in items"
+      v-for="item in menu"
       :key="item.id"
       :to="item.to"
       class="menu-item"
@@ -26,7 +26,20 @@
     :class="{ 'opened': menuOpened }"
   >
     <NuxtLink
-      v-for="item in items"
+      v-for="item in menu"
+      :key="item.id"
+      :to="item.to"
+      class="menu-popup-item"
+      @click="menuOpened = false"
+    >
+      {{ item.title[ln] }}
+    </NuxtLink>
+    <div
+      v-if="submenu.length"
+      class="menu-popup-splitter"
+    />
+    <NuxtLink
+      v-for="item in submenu"
       :key="item.id"
       :to="item.to"
       class="menu-popup-item"
@@ -39,18 +52,12 @@
 
 <script setup>
 import { ref } from 'vue'
+import { menu, submenu } from '@/const/menu';
 import LangSwitcher from '@/components/app/LangSwitcher.vue';
 
 const store = useMainStore()
 const ln = computed(() => store.language)
 const menuOpened = ref(false)
-
-const items = [
-  { id: 1, title: { en: 'start', de: 'start', hr: 'početak' }, to: '/' },
-  { id: 2, title: { en: 'about us', de: 'über uns', hr: 'o nama' }, to: '/about' },
-  { id: 3, title: { en: 'credentials', de: 'referenzen', hr: 'ovlasti' }, to: '/credentials' },
-  { id: 4, title: { en: 'contacts', de: 'kontakt', hr: 'kontakti' }, to: '/contacts' }
-]
 </script>
 
 <style lang="scss" scoped>
@@ -125,6 +132,12 @@ const items = [
     &-item {
       text-transform: uppercase;
       line-height: 2.5rem;
+    }
+
+    &-splitter {
+      margin: 1rem 0;
+      height: 2px;
+      background-color: $color-grey-3;
     }
   }
 }
