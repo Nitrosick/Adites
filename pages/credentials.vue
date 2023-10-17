@@ -144,7 +144,7 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 
   &-content {
     padding: 0.3rem;
-    background-color: $color-white;
+    background-color: $color-background;
   }
 
   &-description {

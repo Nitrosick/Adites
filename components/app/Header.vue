@@ -48,7 +48,7 @@ onUnmounted(() => { window.removeEventListener('scroll', handleScroll) })
   top: 0;
   left: 0;
   width: 100%;
-  background-color: $color-white;
+  background-color: $color-background;
   box-shadow: 0 0 0 0 transparent;
   transition: transform 0.5s;
   z-index: 5;
@@ -83,6 +83,7 @@ onUnmounted(() => { window.removeEventListener('scroll', handleScroll) })
   &-logo {
     height: 3rem;
     transition: height 0.5s;
+    cursor: pointer;
   }
 }
 

@@ -68,7 +68,7 @@ const translates = {
     left: 0;
     height: 10rem;
     width: 100%;
-    background-color: $color-white;
+    background-color: $color-background;
     z-index: 1;
   }
 
@@ -100,7 +100,7 @@ const translates = {
     align-items: center;
     max-width: 27rem;
     padding: 2rem;
-    background-color: $color-white;
+    background-color: $color-background;
     box-shadow: $shadow;
 
     &-photo {

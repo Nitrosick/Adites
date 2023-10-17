@@ -120,7 +120,7 @@ const menuOpened = ref(false)
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    background-color: $color-white;
+    background-color: $color-background;
     box-shadow: $shadow;
     transform: translateX(120%);
     transition: transform 0.5s;

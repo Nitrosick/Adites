@@ -74,7 +74,7 @@ const translates = {
     left: 0;
     height: 7rem;
     width: 100%;
-    background-color: $color-white;
+    background-color: $color-background;
     z-index: 1;
   }
 }
@@ -94,7 +94,7 @@ const translates = {
     min-width: 20rem;
     max-width: 20rem;
     height: 18rem;
-    background-color: $color-white;
+    background-color: $color-background;
     box-shadow: $shadow;
     overflow: hidden;
 

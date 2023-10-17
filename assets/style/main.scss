@@ -8,7 +8,7 @@
 
 body {
   margin: 0;
-  font-family: 'Poppins', 'Calibri', 'Arial', sans-serif;
+  font-family: $font-main;
   font-size: $font-size-md;
   color: $color-grey-1;
   overflow: overlay;
@@ -17,6 +17,7 @@ body {
 button {
   border: none;
   background-color: transparent;
+  font-family: $font-main;
   cursor: pointer;
 }
 
