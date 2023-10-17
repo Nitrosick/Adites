@@ -7,30 +7,27 @@
         v-html="translates[ln].title"
       />
       <div class="persons">
-        <div class="persons-item">
+        <div
+          v-for="person in persons"
+          :key="person.id"
+          class="persons-item"
+        >
           <img
-            src="/images/persons/vilvovskiy.jpg"
+            :src="`/images/persons/${person.photo}`"
             alt="photo"
             class="persons-item-photo"
           >
-          <span class="persons-item-name">
-            Ilya Vilvovskiy
-          </span>
-          <span class="persons-item-contacts">
-            {{ translates[ln].person1 }} +49 (0) 151 68565004 ilya.vilvovskiy@adites.de
-          </span>
-        </div>
-        <div class="persons-item">
-          <img
-            src="/images/persons/dambrowski.jpg"
-            alt="photo"
-            class="persons-item-photo"
+          <NuxtLink
+            :to="`/persons/${person.id}`"
+            class="persons-item-name"
           >
-          <span class="persons-item-name">
-            Kevin Dambrowski
-          </span>
+            {{ person.name }}
+          </NuxtLink>
           <span class="persons-item-contacts">
-            {{ translates[ln].person2 }} +49 (0) 174 9544379 KevinDambrowski@gmail.com
+            {{ translates[ln].prefix }}
+            {{ ln === 'hr' ? person.city[ln] + 'a' : person.city[ln] }}<br>
+            <a :href="`tel:${person.phone}`">{{ person.phone }}</a><br>
+            <a :href="`mailto:${person.email}`">{{ person.email }}</a>
           </span>
         </div>
       </div>
@@ -39,24 +36,23 @@
 </template>
 
 <script setup>
+import { persons } from '@/const/persons'
+
 const store = useMainStore()
 const ln = computed(() => store.language)
 
 const translates = {
   en: {
     title: 'Our solar consultants in your region',
-    person1: 'from Amberg',
-    person2: 'from Nuremberg',
+    prefix: 'From'
   },
   de: {
     title: 'Unsere Solarberater in Ihrer Region',
-    person1: 'aus Amberg',
-    person2: 'aus Nürnberg',
+    prefix: 'Aus'
   },
   hr: {
     title: 'Naši savjetnici za solarnu energiju u vašem području',
-    person1: 'iz Amberga',
-    person2: 'iz Nirnberga',
+    prefix: 'Iz'
   }
 }
 </script>
@@ -100,7 +96,7 @@ const translates = {
   &-item {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
     max-width: 27rem;
     padding: 2rem;
@@ -126,7 +122,7 @@ const translates = {
 @include breakpoint-md {
   .persons {
     &-item {
-      gap: 1rem;
+      gap: 0.5rem;
       max-width: 25rem;
       padding: 1rem;
 
