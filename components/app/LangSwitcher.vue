@@ -14,14 +14,20 @@
 <script setup>
 import { ref, watch } from 'vue'
 
-const storageLang = localStorage.getItem('language')
 const store = useMainStore()
-const lang = ref(storageLang ?? 'hr')
-
-if (storageLang) store.changeLanguage(storageLang)
+const lang = ref('hr')
 
 watch(lang, (newLang) => {
   store.changeLanguage(newLang)
+})
+
+onBeforeMount(() => {
+  const storageLang = localStorage.getItem('language')
+
+  if (storageLang) {
+    store.changeLanguage(storageLang)
+    lang.value = storageLang
+  }
 })
 </script>
 

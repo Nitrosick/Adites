@@ -9,30 +9,32 @@
       class="projects-subtitle"
       v-html="translates[ln].title[1]"
     />
-    <div class="slider">
-      <NuxtLink
-        v-for="project in projects"
-        :key="project.id"
-        :to="`/projects/${project.id}`"
-        class="slider-item"
-      >
-        <div class="slider-item-image">
-          <img
-            :src="`/images/projects/${project.image}`"
-            alt="project photo"
-            loading="lazy"
-          >
-        </div>
-        <span class="slider-item-power">{{ project.power ? `${project.power} kWp` : '-'  }}</span>
-        <p
-          class="slider-item-description"
-          v-html="project.description[ln]"
-        />
-        <div class="slider-item-overlay">
-          <Icon icon="fas fa-link" />
-        </div>
-      </NuxtLink>
-    </div>
+    <ClientOnly>
+      <div class="slider">
+        <NuxtLink
+          v-for="project in projects"
+          :key="project.id"
+          :to="`/projects/${project.id}`"
+          class="slider-item"
+        >
+          <div class="slider-item-image">
+            <img
+              :src="`/images/projects/${project.image}`"
+              alt="project photo"
+              loading="lazy"
+            >
+          </div>
+          <span class="slider-item-power">{{ project.power ? `${project.power} kWp` : '-'  }}</span>
+          <p
+            class="slider-item-description"
+            v-html="project.description[ln]"
+          />
+          <div class="slider-item-overlay">
+            <Icon icon="fas fa-link" />
+          </div>
+        </NuxtLink>
+      </div>
+    </ClientOnly>
   </div>
 </template>
 

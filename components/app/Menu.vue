@@ -1,53 +1,55 @@
 <template>
-  <nav class="menu">
-    <NuxtLink
-      v-for="item in menu"
-      :key="item.id"
-      :to="item.to"
-      class="menu-item"
-    >
-      {{ item.title[ln] }}
-    </NuxtLink>
-    <LangSwitcher />
-    <button
-      class="menu-burger"
-      @click.prevent="menuOpened = !menuOpened"
-    >
-      <Icon icon="fas fa-bars" />
-    </button>
-  </nav>
-  <div
-    class="menu-popup-overlay"
-    :class="{ 'opened': menuOpened }"
-    @click="menuOpened = false"
-  />
-  <nav
-    class="menu-popup"
-    :class="{ 'opened': menuOpened }"
-  >
-    <NuxtLink
-      v-for="item in menu"
-      :key="item.id"
-      :to="item.to"
-      class="menu-popup-item"
-      @click="menuOpened = false"
-    >
-      {{ item.title[ln] }}
-    </NuxtLink>
+  <ClientOnly>
+    <nav class="menu">
+      <NuxtLink
+        v-for="item in menu"
+        :key="item.id"
+        :to="item.to"
+        class="menu-item"
+      >
+        {{ item.title[ln] }}
+      </NuxtLink>
+      <LangSwitcher />
+      <button
+        class="menu-burger"
+        @click.prevent="menuOpened = !menuOpened"
+      >
+        <Icon icon="fas fa-bars" />
+      </button>
+    </nav>
     <div
-      v-if="submenu.length"
-      class="menu-popup-splitter"
-    />
-    <NuxtLink
-      v-for="item in submenu"
-      :key="item.id"
-      :to="item.to"
-      class="menu-popup-item"
+      class="menu-popup-overlay"
+      :class="{ 'opened': menuOpened }"
       @click="menuOpened = false"
+    />
+    <nav
+      class="menu-popup"
+      :class="{ 'opened': menuOpened }"
     >
-      {{ item.title[ln] }}
-    </NuxtLink>
-  </nav>
+      <NuxtLink
+        v-for="item in menu"
+        :key="item.id"
+        :to="item.to"
+        class="menu-popup-item"
+        @click="menuOpened = false"
+      >
+        {{ item.title[ln] }}
+      </NuxtLink>
+      <div
+        v-if="submenu.length"
+        class="menu-popup-splitter"
+      />
+      <NuxtLink
+        v-for="item in submenu"
+        :key="item.id"
+        :to="item.to"
+        class="menu-popup-item"
+        @click="menuOpened = false"
+      >
+        {{ item.title[ln] }}
+      </NuxtLink>
+    </nav>
+  </ClientOnly>
 </template>
 
 <script setup>
