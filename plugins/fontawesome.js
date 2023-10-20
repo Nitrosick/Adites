@@ -7,5 +7,5 @@ library.add(fas)
 config.autoAddCss = false
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.component('Icon', FontAwesomeIcon, {})
+  nuxtApp.vueApp.component('FontAwesomeIcon', FontAwesomeIcon, {})
 })

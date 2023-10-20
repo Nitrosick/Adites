@@ -14,7 +14,7 @@
         class="menu-burger"
         @click.prevent="menuOpened = !menuOpened"
       >
-        <Icon icon="fas fa-bars" />
+        <Icon img="bars" />
       </button>
     </nav>
     <div

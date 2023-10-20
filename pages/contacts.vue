@@ -19,19 +19,14 @@
           {{ person.name }}
         </NuxtLink>
       </span>
-      <iframe
-        :src="person.map"
-        allowfullscreen=""
-        loading="lazy"
-        class="contacts-map"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <GoogleMap :src="person.map" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { persons } from '@/const/persons'
+import GoogleMap from '@/components/app/GoogleMap.vue'
 
 const store = useMainStore()
 const ln = computed(() => store.language)
@@ -72,16 +67,9 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
     border-top: 2px solid $color-grey-3;
 
     &-title {
-      margin-bottom: 2rem;
+      display: block;
+      margin-bottom: 1rem;
     }
-  }
-
-  &-map {
-    width: 100%;
-    height: 25rem;
-    border: none;
-    background-color: $color-grey-3;
-    margin: 1rem 0;
   }
 }
 </style>

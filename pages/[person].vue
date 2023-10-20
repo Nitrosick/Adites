@@ -4,33 +4,35 @@
     class="person wrapper margined"
   >
     <h1 class="page-title">{{ person.name }}</h1>
-    <div class="person-data">
-      {{ translates[ln].mobile }}:
+    <!-- <div class="person-data">
+
+    </div> -->
+    <div class="person-contacts">
+      <span class="person-contacts-icon">
+        <Icon img="phone-alt" />
+      </span>
       <a :href="`tel:${person.phone}`">{{ person.phone }}</a>
-    </div>
-    <div class="person-data">
-      E-mail:
+      <br>
+      <span class="person-contacts-icon">
+        <Icon img="envelope" />
+      </span>
       <a :href="`mailto:${person.email}`">{{ person.email }}</a>
     </div>
     <div class="person-images">
-      <img
-        :src="`/images/persons/${person.photo}`"
-        alt="photo"
-        class="person-photo"
-      >
-      <iframe
-        :src="person.map"
-        allowfullscreen=""
-        loading="lazy"
-        class="person-map"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <div class="person-photo">
+        <img
+          :src="`/images/persons/${person.photo}`"
+          alt="photo"
+        >
+      </div>
+      <GoogleMap :src="person.map" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { persons } from '@/const/persons'
+import GoogleMap from '@/components/app/GoogleMap.vue'
 
 const id = useRoute().params.person
 const person = persons.find(p => p.id === id)
@@ -39,12 +41,6 @@ if (!person) throw createError({ statusCode: 404, statusMessage: 'Page Not Found
 const store = useMainStore()
 const ln = computed(() => store.language)
 const { projectTitle } = useRuntimeConfig().public
-
-const translates = {
-  en: { mobile: 'Mobile' },
-  de: { mobile: 'Mobile' },
-  hr: { mobile: 'Mobilni' }
-}
 
 useHead({ title: () => `${projectTitle} | ${person.name}` })
 </script>
@@ -61,9 +57,15 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
   padding: 2rem 1rem;
   width: 100%;
 
-  &-data {
+  &-contacts {
     padding: 1rem 0;
-    border-bottom: 2px solid $color-grey-3;
+    line-height: 2rem;
+    // border-bottom: 2px solid $color-grey-3;
+
+    &-icon {
+      font-size: $font-size-lg;
+      margin-right: 0.5rem;
+    }
   }
 
   &-images {
@@ -73,13 +75,13 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
   }
 
   &-photo {
-    width: 30vw;
-  }
+    width: 35vw;
 
-  &-map {
-    width: 100%;
-    border: none;
-    background-color: $color-grey-3;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }
 
@@ -94,10 +96,6 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
     &-photo {
       width: 25rem;
     }
-
-    &-map {
-      height: 25rem;
-    }
   }
 }
 
@@ -105,10 +103,6 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
   .person {
     &-photo {
       width: 100%;
-    }
-
-    &-map {
-      height: 20rem;
     }
   }
 }

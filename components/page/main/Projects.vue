@@ -30,7 +30,7 @@
             v-html="project.description[ln]"
           />
           <div class="slider-item-overlay">
-            <Icon icon="fas fa-link" />
+            <Icon img="link" />
           </div>
         </NuxtLink>
       </div>
