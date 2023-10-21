@@ -25,7 +25,7 @@
           </NuxtLink>
           <span class="persons-item-contacts">
             {{ translates[ln].prefix }}
-            {{ ln === 'hr' ? person.city[ln] + 'a' : person.city[ln] }}<br>
+            {{ person.city[ln] }}<br>
             <a :href="`tel:${person.phone}`">{{ person.phone }}</a><br>
             <a :href="`mailto:${person.email}`">{{ person.email }}</a>
           </span>
@@ -49,10 +49,6 @@ const translates = {
   de: {
     title: 'Unsere Solarberater in Ihrer Region',
     prefix: 'Aus'
-  },
-  hr: {
-    title: 'Naši savjetnici za solarnu energiju u vašem području',
-    prefix: 'Iz'
   }
 }
 </script>

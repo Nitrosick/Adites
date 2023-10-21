@@ -6,7 +6,6 @@
     >
       <option value="en">EN</option>
       <option value="de">DE</option>
-      <option value="hr">HR</option>
     </select>
   </div>
 </template>
@@ -15,7 +14,7 @@
 import { ref, watch } from 'vue'
 
 const store = useMainStore()
-const lang = ref('hr')
+const lang = ref('de')
 
 watch(lang, (newLang) => {
   store.changeLanguage(newLang)

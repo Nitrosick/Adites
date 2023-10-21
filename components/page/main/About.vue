@@ -73,15 +73,6 @@ const translates = {
     text2: 'Die Kunst, all die Technologien im Bestand oder im Neubau sinnvoll einzusetzen liegt in einer maßvollen Planung. Sie geht in Energieerzeugung (Photovoltaik), Energiemanagement (leistungsgeregelte Schaltungen), Energiemonitoring (Smart Home) und normgerechte Energieverteilung (Elektroinstallation) ein.',
     subtitle3: 'UMSETZUNG',
     text3: 'Unter Berücksichtigung der neuesten Vorschriften verwandeln unsere qualifizierten Mitarbeiter Ihr Haus in ein "intelligentes" und energetisch optimiertes Haus. Wir übernehmen für Sie die komplette Installation der Haustechnik und der Elektroinstallation und stimmen diese Perfekt auf Ihre Wünsche ab.',
-  },
-  hr: {
-    title: ['OVDJE SMO ZA VAS', 'od preporuka do provedbe'],
-    subtitle1: 'VIJEĆE',
-    text1: 'Sveobuhvatno i profesionalno savjetovanje o često teškim temama vrlo nam je važno. Naš je cilj razviti najbolje moguće rješenje za vašu građevinsku tehnologiju. Pri tome prvo uzimamo u obzir glavne prednosti energetski učinkovitih tehnologija i obnovljivih izvora energije te ih, koliko je to moguće, integriramo u planiranje vaše zgrade.',
-    subtitle2: 'PLANIRANJE',
-    text2: 'Umijeće inteligentnog korištenja svih tehnologija u postojećim ili novim zgradama leži u pažljivom planiranju. To se odnosi na proizvodnju energije (fotonaponski sustavi), upravljanje energijom (sklopovi s promjenjivom snagom), nadzor potrošnje energije (pametni dom) i distribuciju energije prema standardima (ožičenje).',
-    subtitle3: 'PROVEDBA',
-    text3: 'Uzimajući u obzir najnovije propise, naše kvalificirano osoblje pretvorit će vaš dom u "inteligentan" i energetski učinkovit. Pobrinut ćemo se za potpunu ugradnju građevinskih tehnologija i električne instalacije za vas i savršeno ih prilagoditi vašim željama.',
   }
 }
 </script>

@@ -30,8 +30,7 @@ const ln = computed(() => store.language)
 
 const translates = {
   en: { title: 'Projects' },
-  de: { title: 'Forschungsprojekte' },
-  hr: { title: 'Projekti' }
+  de: { title: 'Forschungsprojekte' }
 }
 
 const { projectTitle } = useRuntimeConfig().public

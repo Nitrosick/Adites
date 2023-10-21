@@ -82,28 +82,6 @@ const translates = {
         <li>Privat oder gewerblich</li>
       </ul>
     `
-  },
-  hr: {
-    title: ['Dobrodošli u ADITES', 's nama je samo energija SLOBODE'],
-    text1: `
-      Zašto fotonaponski sustavi?
-      <ul>
-        <li>Vaš put do energetske slobodi</li>
-        <li>Koje štite okoliš</li>
-        <li>Visoka i dugotrajna dobit</li>
-        <li>Zaštita od rasta cijena električne energije</li>
-        <li>Povećanje vrijednosti vaše nekretnine</li>
-      </ul>
-    `,
-    text2: `
-      Zašto s nama?
-      <ul>
-        <li>Sveobuhvatna ponuda, uključujući montažu i registraciju</li>
-        <li>Pouzdana instalacija</li>
-        <li>Transparentnost</li>
-        <li>Sustavi svih veličina - privatni ili komercijalni</li>
-      </ul>
-    `
   }
 }
 </script>

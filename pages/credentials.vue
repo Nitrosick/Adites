@@ -59,8 +59,7 @@ const ln = computed(() => store.language)
 
 const translates = {
   en: { title: 'Credentials' },
-  de: { title: 'Referenzen' },
-  hr: { title: 'Ovlasti' }
+  de: { title: 'Referenzen' }
 }
 
 const { projectTitle } = useRuntimeConfig().public

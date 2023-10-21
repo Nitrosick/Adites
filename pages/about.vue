@@ -57,18 +57,15 @@ const ln = computed(() => store.language)
 const persons = [
   { id: 1, photo: 'esau.jpeg', name: 'Dieter Esau', position: {
     en: 'Managing Partner<br>Sales, Marketing and Organization',
-    de: 'Geschäftsführender Gesellschafter<br>Vertrieb, Marketing und Organisation',
-    hr: 'Upravljački partner u prodaji<br>marketingu i organizaciji'
+    de: 'Geschäftsführender Gesellschafter<br>Vertrieb, Marketing und Organisation'
   } },
   { id: 2, photo: 'erlich.jpeg', name: 'Alexei Erlich', position: {
     en: 'Managing partner<br>Technical manager, work preparation and controlling',
-    de: 'Geschäftsführender Gesellschafter<br>Technischer Leiter, Arbeitsvorbereitung und Controlling',
-    hr: 'Upravljački partner<br>Tehnički voditelj za pripremu i kontrolu rada'
+    de: 'Geschäftsführender Gesellschafter<br>Technischer Leiter, Arbeitsvorbereitung und Controlling'
   } },
   { id: 3, photo: null, name: 'Artur Braun', position: {
     en: 'Head of Sales<br>Accounting, purchasing and controlling',
-    de: 'Buchhaltung<br>Einkauf und Controlling',
-    hr: 'Voditelj prodaje<br>Računovodstva, nabave i kontrole'
+    de: 'Buchhaltung<br>Einkauf und Controlling'
   } }
 ]
 
@@ -91,16 +88,6 @@ const translates = {
     history: [
       'Die Firmengeschichte beginnt im Jahr 2011 als Dieter Esau sein Einzelunternehmen im Bereich der Energieberatung gründet. Der Schwerpunkt der Beratung lag im Bereich der elektrischen Energie und der erneuerbaren Energien, insbesondere Photovoltaik. Bereits im Jahr 2012 hat Dieter Esau große Firmen wie BELECTRIC GmbH mit technischen und rechtlichen Sachverhalten beraten und geschult.<br><br>Im Jahr 2014 kam Alexei Erlich in das geschäftliche Geschehen hinzu. Seine Idee war es, Plus-Energie-Häuser zu bauen, die mit Solarstrom betrieben werden. Daraufhin wurde eine Bauträgergesellschaft in Form einer GbR gegründet, die zusätzlich Elektroinstallation und Photovoltaikanlagen ausführt, sowie Internethandel betreibt.',
       'Ende 2014 konnten wir als Erlich&Esau GbR ein  Grundstück für ein Bauprojekt erwerben. Parallel dazu wurde die Finanzierung für eine  Plus-Energie-Siedlung genehmigt. Im Februar 2015 war alles soweit, um das Bauvorhaben zu starten, doch dann bekam Erlich&Esau GbR ein lukratives Angebot:<br><br>Das gesamte Bauvorhaben wird finanziert und umgestaltet und Erlich&Esau GbR kann relativ risikofrei die Idee, Bau einer Plus-Energie-Siedlung, zu verwirklichen. Die gesamte energetische und elektrische Planung wird für das aktuelle Projekt übernommen.<br><br>Im Mai 2015 wird das Unternehmen ADITES GmbH gegründet. Die Namensgebung entspringt dem indischen Sonnengott Aditya. Der Unternehmenszweck blieb der gleiche wie auch bei der Unternehmung Erlich&Esau GbR, die im gleichen Jahr abgewickelt wurde.<br><br>Heute befindet sich unseres junges und erfolgreiches  Unternehmer in einer starken  technologischen Wettbewerbsposition für die Geschäftsfelder der Zukunft wie etwa die regenerativen Energien und die dezentrale Energieversorgung. Ökonomie, Ökologie und gesellschaftliche Verantwortung steht im Vordergrund, besonders in den Bereichen Energie- und Gebäudemanagement.'
-    ]
-  },
-  hr: {
-    title: 'O Nama',
-    subtitle: 'ADITES – Tim za vašu energetsku slobodu!',
-    historyTitle: 'Povijest tvrtke ADITES GmbH',
-    historySubtitle: '...kako je sve počelo!',
-    history: [
-      'Povijest tvrtke počinje 2011.godine, kada je Dieter Isau osnovao svoje samostalno poduzeće u području energetskog savjetovanja. Fokus savjetovanja bio je na području električne energije i obnovljivih izvora energije, posebno fotonaponskih. Još 2012.godine Dieter Isau savjetovao je i obučavao velike tvrtke poput AIK-a o tehničkim i pravnim pitanjima.<br><br>2014.godine Aleksej Ehrlich pridružio se poslu. Njegova je ideja bila izgraditi kuće s povećanom energijom na solarni pogon. Tada je osnovana tvrtka za razvoj nekretnina u obliku MK, koja se također bavi električnim i fotonaponskim sustavima i obavlja internetsku trgovinu.<br><br>',
-      'Krajem 2014.godine, mi smo, kao A&A, mogli kupiti zemljište za provedbu građevinskog projekta. Istodobno je odobreno financiranje projekta "Plus-energija". U veljači 2015.sve je bilo spremno za početak gradnje, ali tada je tvrtka Ame&Ame dobila povoljnu ponudu:<br><br>Cijeli građevinski projekt financiran je i redizajniran, a Ame&Ame može realizirati ideju izgradnje naselja s pozitivnom energijom relativno bez rizika. Sve energetsko i električno planiranje provodi se za tekući projekt.<br><br>Tvrtka M. A. osnovana je u svibnju 2015. Ovo ime potječe od imena indijskog boga Sunca Aditije. Cilj tvrtke ostao je isti kao i tvrtka M&M koja je osnovana iste godine.<br><br>Danas naš mladi i uspješni poduzetnik zauzima snažnu tehnološku konkurentsku poziciju u budućim poslovnim područjima kao što su obnovljivi izvori energije i decentralizirana opskrba energijom. Gospodarstvo, ekologija i društvena odgovornost su u prvom planu, posebno u energetici i upravljanju zgradama.'
     ]
   }
 }

@@ -49,12 +49,6 @@ const translates = {
     text: 'Diese Website verwendet Cookies, um sicherzustellen, dass Sie das beste Erlebnis auf unserer Website haben',
     accept: 'Akzeptieren',
     decline: 'Rückgang'
-  },
-  hr: {
-    title: 'Datoteke i privatnost',
-    text: 'Ova internetska stranica koristi datoteke kako bi se osiguralo da ćete dobiti najbolje moguće iskustvo na našoj internetskoj stranici',
-    accept: 'Prihvatiti',
-    decline: 'Smanjenje'
   }
 }
 

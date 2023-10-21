@@ -31,8 +31,7 @@ const sections = [
     id: 1,
     title: {
       en: 'Data protection at a glance',
-      de: 'Datenschutz auf einen Blick',
-      hr: 'Kratki pregled privatnosti'
+      de: 'Datenschutz auf einen Blick'
     },
     content: {
       en: `
@@ -70,24 +69,6 @@ const sections = [
         <h4>Analyse-Tools und Tools von Drittanbietern</h4>
         Beim Besuch unserer Website kann Ihr Surf-Verhalten statistisch ausgewertet werden. Das geschieht vor allem mit Cookies und mit sogenannten Analyseprogrammen. Die Analyse Ihres Surf-Verhaltens erfolgt in der Regel anonym; das Surf-Verhalten kann nicht zu Ihnen zurückverfolgt werden. Sie können dieser Analyse widersprechen oder sie durch die Nichtbenutzung bestimmter Tools verhindern. Detaillierte Informationen dazu finden Sie in der folgenden Datenschutzerklärung.<br><br>
         Sie können dieser Analyse widersprechen. Über die Widerspruchsmöglichkeiten werden wir Sie in dieser Datenschutzerklärung informieren.
-      `,
-      hr: `
-        <h4>Opće napomene</h4>
-        Napomene u nastavku pružaju jednostavan pregled onoga što se događa s vašim osobnim podacima kada posjetite našu internetsku stranicu. Osobni podaci su sve informacije koje se mogu koristiti za identifikaciju vašeg identiteta. Pojedinosti o zaštiti podataka potražite u našim Pravilima o privatnosti navedenim u nastavku u ovom tekstu.
-        <h4>Prikupljanje podataka na našoj internetskoj stranici</h4>
-        <b>Tko je odgovoran za prikupljanje podataka na ovoj internetskoj stranici?</b>
-        Obradu podataka na ovoj internetskoj stranici obavlja operater internetske stranice. Njegove podatke za kontakt možete pogledati u izlazima ove internetske stranice.
-        <b>Kako prikupljamo vaše podatke?</b>
-        Prvo, vaši se podaci prikupljaju kao rezultat dijeljenja s nama. To mogu biti, na primjer, podaci koje unesete u obrazac za kontakt.<br><br>
-        Ostale podatke automatski prikupljaju naši IT sustavi prilikom posjeta internetskoj stranici. To su prije svega tehnički podaci (poput internetskog preglednika, operativnog sustava ili vremena pregledavanja stranice). Prikupljanje tih podataka vrši se automatski čim posjetite našu internetsku stranicu.
-        <b>Za što Koristimo vaše podatke?</b>
-        Dio podataka prikuplja se kako bi se osigurala besprijekorna usluga internetske stranice. Ostali podaci mogu se koristiti za analizu vašeg korisničkog ponašanja.
-        <b>Koja prava imate u vezi sa svojim podacima?</b>
-        Imate pravo u bilo kojem trenutku besplatno dobiti informacije o podrijetlu, primatelju i svrsi vaših pohranjenih osobnih podataka. Također imate pravo zatražiti ispravak, blokiranje ili brisanje tih podataka. U tu svrhu, kao i za druga pitanja vezana uz privatnost, možete nas kontaktirati u bilo kojem trenutku na adresu navedenu u izlazu. Osim toga, imate pravo podnijeti žalbu nadležnom nadzornom tijelu.<br><br>
-        Osim toga, imate pravo zahtijevati ograničenje obrade vaših osobnih podataka pod određenim okolnostima. Pojedinosti potražite u Pravilima o privatnosti u odjeljku "pravo na ograničenje obrade".
-        <h4>Alati za analitiku i alati trećih strana</h4>
-        Kada posjetite našu internetsku stranicu, vaše ponašanje pregledavanja može se statistički procijeniti. To se događa uglavnom putem datoteka s AD-om i takozvanih analitičkih programa. Analiza vašeg internetskog ponašanja obično se provodi anonimno; nije moguće pratiti vaše internetsko ponašanje. Možete se usprotiviti ovoj analizi ili je spriječiti ne korištenjem određenih alata. Pojedinosti o tome možete pronaći u Pravilima o privatnosti u nastavku.<br><br>
-        Možda se ne slažete s ovom analizom. Obavijestit ćemo vas o mogućnostima prigovora u ovim Pravilima o privatnosti.
       `
     }
   },
@@ -95,8 +76,7 @@ const sections = [
     id: 2,
     title: {
       en: 'General information and mandatory information',
-      de: 'Allgemeine Hinweise und Pflichtinformationen',
-      hr: 'Opće upute i obvezne informacije'
+      de: 'Allgemeine Hinweise und Pflichtinformationen'
     },
     content: {
       en: `
@@ -172,43 +152,6 @@ const sections = [
           <li>Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
         </ul>
         Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, dürfen diese Daten – von ihrer Speicherung abgesehen – nur mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Europäischen Union oder eines Mitgliedstaats verarbeitet werden.
-      `,
-      hr: `
-        <h4>Zaštita podataka</h4>
-        Operateri ovih stranica vrlo ozbiljno shvaćaju zaštitu vaših osobnih podataka. Vaše osobne podatke obrađujemo povjerljivo i u skladu sa zakonskim odredbama o zaštiti podataka i ovim Pravilima o privatnosti.<br><br>
-        Kada koristite ovu internetsku stranicu, prikupljaju se razni osobni podaci. Osobni podaci su podaci koji se mogu koristiti za identifikaciju vašeg identiteta. Ova Politika privatnosti objašnjava koje podatke prikupljamo i za što ih koristimo. Ona također objašnjava kako i u koju svrhu se to radi.<br><br>
-        Napominjemo da prijenos podataka putem Interneta (na primjer, u komunikaciji putem e-pošte) može imati nedostatke u sigurnosnom sustavu. Potpuna zaštita podataka od pristupa trećih strana nije moguća.
-        <h4>Obavijest nadležnog tijela</h4>
-        Odgovorna osoba za obradu podataka na ovoj internetskoj stranici je:<br><br>
-        Aleksej Erlich, Dieter Ezav<br>
-        Paul Forbach-ulica 2<br>
-        97616 Bad Neustadt A. D. Saale<br><br>
-        Telefon: + 49 (0) 9771 6372633<br>
-        E-mail: info@adites.de<br><br>
-        Odgovorna osoba je fizička ili pravna osoba koja samostalno ili zajedno s drugima odlučuje o svrsi i sredstvima obrade osobnih podataka (npr.imena, adrese e-pošte itd.).
-        <h4>Povlačenje vašeg pristanka na obradu podataka</h4>
-        Mnoge operacije obrade podataka moguće su samo uz vaš izričiti pristanak. Pristanak koji ste već dali možete povući u bilo kojem trenutku. Da biste to učinili, samo nam pošaljite neformalnu obavijest e-poštom. Opoziv ne utječe na zakonitost obrade podataka izvršene prije opoziva.
-        <h4>Pravo na prigovor na prikupljanje podataka u posebnim slučajevima, kao i na izravnu poštu (članak 21. Opće uredbe o zaštiti podataka)</h4>
-        <b>Ako se obrada podataka provodi na temelju članka 6. stavka. 1 lit. ako se izvrši ADN ili ADN, imate pravo u bilo kojem trenutku prigovoriti obradi vaših osobnih podataka iz razloga koji se odnose na vašu specifičnu situaciju; to se također odnosi na profiliranje na temelju ovih odredbi. Odgovarajuća pravna osnova na kojoj se temelji obrada navedena je u ovim Pravilima o privatnosti. Ako podnesete prigovor, prestat ćemo obrađivati vaše osobne podatke, osim ako ne možemo dokazati valjane pravne razloge za obradu koji premašuju vaše interese, prava i slobode ili ako obrada nije namijenjena predstavljanju, ostvarivanju ili obrani pravnih zahtjeva (prigovor u skladu s člankom 21.stavkom. 1 GDPR).</b>
-        <b>Ako se vaši osobni podaci obrađuju u svrhu izravnog oglašavanja, imate pravo u bilo kojem trenutku prigovoriti obradi vaših osobnih podataka u svrhu takvog oglašavanja; to se također odnosi na profiliranje ako je povezano s takvim izravnim oglašavanjem. Ako se protivite, vaši se osobni podaci više neće koristiti u svrhu izravne pošte (prigovor u skladu s člankom 21.stavkom. 2 GDPR).</b>
-        <h4>Pravo na podnošenje žalbe nadležnom nadzornom tijelu</h4>
-        U slučaju kršenja AD-a, subjekti podataka imaju pravo podnijeti žalbu nadzornom tijelu, posebno u državi članici u kojoj obično borave, na mjestu zaposlenja ili na mjestu navodnog kršenja. Pravo na žalbu postoji ne dovodeći u pitanje druge upravne ili sudske lijekove.
-        <h4>Pravo na prenosivost podataka</h4>
-        Imate pravo na prijenos podataka koje obrađujemo automatski na temelju vašeg pristanka ili u skladu s ugovorom vama ili trećoj strani u uobičajenom strojno čitljivom formatu. Ako tražite izravan prijenos podataka drugoj odgovornoj osobi, to se radi samo u onoj mjeri u kojoj je to tehnički moguće.
-        <h4>Enkripcija prema protokolu NP ili NP</h4>
-        Radi sigurnosti i zaštite prijenosa osjetljivih sadržaja, kao što su narudžbe ili zahtjevi koje nam šaljete kao operateru stranice, ova stranica koristi protokol ili enkripciju. Šifriranje prema protokolu. Šifriranu vezu prepoznajete promjenom adresne trake preglednika iz" ' S:// "U' S://" i ikonom lokota u traci preglednika.<br><br>
-        Ako je omogućena enkripcija aliasa ili aliasa, treće strane ne mogu pročitati podatke koje nam prenesete.
-        <h4>Pristup, zaključavanje, brisanje i ispravljanje</h4>
-        Imate pravo u bilo kojem trenutku, u skladu s važećim zakonom, dobiti besplatne informacije o svojim pohranjenim osobnim podacima, njihovom podrijetlu i primateljima, kao i svrsi obrade podataka i, ako je potrebno, pravo na ispravak, blokiranje ili brisanje tih podataka. U tu svrhu, kao i za druga pitanja u vezi s osobnim podacima, možete nas kontaktirati u bilo kojem trenutku na adresu navedenu u izlazu.
-        <h4>Pravo na ograničenje obrade</h4>
-        Imate pravo zahtijevati ograničenje obrade vaših osobnih podataka. Da biste to učinili, možete nas kontaktirati u bilo kojem trenutku na adresu navedenu u izlazu. Pravo na ograničenje obrade dodjeljuje se u sljedećim slučajevima:
-        <ul>
-          <li>Ako osporavate točnost svojih osobnih podataka koje čuvamo, obično nam treba vremena da to provjerimo. Za vrijeme revizije imate pravo zahtijevati ograničenje obrade vaših osobnih podataka.</li>
-          <li>Ako se obrada vaših osobnih podataka dogodila / dogodi nezakonito, možete zatražiti ograničenje obrade podataka umjesto brisanja.</li>
-          <li>Ako nam više nisu potrebni vaši osobni podaci, ali su vam potrebni za provedbu, zaštitu ili podnošenje pravnih zahtjeva, imate pravo zahtijevati ograničenje obrade vaših osobnih podataka umjesto da ih brišete.</li>
-          <li>Ako podnesete prigovor u skladu s člankom 21.stavkom. Ako ste podnijeli zahtjev u skladu s člankom 1.Opće uredbe o zaštiti podataka, potrebno je osigurati ravnotežu između vaših i naših interesa. Dok se ne utvrdi čiji interesi prevladavaju, imate pravo zahtijevati ograničenje obrade vaših osobnih podataka.</li>
-        </ul>
-        Ako ste ograničili obradu svojih osobnih podataka, ti se podaci mogu obrađivati – osim pohranjivanja – samo uz vaš pristanak ili radi podnošenja, ostvarivanja ili zaštite pravnih zahtjeva ili radi zaštite prava druge fizičke ili pravne osobe ili iz razloga važnog javnog interesa Europske Unije ili države članice.
       `
     }
   },
@@ -216,8 +159,7 @@ const sections = [
     id: 3,
     title: {
       en: 'Data collection on our website',
-      de: 'Datenerfassung auf unserer Website',
-      hr: 'Prikupljanje podataka na našoj internetskoj stranici'
+      de: 'Datenerfassung auf unserer Website'
     },
     content: {
       en: `
@@ -265,29 +207,6 @@ const sections = [
         Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.<br><br>
         Die Verarbeitung der in das Kontaktformular eingegebenen Daten erfolgt somit ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Sie können diese Einwilligung jederzeit widerrufen. Dazu reicht eine formlose Mitteilung per E-Mail an uns. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitungsvorgänge bleibt vom Widerruf unberührt.<br><br>
         Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z.B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.
-      `,
-      hr: `
-        <h4>Kolačići</h4>
-        Neke internetske stranice koriste takozvane datoteke. Datoteke br. ne štete vašem računalu i ne sadrže viruse. Datoteke se koriste kako bi naša ponuda bila praktičnija, učinkovitija i sigurnija. Datoteke Air su male tekstualne datoteke koje su pohranjene na vašem računalu i koje vaš preglednik sprema.<br><br>
-        Većina datoteka koje koristimo su takozvane "datoteke sesije". Oni će se automatski izbrisati nakon završetka vašeg posjeta. Ostale datoteke A-liste spremaju se na vaš uređaj dok ih ne izbrišete. Ove datoteke A-liste omogućuju nam da prepoznamo vaš preglednik sljedeći put kada ga posjetimo.<br><br>
-        Svoj preglednik možete konfigurirati tako da prima obavijesti o instaliranju datoteka A-liste i dopušta upotrebu A-liste samo u odabranim slučajevima, isključuje prihvaćanje A-liste u određenim slučajevima ili uopće i uključuje automatsko brisanje A-liste kada zatvorite preglednik. Ako onemogućite datoteke A. M.-a, funkcionalnost ove internetske stranice može biti ograničena.<br><br>
-        Datoteke koje su potrebne za provođenje procesa elektroničke komunikacije ili za pružanje određenih funkcija koje tražite (npr.funkcija košarice) obrađuju se na temelju članka 6. stavka. spremljeno u 1 litru. Opća uredba o zaštiti podataka. Operator internetske stranice ima legitiman interes za pohranu datoteka A. M. za tehnički besprijekorno i optimizirano pružanje svojih usluga. Što se tiče ostalih datoteka A-liste (poput Datoteka a-liste koje se koriste za analizu vašeg internetskog ponašanja), one se zasebno razmatraju u ovim Pravilima o privatnosti.
-        <h4>Datoteke dnevnika poslužitelja</h4>
-        Davatelj internetskih stranica automatski prikuplja i pohranjuje podatke u takozvane datoteke dnevnika poslužitelja koje nam vaš preglednik automatski prenosi. To su:
-        <ul>
-          <li>Vrsta preglednika i verzija preglednika</li>
-          <li>korištena operacijska dvorana</li>
-          <li>sustav Broj-Adresa preporuke</li>
-          <li>Naziv hosta računala kojem se pristupa</li>
-          <li>Vrijeme zahtjeva poslužitelja</li>
-          <li>Adresa</li>
-        </ul>
-        Spajanje ovih podataka s drugim izvorima podataka ne uspijeva.<br><br>
-        Prikupljanje tih podataka provodi se na temelju stavka 6.članka. 1 lit. f GDPR. Operator internetske stranice ima legitiman interes za osiguravanje tehnički besprijekornog prikaza i optimizacije svoje internetske stranice - za to je potrebno prikupiti datoteke dnevnika poslužitelja.
-        <h4>Kontakt obrazac</h4>
-        Ako nam pošaljete upite putem obrasca za kontakt, vaši podaci iz obrasca za upit, uključujući podatke za kontakt koje ste tamo naveli, spremaju se kod nas za obradu zahtjeva i u slučaju dodatnih pitanja. Te podatke ne dijelimo bez vašeg pristanka.<br><br>
-        Stoga se obrada podataka unesenih u obrazac za kontakt provodi isključivo na temelju vašeg pristanka (članak 6.stavak. 1. dio Opće uredbe o zaštiti podataka). Ovaj pristanak možete povući u bilo kojem trenutku. Da biste to učinili, samo nam pošaljite neformalnu obavijest e-poštom. Opoziv ne utječe na zakonitost operacija obrade podataka izvršenih prije opoziva.<br><br>
-        Podaci koje unesete u obrazac za kontakt ostaju s nama dok ne zatražite da ih izbrišemo, opozovemo vaš pristanak na pohranu ili ne postignemo svrhu pohrane podataka (na primjer, nakon završetka obrade vašeg zahtjeva). Obvezne zakonske odredbe, posebno razdoblja zadržavanja, ostaju nepromijenjene.
       `
     }
   },
@@ -295,8 +214,7 @@ const sections = [
     id: 4,
     title: {
       en: 'Plugins and Tools',
-      de: 'Plugins und Tools',
-      hr: 'Dodaci i Alati'
+      de: 'Plugins und Tools'
     },
     content: {
       en: `
@@ -350,32 +268,6 @@ const sections = [
         Die reCAPTCHA-Analysen laufen vollständig im Hintergrund. Websitebesucher werden nicht darauf hingewiesen, dass eine Analyse stattfindet.<br><br>
         Die Datenverarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse daran, seine Webangebote vor missbräuchlicher automatisierter Ausspähung und vor SPAM zu schützen.<br><br>
         Weitere Informationen zu Google reCAPTCHA sowie die Datenschutzerklärung von Google entnehmen Sie folgenden Links: <a href="https://www.google.com/intl/de/policies/privacy">https://www.google.com/intl/de/policies/privacy</a> und <a href="https://www.google.com/recaptcha/intro/android.html">https://www.google.com/recaptcha/intro/android.html</a>.
-      `,
-      hr: `
-        <h4>YouTube s povećanom privatnošću</h4>
-        Naša internetska stranica koristi dodatke s internetske stranice ad. Operator stranice je MP, MP, MP, 901 MP., San Bruno, Kalifornija, 94066, SAD.<br><br>
-        Mi koristimo AB u naprednom načinu privatnosti. Ovaj način rada uzrokuje da korisnici ne pohranjuju podatke o posjetiteljima ove stranice prije nego što pogledaju videozapis. S druge strane, napredni način privatnosti ne mora nužno isključiti prijenos podataka na partnere u Bac-u. Na taj se način Ad – a – bez obzira gledate li videozapis-povezuje s mrežom AD-a.<br><br>
-        Čim pokrenete videozapis na našoj internetskoj stranici, on se povezuje s poslužiteljima. Na taj način, poslužitelj A. C. dobiva informacije o tome koju ste od naših stranica posjetili. Ako ste prijavljeni na svoj korisnički račun, dajete im mogućnost da izravno povežu vaše ponašanje na mreži s vašim osobnim profilom. To možete spriječiti odjavom sa svog korisničkog računa.<br><br>
-        Osim toga, Airbender može spremiti različite Airbender datoteke na vaš uređaj nakon pokretanja videozapisa. Pomoću tih datoteka, br. može dobiti informacije o posjetiteljima naše internetske stranice. Te se informacije koriste, između ostalog, za prikupljanje video statistike, poboljšanje upotrebljivosti i sprječavanje pokušaja prijevare. Datoteke A-liste ostaju na vašem uređaju dok ih ne izbrišete.<br><br>
-        Ako je potrebno, dodatne operacije obrade podataka koje ne kontroliramo mogu se pokrenuti nakon pokretanja videozapisa na AD-u.<br><br>
-        Korištenje BIP-a vrši se u interesu atraktivnog predstavljanja naših mrežnih ponuda. To je od legitimnog interesa u smislu stavka 6. članka. 1 točka>>.<br><br>
-        Za više informacija o privatnosti, pogledajte njihova pravila o privatnosti na: <a href="https://www.youtube.com/t/privacy_at_youtube">https://www.youtube.com/t/privacy_at_youtube</a>.
-        <h4>Google Web Fonts</h4>
-        Ova stranica koristi takozvane internetske fontove koje pruža paušal za ujednačen prikaz fontova. Kada se prijavite na stranicu, Vaš preglednik učitava potrebne internetske fontove u predmemoriju preglednika kako bi ispravno prikazao tekstove i fontove.<br><br>
-        Da biste to učinili, preglednik koji koristite mora se povezati s poslužiteljima br. To omogućuje BiP-u da zna da je vaša Bip adresa korištena za pristup našoj internetskoj stranici. Korištenje fontova na mreži u interesu je jedinstvene i atraktivne prezentacije naših internetskih ponuda. To je od legitimnog interesa u smislu stavka 6. članka. 1 lit. A. M. je naveden u A. M.-U.<br><br>
-        Ako vaš preglednik ne podržava internetske fontove, računalo će koristiti zadani font.<br><br>
-        Za više informacija o mrežnim fontovima, pogledajte <a href="https://developers.google.com/fonts/faq">https://developers.google.com/fonts/faq</a> i u Pravilima o privatnosti u NBC-u: <a href="https://www.google.com/policies/privacy">https://www.google.com/policies/privacy</a>.
-        <h4>Google Maps</h4>
-        Ova stranica koristi uslugu mapiranja Ad-a putem Ad-a. Pružatelj usluga je M. A., Gordon House, Barrou Street, Dublin, 4, Irska.<br><br>
-        Da biste koristili značajke brojača, morate spremiti svoju adresu brojača. Te se informacije obično prenose na američki poslužitelj u SAD-u i tamo pohranjuju. Davatelj ove stranice nema utjecaja na ovaj prijenos podataka.<br><br>
-        Korištenje BIP-a je u interesu atraktivnog Prikaza naših online ponuda i praktičnosti pretraživanja lokacija koje navodimo na internetskoj stranici. To je od legitimnog interesa u smislu stavka 6. članka. 1 lit. A. M. je naveden u A. M.-U.<br><br>
-        Više informacija o načinu postupanja s korisničkim podacima možete pronaći u Pravilima o privatnosti: <a href="https://www.google.de/intl/de/policies/privacy">https://www.google.de/intl/de/policies/privacy</a>.
-        <h4>Google reCAPTCHA</h4>
-        Na našim internetskim stranicama koristimo "MP" (u daljnjem tekstu "MP"). Pružatelj usluga je tvrtka Amand, Gordon House, Barrou Street, Dublin, 4, Irska ("Amand").<br><br>
-        Cilj je da se provjeri jesu li podaci na našim internetskim stranicama (npr.u kontakt obrascu) uneseni od strane osobe ili automatiziranog programa. Da biste to učinili, number analizira ponašanje posjetitelja na temelju različitih karakteristika. Ova analiza započinje automatski čim posjetitelj stranice posjeti stranicu. Za analizu, Airbender procjenjuje različite informacije (na primjer, Airbender adresa, vrijeme boravka posjetitelja na mjestu ili pokreti miša koje izvodi korisnik). Podaci prikupljeni tijekom analize prenose se u inčima.<br><br>
-        Analiza bumbara u potpunosti se izvodi u pozadini. Posjetitelji internetske stranice neće biti obaviješteni da se provodi bilo kakva analiza.<br><br>
-        Obrada podataka provodi se na temelju stavka 6.članka. 1 lit. f GDPR. Operater internetske stranice ima legitiman interes za zaštitu svojih internetskih stranica od neovlaštenog automatskog praćenja i neželjene pošte.<br><br>
-        Za više informacija o pravilima o privatnosti i Pravilima o privatnosti, slijedite ove poveznice: <a href="https://www.google.com/intl/de/policies/privacy">https://www.google.com/intl/de/policies/privacy</a> i <a href="https://www.google.com/recaptcha/intro/android.html">https://www.google.com/recaptcha/intro/android.html</a>.
       `
     }
   },
@@ -383,8 +275,7 @@ const sections = [
 
 const translates = {
   en: { title: 'Privacy' },
-  de: { title: 'Datenschutzerklärung' },
-  hr: { title: 'Zaštita podataka' }
+  de: { title: 'Datenschutzerklärung' }
 }
 
 const { projectTitle } = useRuntimeConfig().public

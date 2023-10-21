@@ -1,11 +1,11 @@
 export const useMainStore = defineStore('main', {
   state: () => ({
-    language: 'hr'
+    language: 'de'
   }),
 
   actions: {
     changeLanguage (ln) {
-      if (!['en', 'de', 'hr'].includes(ln)) return
+      if (!['en', 'de'].includes(ln)) return
       this.language = ln
       localStorage.setItem('language', ln)
     }

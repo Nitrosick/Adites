@@ -46,8 +46,7 @@ const ln = computed(() => store.language)
 
 const translates = {
   en: { title: ['Our latest projects', 'Broad portfolio of technologies, products and solutions'] },
-  de: { title: ['Unsere neuesten Projekte', 'Breites Portfolio an Technologien, Produkten und Lösungen'] },
-  hr: { title: ['Naši najnoviji projekti', 'Širok raspon tehnologija, proizvoda i rješenja'] }
+  de: { title: ['Unsere neuesten Projekte', 'Breites Portfolio an Technologien, Produkten und Lösungen'] }
 }
 </script>
 

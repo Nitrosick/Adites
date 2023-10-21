@@ -25,8 +25,7 @@ const ln = computed(() => store.language)
 
 const translates = {
   en: { text: 'The number of batteries<br>we have installed' },
-  de: { text: 'Die Anzahl der Batterien,<br>die wir installiert haben' },
-  hr: { text: 'Broj baterija<br>koje smo instalirali' }
+  de: { text: 'Die Anzahl der Batterien,<br>die wir installiert haben' }
 }
 </script>
 
