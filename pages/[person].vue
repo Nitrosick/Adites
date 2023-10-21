@@ -82,7 +82,6 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
     margin-top: 2rem;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 25rem;
     gap: 0.5rem;
   }
 
@@ -104,10 +103,13 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
       gap: 1rem;
     }
 
-    &-photo,
-    &-location {
+    &-photo {
       width: 100%;
       height: 30rem;
+    }
+
+    &-location {
+      object-fit: none;
     }
   }
 }

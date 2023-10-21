@@ -40,18 +40,70 @@ const ln = computed(() => store.language)
 const translates = {
   en: {
     title: ['Welcome to ADITES', 'with us SIMPLY energy freedom'],
-    text1: 'Why photovoltaics?<br><br>- Your path to energy freedom<br>- You protect the environment<br>- High and long-term returns<br>- Protection against rising electricity prices<br>- Increase in the value of your real estate',
-    text2: 'Why with us?<br><br>- Complete offer including assembly and registration<br>- Reliable installation<br>- Transparency<br>- Systems of all sizes - private or commercial'
+    text1: `
+      Why photovoltaics?
+      <ul>
+        <li>Your path to energy freedom</li>
+        <li>You protect the environment</li>
+        <li>High and long-term returns</li>
+        <li>Protection against rising electricity prices</li>
+        <li>Increase in the value of your real estate</li>
+      </ul>
+    `,
+    text2: `
+      Why with us?
+      <ul>
+        <li>Complete offer including assembly and registration</li>
+        <li>Reliable installation</li>
+        <li>Transparency</li>
+        <li>Systems of all sizes - private or commercial</li>
+      <ul>
+    `
   },
   de: {
     title: ['Herzlich Willkommen bei ADITES', 'mit uns EINFACH Energiefreiheit'],
-    text1: 'Warum Photovoltaik?<br><br>- Ihr Weg zur Energiefreiheit<br>- Sie schützen die Umwelt<br>- Hohe und langfristige Rendite<br>- Absicherung vor steigenden Strompreisen<br>- Wertsteigerung ihrer Immobilien',
-    text2: 'Warum bei uns?<br><br>- Komplettangebot inkl. Montage und Anmeldung<br>- Zuverlässige Installation<br>- Transparenz<br>- Anlagen aller Größen<br>- Privat oder gewerblich'
+    text1: `
+      Warum Photovoltaik?
+      <ul>
+        <li>Ihr Weg zur Energiefreiheit</li>
+        <li>Sie schützen die Umwelt</li>
+        <li>Hohe und langfristige Rendite</li>
+        <li>Absicherung vor steigenden Strompreisen</li>
+        <li>Wertsteigerung ihrer Immobilien</li>
+      </ul>
+    `,
+    text2: `
+      Warum bei uns?
+      <ul>
+        <li>Komplettangebot inkl. Montage und Anmeldung</li>
+        <li>Zuverlässige Installation</li>
+        <li>Transparenz</li>
+        <li>Anlagen aller Größen</li>
+        <li>Privat oder gewerblich</li>
+      </ul>
+    `
   },
   hr: {
     title: ['Dobrodošli u ADITES', 's nama je samo energija SLOBODE'],
-    text1: 'Zašto fotonaponski sustavi?<br><br>- Vaš put do energetske slobodi<br>- Koje štite okoliš<br>- Visoka i dugotrajna dobit<br>- Zaštita od rasta cijena električne energije,<br>- Povećanje vrijednosti vaše nekretnine',
-    text2: 'Zašto s nama?<br><br>- Sveobuhvatna ponuda, uključujući montažu i registraciju<br>- Pouzdana instalacija<br>- Transparentnost<br>- Sustavi svih veličina - privatni ili komercijalni'
+    text1: `
+      Zašto fotonaponski sustavi?
+      <ul>
+        <li>Vaš put do energetske slobodi</li>
+        <li>Koje štite okoliš</li>
+        <li>Visoka i dugotrajna dobit</li>
+        <li>Zaštita od rasta cijena električne energije</li>
+        <li>Povećanje vrijednosti vaše nekretnine</li>
+      </ul>
+    `,
+    text2: `
+      Zašto s nama?
+      <ul>
+        <li>Sveobuhvatna ponuda, uključujući montažu i registraciju</li>
+        <li>Pouzdana instalacija</li>
+        <li>Transparentnost</li>
+        <li>Sustavi svih veličina - privatni ili komercijalni</li>
+      </ul>
+    `
   }
 }
 </script>
@@ -111,7 +163,7 @@ const translates = {
     }
 
     &-item {
-      gap: 1rem;
+      gap: 0.5rem;
 
       &-content {
         font-size: $font-size-md;
