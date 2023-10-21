@@ -4,9 +4,10 @@
     class="person wrapper margined"
   >
     <h1 class="page-title">{{ person.name }}</h1>
-    <!-- <div class="person-data">
-
-    </div> -->
+    <p
+      class="person-description"
+      v-html="person.description[ln]"
+    />
     <div class="person-contacts">
       <span class="person-contacts-icon">
         <Icon img="phone-alt" />
@@ -25,14 +26,20 @@
           alt="photo"
         >
       </div>
-      <GoogleMap :src="person.map" />
+      <!-- <GoogleMap :src="person.map" /> -->
+      <div class="person-location">
+        <img
+          :src="`/images/locations/${person.photo}`"
+          alt="location"
+        >
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { persons } from '@/const/persons'
-import GoogleMap from '@/components/app/GoogleMap.vue'
+// import GoogleMap from '@/components/app/GoogleMap.vue'
 
 const id = useRoute().params.person
 const person = persons.find(p => p.id === id)
@@ -48,7 +55,6 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
 <style lang="scss" scoped>
 .page-title {
   text-transform: capitalize;
-  margin-bottom: 3rem;
 }
 
 .person {
@@ -57,10 +63,14 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
   padding: 2rem 1rem;
   width: 100%;
 
+  &-description {
+    border-bottom: 2px solid $color-grey-3;
+    padding: 3rem 0 1rem 0;
+  }
+
   &-contacts {
     padding: 1rem 0;
     line-height: 2rem;
-    // border-bottom: 2px solid $color-grey-3;
 
     &-icon {
       font-size: $font-size-lg;
@@ -70,13 +80,14 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
 
   &-images {
     margin-top: 2rem;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 25rem;
     gap: 0.5rem;
   }
 
-  &-photo {
-    width: 35vw;
-
+  &-photo,
+  &-location {
     img {
       width: 100%;
       height: 100%;
@@ -85,24 +96,18 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
   }
 }
 
-@include breakpoint-lg {
+@include breakpoint-md {
   .person {
     &-images {
+      display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 1rem;
     }
 
-    &-photo {
-      width: 25rem;
-    }
-  }
-}
-
-@include breakpoint-sm {
-  .person {
-    &-photo {
+    &-photo,
+    &-location {
       width: 100%;
+      height: 30rem;
     }
   }
 }
