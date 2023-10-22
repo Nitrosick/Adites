@@ -15,7 +15,10 @@
     >
       <span class="contacts-item-title">
         {{ person.berator[ln] }}:
-        <NuxtLink :to="`/${person.id}`">
+        <NuxtLink
+          :to="`/${person.id}`"
+          class="contacts-item-link"
+        >
           {{ person.name }}
         </NuxtLink>
       </span>
@@ -39,10 +42,6 @@ const translates = {
   de: {
     title: 'Kontakt',
     subtitle: 'Sie können einen Berater in unserer Region auswählen.',
-  },
-  hr: {
-    title: 'Kontakti',
-    subtitle: 'Možete odabrati savjetnika u našoj regiji.',
   }
 }
 
@@ -69,6 +68,11 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
     &-title {
       display: block;
       margin-bottom: 1rem;
+    }
+
+    &-link {
+      color: $color-primary;
+      text-decoration: underline;
     }
   }
 }
