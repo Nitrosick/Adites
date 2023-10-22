@@ -8,10 +8,11 @@
       />
       <div class="about-points">
         <div class="about-points-item">
-          <div class="about-points-icon">
+          <div class="about-points-image">
             <img
-              src="@/assets/images/handshake.png"
-              alt="about icon"
+              src="/images/persons/esau_1.jpg"
+              alt="photo"
+              loading="lazy"
             >
           </div>
           <h3 v-html="translates[ln].subtitle1" />
@@ -21,10 +22,11 @@
           />
         </div>
         <div class="about-points-item">
-          <div class="about-points-icon">
+          <div class="about-points-image">
             <img
-              src="@/assets/images/pencil.png"
-              alt="about icon"
+              src="@/assets/images/scheme.png"
+              alt="photo"
+              loading="lazy"
             >
           </div>
           <h3 v-html="translates[ln].subtitle2" />
@@ -34,10 +36,11 @@
           />
         </div>
         <div class="about-points-item">
-          <div class="about-points-icon">
+          <div class="about-points-image">
             <img
-              src="@/assets/images/search.png"
-              alt="about icon"
+              src="@/assets/images/building.jpeg"
+              alt="photo"
+              loading="lazy"
             >
           </div>
           <h3 v-html="translates[ln].subtitle3" />
@@ -98,23 +101,29 @@ const translates = {
     &-item {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
       align-items: center;
+      box-shadow: $shadow;
     }
 
-    &-icon {
-      width: 7rem;
-      height: 7rem;
-      border-radius: 50%;
-      border: 0.7rem solid $color-accent;
-      background-color: $color-primary;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    &-image {
+      width: 100%;
+      height: 15rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    h3 {
+      padding: 1rem;
     }
 
     &-description {
       text-align: center;
+      padding: 1rem;
+      padding-top: 0;
     }
   }
 }
@@ -125,18 +134,14 @@ const translates = {
     &-points {
       display: flex;
       flex-direction: column;
-      gap: 3rem;
+      gap: 1.5rem;
 
       &-item {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-rows: repeat(2, auto);
+        flex-direction: column;
       }
 
-      &-icon {
-        width: 6rem;
-        height: 6rem;
-        border: 0.6rem solid $color-accent;
+      &-image {
+        height: 20rem;
       }
 
       &-description {
