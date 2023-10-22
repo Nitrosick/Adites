@@ -1,34 +1,36 @@
 <template>
   <div class="welcome wrapper">
-    <div class="welcome-text">
-      <div class="welcome-text-title">
-        <h2 v-html="translates[ln].title[0]" />
-        <h2
-          class="primary-color"
-          v-html="translates[ln].title[1]"
-        />
+    <ClientOnly>
+      <div class="welcome-text">
+        <div class="welcome-text-title">
+          <h2 v-html="translates[ln].title[0]" />
+          <h2
+            class="primary-color"
+            v-html="translates[ln].title[1]"
+          />
+        </div>
+        <div class="welcome-item">
+          <img
+            src="@/assets/images/sunrize.jpg"
+            alt="sunrize"
+          >
+          <p
+            class="welcome-item-content"
+            v-html="translates[ln].text1"
+          />
+        </div>
+        <div class="welcome-item">
+          <img
+            src="@/assets/images/energy.png"
+            alt="energy"
+          >
+          <p
+            class="welcome-item-content"
+            v-html="translates[ln].text2"
+          />
+        </div>
       </div>
-      <div class="welcome-item">
-        <img
-          src="@/assets/images/sunrize.jpg"
-          alt="sunrize"
-        >
-        <p
-          class="welcome-item-content"
-          v-html="translates[ln].text1"
-        />
-      </div>
-      <div class="welcome-item">
-        <img
-          src="@/assets/images/energy.png"
-          alt="energy"
-        >
-        <p
-          class="welcome-item-content"
-          v-html="translates[ln].text2"
-        />
-      </div>
-    </div>
+    </ClientOnly>
     <div class="welcome-image" />
   </div>
 </template>
