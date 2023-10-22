@@ -29,7 +29,7 @@
       <!-- <GoogleMap :src="person.map" /> -->
       <div class="person-location">
         <img
-          :src="`/images/locations/${person.photo}`"
+          :src="`/images/locations/${person.id}.jpg`"
           alt="location"
         >
       </div>

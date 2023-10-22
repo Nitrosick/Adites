@@ -143,12 +143,14 @@ const translates = {
     &-points {
       display: flex;
       flex-direction: column;
-      gap: 3rem;
+      gap: 1.5rem;
 
       &-item {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-rows: repeat(2, auto);
+        flex-direction: column;
+      }
+
+      &-image {
+        height: 20rem;
       }
 
       &-description {
