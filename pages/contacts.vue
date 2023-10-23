@@ -42,6 +42,10 @@ const translates = {
   de: {
     title: 'Kontakt',
     subtitle: 'Sie können einen Berater in unserer Region auswählen.',
+  },
+  hr: {
+    title: 'Kontakt',
+    subtitle: 'Možete odabrati savjetnika u našoj regiji.',
   }
 }
 

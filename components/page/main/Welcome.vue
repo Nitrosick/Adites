@@ -1,14 +1,14 @@
 <template>
   <div class="welcome wrapper">
+    <div class="welcome-title">
+      <h2 v-html="translates[ln].title[0]" />
+      <h2
+        class="primary-color"
+        v-html="translates[ln].title[1]"
+      />
+    </div>
     <ClientOnly>
       <div class="welcome-text">
-        <div class="welcome-text-title">
-          <h2 v-html="translates[ln].title[0]" />
-          <h2
-            class="primary-color"
-            v-html="translates[ln].title[1]"
-          />
-        </div>
         <div class="welcome-item">
           <img
             src="@/assets/images/sunrize.jpg"
@@ -31,7 +31,13 @@
         </div>
       </div>
     </ClientOnly>
-    <div class="welcome-image" />
+    <img
+      src="@/assets/images/transport.webp"
+      alt="transport"
+      class="welcome-image"
+      loading="lazy"
+    >
+    <!-- <div class="welcome-image" /> -->
   </div>
 </template>
 
@@ -114,23 +120,24 @@ const translates = {
 .welcome {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr;
   gap: 2rem;
   padding: 2rem 1rem;
+
+  &-title {
+    h2 {
+      text-align: left;
+    }
+
+    .primary-color {
+      margin-top: 1rem;
+    }
+  }
 
   &-text {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-
-    &-title {
-      h2 {
-        text-align: left;
-      }
-
-      .primary-color {
-        margin-top: 1rem;
-      }
-    }
+    gap: 1rem;
   }
 
   &-item {
@@ -145,37 +152,33 @@ const translates = {
   }
 
   &-image {
-    min-height: 35rem;
-    background: url(/assets/images/transport.webp) left bottom / cover no-repeat;
+    grid-row: 1/3;
+    grid-column: 2/3;
+    width: 100%;
   }
 }
 
-@include breakpoint-md {
+@include breakpoint-xl {
   .welcome {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+    &-title {
+      grid-column: 1/3;
 
-    &-text {
-      &-title {
-        h2 {
-          text-align: center;
-        }
-      }
-    }
-
-    &-item {
-      gap: 0.5rem;
-
-      &-content {
-        font-size: $font-size-md;
-        line-height: 1.2rem;
+      h2 {
+        text-align: center;
       }
     }
 
     &-image {
-      min-height: 25rem;
+      grid-row: auto;
+      grid-column: auto;
     }
+  }
+}
+
+@include breakpoint-lg {
+  .welcome {
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>
