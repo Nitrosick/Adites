@@ -20,8 +20,12 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/style-resources',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    'nuxt-gtag'
   ],
+  gtag: {
+    id: 'G-JRMX10078K'
+  },
   router: {
     options: {
       linkActiveClass: 'active-link',

@@ -17,7 +17,7 @@ export const persons = [
     id: 'kevin-dambrowski',
     name: 'Kevin Dambrowski',
     city: { en: 'Nuremberg', de: 'Nürnberg' },
-    email: 'KevinDambrowski@gmail.com',
+    email: 'kd@adites.de',
     phone: '+49 (0) 174 9544379',
     photo: 'dambrowski.jpg',
     berator: { en: 'From Nuremberg Berator', de: 'Aus Nürnberg Berator' },

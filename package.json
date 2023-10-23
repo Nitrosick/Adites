@@ -13,6 +13,7 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/style-resources": "^2.0.0",
     "nuxt": "^3.7.4",
+    "nuxt-gtag": "^1.1.1",
     "sass": "^1.69.1",
     "sass-loader": "^13.3.2",
     "vue": "^3.3.4",
