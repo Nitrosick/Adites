@@ -57,6 +57,7 @@ const translates = {
 .consultants {
   position: relative;
   background: url(/assets/images/background_1.jpg) center / cover no-repeat;
+  min-height: 30rem;
 
   &-background {
     position: absolute;
