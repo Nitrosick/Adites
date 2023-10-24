@@ -59,6 +59,7 @@ const translates = {
   align-items: center;
   background: url(/assets/images/background_2.jpg) center / cover no-repeat;
   padding: 7rem 0 2rem 0;
+  min-height: 30rem;
 
   &-title {
     font-weight: 600;
