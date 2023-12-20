@@ -16,7 +16,10 @@ export default defineNuxtConfig({
     }
   },
   components: {
-    dirs: ['components/ui']
+    dirs: [
+      'components/ui',
+      'components/field'
+    ]
   },
   modules: [
     '@nuxtjs/style-resources',

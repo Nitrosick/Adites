@@ -18,7 +18,7 @@
       />
       <Button
         :text="translates[ln].decline"
-        type="outlined"
+        view="outlined"
         @click="accept"
       />
     </div>

@@ -24,12 +24,14 @@
       </span>
       <GoogleMap :src="person.map" />
     </div>
+    <Form />
   </div>
 </template>
 
 <script setup>
 import { persons } from '@/const/persons'
 import GoogleMap from '@/components/app/GoogleMap.vue'
+import Form from '@/components/page/contacts/Form.vue'
 
 const store = useMainStore()
 const ln = computed(() => store.language)
