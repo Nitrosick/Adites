@@ -52,3 +52,10 @@ $width-xxxl: 1800px;
 @mixin breakpoint-xxxl {
   @media (max-width: $width-xxxl) { @content; }
 }
+
+@mixin vartical {
+  @media (orientation: landscape) { @content; }
+}
+@mixin horizontal {
+  @media (orientation: portrait) { @content; }
+}

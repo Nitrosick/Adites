@@ -143,8 +143,13 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
   justify-content: center;
 
   &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
     padding: 0.3rem;
     background-color: $color-background;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   &-description {
@@ -152,6 +157,19 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+  }
+
+  &-image {
+    width: auto;
+    height: auto;
+  }
+}
+
+@include vartical {
+  .credentials-viewer {
+    &-image {
+      max-height: 80vh;
+    }
   }
 }
 </style>

@@ -8,7 +8,7 @@
       >
       <div class="footer-text">
         <h2>ADITES GmbH</h2>
-        <span>Heroldstraße 8, 90408 Nürnberg</span>
+        <span>Vinodolska ul. 27, 51260, Crikvenica, Hrvatska</span>
       </div>
     </div>
   </div>

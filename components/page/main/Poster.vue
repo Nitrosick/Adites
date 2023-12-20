@@ -25,8 +25,8 @@
 
 @include breakpoint-md {
   .poster {
-    height: calc(100vh - ($height-header-m + 2rem));
-    background: url(/assets/images/poster.jpg) 65% 0 / auto 100% no-repeat;
+    height: 40vh;
+    background: url(/assets/images/poster.jpg) 45% 0 / auto 100% no-repeat;
 
     &-img {
       display: none;
