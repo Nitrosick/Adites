@@ -5,19 +5,36 @@
   >
     <h1 class="page-title">{{ person.name }}</h1>
     <p
+      v-if="person.description"
       class="person-description"
       v-html="person.description[ln]"
     />
     <div class="person-contacts">
-      <span class="person-contacts-icon">
+      <span
+        v-if="person.phone"
+        class="person-contacts-icon"
+      >
         <Icon img="phone-alt" />
       </span>
-      <a :href="`tel:${person.phone}`">{{ person.phone }}</a>
+      <a
+        v-if="person.phone"
+        :href="`tel:${person.phone}`"
+      >
+        {{ person.phone }}
+      </a>
       <br>
-      <span class="person-contacts-icon">
+      <span
+        v-if="person.email"
+        class="person-contacts-icon"
+      >
         <Icon img="envelope" />
       </span>
-      <a :href="`mailto:${person.email}`">{{ person.email }}</a>
+      <a
+        v-if="person.email"
+        :href="`mailto:${person.email}`"
+      >
+        {{ person.email }}
+      </a>
     </div>
     <div class="person-images">
       <div class="person-photo">
@@ -26,20 +43,20 @@
           alt="photo"
         >
       </div>
-      <!-- <GoogleMap :src="person.map" /> -->
-      <div class="person-location">
+      <GoogleMap :src="person.map" />
+      <!-- <div class="person-location">
         <img
           :src="`/images/locations/${person.id}.jpg`"
           alt="location"
         >
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script setup>
 import { persons } from '@/const/persons'
-// import GoogleMap from '@/components/app/GoogleMap.vue'
+import GoogleMap from '@/components/app/GoogleMap.vue'
 
 const id = useRoute().params.person
 const person = persons.find(p => p.id === id)
@@ -108,9 +125,9 @@ useHead({ title: () => `${projectTitle} | ${person.name}` })
       height: 30rem;
     }
 
-    &-location {
-      object-fit: none;
-    }
+    // &-location {
+    //   object-fit: none;
+    // }
   }
 }
 </style>

@@ -156,7 +156,6 @@ const translates = {
     &-item {
       min-width: 15rem;
       max-width: 15rem;
-      height: 16rem;
 
       &-power {
         font-size: $font-size-md;
