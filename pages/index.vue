@@ -6,6 +6,7 @@
     <Projects />
     <Summary />
     <About />
+    <Map />
   </div>
 </template>
 
@@ -16,7 +17,5 @@ import Consultants from '@/components/page/main/Consultants.vue';
 import Projects from '@/components/page/main/Projects.vue';
 import Summary from '@/components/page/main/Summary.vue';
 import About from '@/components/page/main/About.vue';
+import Map from '@/components/page/main/Map.vue';
 </script>
-
-<style lang="scss" scoped>
-</style>
