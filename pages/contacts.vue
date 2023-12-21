@@ -8,29 +8,18 @@
       class="contacts-text"
       v-html="translates[ln].subtitle"
     />
-    <div
+    <Person
       v-for="person in persons"
       :key="person.id"
-      class="contacts-item"
-    >
-      <span class="contacts-item-title">
-        {{ person.berator[ln] }}:
-        <NuxtLink
-          :to="`/${person.id}`"
-          class="contacts-item-link"
-        >
-          {{ person.name }}
-        </NuxtLink>
-      </span>
-      <GoogleMap :src="person.map" />
-    </div>
+      :data="person"
+    />
     <Form />
   </div>
 </template>
 
 <script setup>
 import { persons } from '@/const/persons'
-import GoogleMap from '@/components/app/GoogleMap.vue'
+import Person from '@/components/page/contacts/Person.vue'
 import Form from '@/components/page/contacts/Form.vue'
 
 const store = useMainStore()
@@ -64,22 +53,6 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 
   &-text {
     margin: 3rem 0 1rem 0;
-  }
-
-  &-item {
-    width: 100%;
-    padding: 1rem 0;
-    border-top: 2px solid $color-grey-3;
-
-    &-title {
-      display: block;
-      margin-bottom: 1rem;
-    }
-
-    &-link {
-      color: $color-primary;
-      text-decoration: underline;
-    }
   }
 }
 </style>
