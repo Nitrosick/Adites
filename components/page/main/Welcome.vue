@@ -32,7 +32,7 @@
       </div>
     </ClientOnly>
     <img
-      src="@/assets/images/transport.webp"
+      src="@/assets/images/office.jpg"
       alt="transport"
       class="welcome-image"
       loading="lazy"
