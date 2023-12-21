@@ -41,8 +41,8 @@ const sections = [
     },
     subtitle: null,
     content: {
-      en: 'ADITES GmbH<br><b>Paul-Forbach-Str. 2</b><br>97616 Bad Neustadt a. d. Saale',
-      de: 'ADITES GmbH<br><b>Paul-Forbach-Str. 2</b><br>97616 Bad Neustadt a. d. Saale',
+      en: 'ADITES d.o.o.<br><b>Paul-Forbach-Str. 2</b><br>97616 Bad Neustadt a. d. Saale',
+      de: 'ADITES d.o.o.<br><b>Paul-Forbach-Str. 2</b><br>97616 Bad Neustadt a. d. Saale',
       hr: 'LLC "ADITES"<br><b>Paul Forbach-ulica 2</b><br>97616 Bad Neustadt A. D. Saale'
     }
   },
