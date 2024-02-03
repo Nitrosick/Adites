@@ -33,7 +33,7 @@
     </ClientOnly>
     <img
       src="@/assets/images/office.jpg"
-      alt="transport"
+      alt="office door"
       class="welcome-image"
       loading="lazy"
     >

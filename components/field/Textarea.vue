@@ -34,6 +34,7 @@ const props = defineProps({
   &-label {
     display: block;
     font-size: $font-size-sm;
+    line-height: 1.5;
   }
 }
 </style>

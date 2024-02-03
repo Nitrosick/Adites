@@ -74,10 +74,6 @@ const translates = {
     send: 'Poslati'
   }
 }
-
-const send = () => {
-
-}
 </script>
 
 <style lang="scss" scoped>
