@@ -11,7 +11,10 @@
       <div
         class="roof-top"
         :style="{
-          backgroundSize: `${panel.width / data.length * 5}% auto`,
+          height: `${+data.slopes === 2 ? 50 : 100}%`,
+          maxHeight: `${+data.slopes === 2 ? '50%' : 'initial'}`,
+          backgroundImage: `url(/images/${data.roofType === 'tiles' ? 'tiles' : 'metal'}.jpg)`,
+          backgroundSize: `${panel.width / data.length * (data.roofType === 'tiles' ? 5 : 15)}% auto`,
           gridTemplateColumns: `repeat(${along}, 1fr)`,
           gridTemplateRows: `repeat(${across}, 1fr)`
         }"
@@ -23,9 +26,11 @@
         />
       </div>
       <div
+        v-if="+data.slopes === 2"
         class="roof-bottom"
         :style="{
-          backgroundSize: `${panel.width / data.length * 5}% auto`,
+          backgroundImage: `url(/images/${data.roofType === 'tiles' ? 'tiles' : 'metal'}.jpg)`,
+          backgroundSize: `${panel.width / data.length * (data.roofType === 'tiles' ? 5 : 15)}% auto`,
           gridTemplateColumns: `repeat(${along}, 1fr)`,
           gridTemplateRows: `repeat(${across}, 1fr)`
         }"
@@ -43,8 +48,6 @@
 </template>
 
 <script setup>
-const emit = defineEmits(['total'])
-
 const props = defineProps({
   data: { type: Object, required: true },
   panel: { type: Object, required: true }
@@ -52,9 +55,7 @@ const props = defineProps({
 
 const panelsCount = computed(() => {
   if (along.value < 1 || across.value < 1) return 0
-  const sum = along.value * across.value * 2
-  emit('total', sum)
-  return sum
+  return along.value * across.value * 2
 })
 
 const along = computed(() => Math.floor(props.data.length / props.panel.length))
@@ -102,7 +103,7 @@ const across = computed(() => Math.floor((props.data.width / 2) / props.panel.wi
     display: grid;
     height: 50%;
     max-height: 50%;
-    background: url(@/assets/images/tiles.jpg) left top;
+    background-position: left top;
     padding: 0.5rem;
   }
 

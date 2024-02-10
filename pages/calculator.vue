@@ -61,13 +61,37 @@
             :defaultValue="false"
             v-model="data.angle"
           />
+          <Select
+            id="slopes"
+            :label="translates[ln].slopes"
+            :options="{
+              1: 1,
+              2: 2
+            }"
+            :defaultValue="false"
+            v-model="data.slopes"
+          />
+          <Select
+            id="roof-type"
+            :label="translates[ln].roofType"
+            :options="roofTypes"
+            :defaultValue="false"
+            v-model="data.roofType"
+          />
+          <Input
+            id="modules-count"
+            type="number"
+            :label="translates[ln].modulesCount"
+            :required="true"
+            :attrs="{ min: 1, max: 1000 }"
+            v-model="data.modulesCount"
+          />
         </div>
       </div>
 
       <Roof
         :data="data"
         :panel="panel"
-        @total="sum => data.modulesCount = sum"
       />
 
       <div class="equipment">
@@ -196,6 +220,8 @@ const data = reactive({
   length: 2,
   width: 1,
   angle: 0,
+  slopes: 2,
+  roofType: 'tiles',
   energy: 1,
   phases: 1,
   battery: false,
@@ -244,6 +270,8 @@ const translates = {
     length: 'Length',
     width: 'Width',
     angle: 'Tilt angle',
+    slopes: 'Number of roof slopes',
+    modulesCount: 'Modules quantity',
     battery: 'Battery module',
     services: 'Additional services',
     dcMontage: 'DC Montage',
@@ -256,7 +284,10 @@ const translates = {
     modules: 'Modules',
     subconstruction: 'Set subconstruction',
     small: 'Small parts',
-    order: 'Order'
+    order: 'Order',
+    roofType: 'Roof type',
+    tiles: 'Tiles',
+    metal: 'Metal'
   },
   de: {
     title: 'Solarpanel-rechner',
@@ -271,6 +302,8 @@ const translates = {
     length: 'Länge',
     width: 'Breite',
     angle: 'Neigungswinkel',
+    slopes: 'Anzahl der dachschrägen',
+    modulesCount: 'Anzahl der Module',
     battery: 'Batteriemodul',
     services: 'Zusatzleistungen',
     dcMontage: 'DC Montage',
@@ -283,7 +316,10 @@ const translates = {
     modules: 'Modele',
     subconstruction: 'Set unterconstruktion',
     small: 'Kleinteilen',
-    order: 'Bestellen'
+    order: 'Bestellen',
+    roofType: 'Dachtyp',
+    tiles: 'Dachziegel',
+    metal: 'Metall'
   },
   hr: {
     title: 'Kalkulator solarnih panela',
@@ -298,6 +334,8 @@ const translates = {
     length: 'Duljina',
     width: 'Širina',
     angle: 'Kut nagiba',
+    slopes: 'Broj kosina krova',
+    modulesCount: 'Broj modula',
     battery: 'Modul baterije',
     services: 'Dodatne usluge',
     dcMontage: 'DC Montaža',
@@ -310,7 +348,10 @@ const translates = {
     modules: 'Moduli',
     subconstruction: 'Ugradite podkonstrukciju',
     small: 'Mali detalji',
-    order: 'Narudžba'
+    order: 'Narudžba',
+    roofType: 'Vrsta krova',
+    tiles: 'Crijep',
+    metal: 'Metal'
   }
 }
 
@@ -339,6 +380,11 @@ const servicesArray = computed(() => {
   }
   return result
 })
+
+const roofTypes = computed(() => ({
+  tiles: translates[ln.value].tiles,
+  metal: translates[ln.value].metal
+}))
 </script>
 
 <style lang="scss" scoped>
