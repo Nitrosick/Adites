@@ -5,153 +5,150 @@
       v-html="translates[ln].title"
     />
     <form class="calculator-form">
-      <h2
-        class="calculator-title"
-        v-html="translates[ln].panelsCount"
-      />
-      <div class="area">
-        <div class="area-fields">
-          <div>
-            <h3
-              class="calculator-subtitle"
-              v-html="translates[ln].energyConsume"
-            />
-            <Input
-              id="energy"
-              type="number"
-              :label="translates[ln].kWt"
-              :required="true"
-              :attrs="{ min: 1 }"
-              v-model="data.energy"
-            />
-          </div>
-          <div>
-            <h3
-              class="calculator-subtitle"
-              v-html="translates[ln].roofSize"
-            />
-            <Input
-              id="length"
-              type="number"
-              :label="translates[ln].length"
-              :required="true"
-              :attrs="{ min: 1, max: 500, step: 0.2 }"
-              v-model="data.length"
-            />
-            <Input
-              id="width"
-              type="number"
-              :label="translates[ln].width"
-              :required="true"
-              :attrs="{ min: 1, max: 500, step: 0.2 }"
-              v-model="data.width"
-            />
-          </div>
+      <div>
+        <div class="customer">
+          <h3
+            class="calculator-subtitle"
+            v-html="translates[ln].customer"
+          />
+          <Input
+            id="address"
+            :label="translates[ln].address"
+            :required="true"
+            v-model="data.address"
+          />
+          <Input
+            id="phone"
+            type="tel"
+            :label="translates[ln].phone"
+            :placeholder="translates[ln].phoneMask"
+            :required="true"
+            v-model="data.phone"
+          />
         </div>
-        <Roof
-          :data="data"
-          :panel="panel"
+
+        <div class="roof-params">
+          <h3
+            class="calculator-subtitle"
+            v-html="translates[ln].roofParams"
+          />
+          <Input
+            id="length"
+            type="number"
+            :label="translates[ln].length + ' (m)'"
+            :required="true"
+            :attrs="{ min: 1, max: 500, step: 0.2 }"
+            v-model="data.length"
+          />
+          <Input
+            id="width"
+            type="number"
+            :label="translates[ln].width + ' (m)'"
+            :required="true"
+            :attrs="{ min: 1, max: 500, step: 0.2 }"
+            v-model="data.width"
+          />
+          <Select
+            id="angle"
+            :label="translates[ln].angle"
+            :options="{
+              0: '0° (horizontal)',
+              30: '30°',
+              45: '45°',
+              60: '60°',
+              90: '90° (vartical)'
+            }"
+            :defaultValue="false"
+            v-model="data.angle"
+          />
+        </div>
+      </div>
+
+      <Roof
+        :data="data"
+        :panel="panel"
+      />
+
+      <div class="equipment">
+        <h3
+          class="calculator-subtitle"
+          v-html="translates[ln].equipment"
+        />
+        <Input
+          id="energy"
+          type="number"
+          :label="translates[ln].consumption"
+          :required="true"
+          :attrs="{ min: 1 }"
+          v-model="data.energy"
+        />
+        <Select
+          id="phases"
+          :label="translates[ln].phases"
+          :options="{
+            1: '1-Phase',
+            2: '3-Phase'
+          }"
+          :defaultValue="false"
+          v-model="data.phases"
+        />
+        <Checkbox
+          id="battery"
+          :label="translates[ln].battery"
+          v-model="data.battery"
         />
       </div>
 
-      <h2
-        class="calculator-title"
-        v-html="translates[ln].equipment"
-      />
-      <div class="equipment">
-        <div class="equipment-module">
-          <h3
-            class="calculator-subtitle"
-            v-html="translates[ln].solarModule"
-          />
-          <Select
-            id="module"
-            :label="translates[ln].moduleCapacity"
-            :options="{
-              100: 'Solar module 100 Wt',
-              200: 'Solar module 200 Wt',
-              500: 'Solar module 500 Wt'
-            }"
-            :defaultValue="false"
-            v-model="data.power"
-          />
-          <div class="equipment-module-count">
-            <Input
-              id="modules-count"
-              type="number"
-              :label="translates[ln].modulesCount"
-              :required="true"
-              :attrs="{ min: 1, max: 1000 }"
-              v-model="data.modulesCount"
-              class="input"
-            />
-            <span>
-              = {{ (0.68 * data.modulesCount).toFixed(2) }} m²
-            </span>
-          </div>
-          <div class="equipment-module-angle">
-            <Radio
-              :label="translates[ln].angle"
-              :options="{
-                0: '0° (horizontal)',
-                30: '30°',
-                45: '45°',
-                60: '60°',
-                90: '90° (vartical)'
-              }"
-              v-model="data.angle"
-            />
-          </div>
-        </div>
-        <div class="equipment-invertor">
-          <h3
-            class="calculator-subtitle"
-            v-html="translates[ln].addInverter"
-          />
-          <Select
-            id="invertor"
-            :label="translates[ln].inverterType"
-            :options="{}"
-            v-model="data.invertor"
-          />
-          <Input
-            id="invertors-count"
-            type="number"
-            :label="translates[ln].invertersCount"
-            :required="true"
-            :attrs="{ min: 1, max: 100 }"
-            v-model="data.invertorsCount"
-            class="input"
-          />
-          <div class="equipment-invertor-battery">
-            <Select
-              id="battery"
-              :label="translates[ln].battery"
-              :options="{}"
-              v-model="data.battery"
-            />
-            <Input
-              id="accumulate"
-              type="number"
-              :label="translates[ln].accumulate"
-              :required="true"
-              :attrs="{ min: 1, max: 1000 }"
-              v-model="data.accumulate"
-            />
-          </div>
-        </div>
+      <div class="services">
+        <h3
+          class="calculator-subtitle"
+          v-html="translates[ln].services"
+        />
+        <Checkbox
+          id="montage"
+          :label="`${translates[ln].montage} (${costs.montage}€)`"
+          v-model="data.montage"
+        />
       </div>
 
-      <h2
-        class="calculator-title"
-        v-html="translates[ln].totals"
-      />
       <div class="total">
-        <div>{{ translates[ln].totalDefault }}: <span class="total-value">_€</span></div>
-        <div>{{ translates[ln].totalInstall }}: <span class="total-value">_€</span></div>
-        <div>{{ translates[ln].totalElectician }}: <span class="total-value">_€</span></div>
-        <div>{{ translates[ln].totalConnect }}: <span class="total-value">_€</span></div>
+        <h3
+          class="calculator-subtitle"
+          v-html="translates[ln].totals"
+        />
+        <table class="total-table">
+          <tr>
+            <td v-html="translates[ln].modules" />
+            <th>x{{ data.modulesCount }}</th>
+            <th>{{ costs.module * data.modulesCount }}€</th>
+          </tr>
+          <tr>
+            <td>WR</td>
+            <th>x{{ data.wrCount }}</th>
+            <th>{{ costs.wr * data.wrCount }}€</th>
+          </tr>
+          <tr>
+            <td v-html="translates[ln].subconstruction" />
+            <th>x{{ data.subconstructionsCount }}</th>
+            <th>{{ costs.subconstruction * data.subconstructionsCount }}€</th>
+          </tr>
+          <tr>
+            <td v-html="translates[ln].small" />
+            <th>x{{ data.smallParts }}</th>
+            <th>{{ costs.smallParts * data.smallParts }}€</th>
+          </tr>
+          <tr>
+            <th v-html="translates[ln].total" colspan="2" class="left" />
+            <th>{{ getTotal }}€</th>
+          </tr>
+        </table>
       </div>
+
+      <Button
+        :text="translates[ln].order"
+        type="submit"
+        class="button"
+      />
     </form>
   </div>
 </template>
@@ -163,16 +160,19 @@ const store = useMainStore()
 const ln = computed(() => store.language)
 
 const data = reactive({
-  energy: 1,
+  address: null,
+  phone: null,
   length: 2,
   width: 1,
-  power: 100,
-  modulesCount: 2,
   angle: 0,
-  invertor: null,
-  invertorsCount: 1,
-  battery: null,
-  accumulate: 10
+  energy: 1,
+  phases: 1,
+  battery: false,
+  montage: false,
+  modulesCount: 20,
+  wrCount: 1,
+  subconstructionsCount: 1,
+  smallParts: 1
 })
 
 const panel = {
@@ -180,184 +180,159 @@ const panel = {
   width: 1.73
 }
 
+const costs = {
+  module: 50,
+  wr: 1000,
+  subconstruction: 1000,
+  smallParts: 100,
+  montage: 1000
+}
+
 const translates = {
   en: {
     title: 'Solar panel calculator',
-    panelsCount: 'Panel quantity calculation',
-    energyConsume: 'How much energy do you consume per year?',
-    kWt: 'In kilowatts',
-    roofSize: 'Roof size',
+    roofParams: 'Roof parameters',
+    address: 'Address',
+    phone: 'Phone',
+    phoneMask: '(750) 000-0000',
+    customer: 'Customer information',
+    equipment: 'Equipment and consumption',
+    consumption: 'Energy consumption (kilowatts)',
+    phases: 'Number of phases',
     length: 'Length',
     width: 'Width',
-    equipment: 'Identification of the equipment to be used',
-    solarModule: 'Select a solar module',
-    moduleCapacity: 'Module capacity',
-    modulesCount: 'Module quantity',
     angle: 'Tilt angle',
-    addInverter: 'Add inverter',
-    inverterType: 'Inverter type',
-    invertersCount: 'Inverter quantity',
     battery: 'Battery module',
-    accumulate: 'How many kWh do you need to accumulate?',
+    services: 'Additional services',
+    montage: 'Montage',
+    total: 'Total',
     totals: 'Totals',
-    totalDefault: 'Cost of Panels with Inverter and Battery module',
-    totalInstall: 'Cost of equipment with Installation',
-    totalElectician: 'Cost of equipment with Installation and Electrician',
-    totalConnect: 'Cost of system connection (registration in the network)'
+    modules: 'Modules',
+    subconstruction: 'Set subconstruction',
+    small: 'Small parts',
+    order: 'Order'
   },
   de: {
     title: 'Solarpanel-rechner',
-    panelsCount: 'Berechnung der plattenmenge',
-    energyConsume: 'Wie viel energie verbrauchen sie pro jahr?',
-    kWt: 'In kilowatt',
-    roofSize: 'Dachgröße',
+    roofParams: 'Dachparameter',
+    address: 'Anschrift',
+    phone: 'Telefon',
+    phoneMask: '+(50 00) 000-00-00',
+    customer: 'Kundeninformationen',
+    equipment: 'Ausstattung und Verbrauch',
+    consumption: 'Energieverbrauch (Kilowatt)',
+    phases: 'Anzahl der phasen',
     length: 'Länge',
     width: 'Breite',
-    equipment: 'Identifizierung der zu verwendenden ausrüstung',
-    solarModule: 'Wählen sie ein solarmodul',
-    moduleCapacity: 'Modulkapazität',
-    modulesCount: 'Modul-quantität',
     angle: 'Neigungswinkel',
-    addInverter: 'Wechselrichter hinzufügen',
-    inverterType: 'Wechselrichter-typ',
-    invertersCount: 'Wechselrichter-menge',
     battery: 'Batteriemodul',
-    accumulate: 'Wie viele kWh müssen sie akkumulieren?',
+    services: 'Zusatzleistungen',
+    montage: 'Montage',
+    total: 'Insgesamt',
     totals: 'Summieren',
-    totalDefault: 'Kosten für Panels mit Wechselrichter und Batteriemodul',
-    totalInstall: 'Ausrüstungskosten mit Installation',
-    totalElectician: 'Ausrüstungskosten mit Installation und Elektriker',
-    totalConnect: 'Kosten für die systemverbindung (registrierung im netzwerk)'
+    modules: 'Modele',
+    subconstruction: 'Set unterconstruktion',
+    small: 'Kleinteilen',
+    order: 'Bestellen'
   },
   hr: {
     title: 'Kalkulator solarnih panela',
-    panelsCount: 'Izračunavanje broja ploča',
-    energyConsume: 'Koliko energije trošite godišnje?',
-    kWt: 'U kilovatima',
-    roofSize: 'Veličina krova',
+    roofParams: 'Parametri krova',
+    address: 'Adresa',
+    phone: 'Telefon',
+    phoneMask: '+385-00 (0000000)',
+    customer: 'Informacije o kupcima',
+    equipment: 'Oprema i potrošnja',
+    consumption: 'Potrošnja energije (kilovati)',
+    phases: 'Broj faza',
     length: 'Duljina',
     width: 'Širina',
-    equipment: 'Identifikacija opreme koja će se koristiti',
-    solarModule: 'Odaberite solarni modul',
-    moduleCapacity: 'Kapacitet modula',
-    modulesCount: 'Broj modula',
     angle: 'Kut nagiba',
-    addInverter: 'Dodaj pretvarač',
-    inverterType: 'Vrsta pretvarača',
-    invertersCount: 'Broj pretvarača',
     battery: 'Modul baterije',
-    accumulate: 'Koliko kvth trebate uštedjeti?',
+    services: 'Dodatne usluge',
+    montage: 'Montaža',
+    total: 'Cijeli',
     totals: 'Ukupno',
-    totalDefault: 'Cijena Panela s Pretvaračem i Baterijskim modulom',
-    totalInstall: 'Trošak opreme s Instalacijom',
-    totalElectician: 'Trošak opreme s Instalacijom i Električarom',
-    totalConnect: 'Troškovi povezivanja sa sustavom (registracija na mreži)'
+    modules: 'Moduli',
+    subconstruction: 'Ugradite podkonstrukciju',
+    small: 'Mali detalji',
+    order: 'Narudžba'
   }
 }
 
 const { projectTitle } = useRuntimeConfig().public
 useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
+
+const getTotal = computed(() => (
+  (costs.module * data.modulesCount) +
+  (costs.wr * data.wrCount) +
+  (costs.subconstruction * data.subconstructionsCount) +
+  (costs.smallParts * data.smallParts)
+))
 </script>
 
 <style lang="scss" scoped>
 .calculator {
   display: flex;
   flex-direction: column;
+  gap: 4rem;
   padding: 2rem 1rem;
   width: 100%;
 
-  &-title {
-    margin: 2rem 0;
-  }
-
-  &-subtitle {
-    text-align: left;
-    margin-bottom: 1rem;
-  }
-}
-
-.area {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 2px solid $color-grey-3;
-
-  &-fields {
+  &-form {
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
+
+  &-subtitle {
+    text-align: left;
+    grid-column: 1/-1;
+  }
 }
 
-.equipment {
+.customer,
+.services {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 2px solid $color-grey-3;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
 
-  &-module {
-    &-count {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      .input {
-        flex-grow: 1;
-      }
-    }
-
-    &-angle {
-      padding-top: 2rem;
-      margin-top: 2rem;
-      border-top: 2px solid $color-grey-3;
-    }
-  }
-
-  &-invertor {
-    &-battery {
-      padding-top: 2rem;
-      margin-top: 2rem;
-      border-top: 2px solid $color-grey-3;
-    }
-  }
+.roof-params,
+.equipment {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
 
 .total {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  font-size: $font-size-lg;
-  font-weight: 600;
+  &-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
 
-  &-value {
-    font-size: $font-size-xl;
-    color: $color-primary;
+    th, td {
+      padding: 1rem;
+      border: 1px solid $color-grey-3;
+    }
+
+    .left {
+      text-align: left;
+    }
   }
 }
 
-@include breakpoint-xl {
-  .area {
-    display: flex;
-    flex-direction: column;
-
-    &-fields {
-      max-width: calc(50vw - 2rem);
-    }
-  }
+.button {
+  align-self: flex-end;
 }
 
 @include breakpoint-md {
-  .area {
-    &-fields {
-      max-width: initial;
-    }
-  }
-
+  .customer,
+  .services,
+  .roof-params,
   .equipment {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 }
 </style>

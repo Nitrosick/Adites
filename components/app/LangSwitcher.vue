@@ -27,6 +27,8 @@ onBeforeMount(() => {
   if (storageLang) {
     store.changeLanguage(storageLang)
     lang.value = storageLang
+  } else {
+    lang.value = 'hr'
   }
 })
 </script>

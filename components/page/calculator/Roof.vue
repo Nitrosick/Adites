@@ -36,8 +36,8 @@
           class="roof-panel"
         />
       </div>
-      <span class="roof-width">{{ data.width }} M.</span>
-      <span class="roof-length">{{ data.length }} M.</span>
+      <span class="roof-width">{{ data.width }} m.</span>
+      <span class="roof-length">{{ data.length }} m.</span>
     </div>
   </div>
 </template>
@@ -64,7 +64,7 @@ const across = computed(() => Math.floor((props.data.width / 2) / props.panel.wi
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  border: 2px solid $color-grey-3;
+  border: 1px solid $color-grey-3;
 
   &-width {
     position: absolute;
@@ -73,6 +73,7 @@ const across = computed(() => Math.floor((props.data.width / 2) / props.panel.wi
     transform: translateY(-50%);
     writing-mode: vertical-rl;
     line-height: 2rem;
+    font-weight: 600;
   }
 
   &-length {
@@ -81,6 +82,7 @@ const across = computed(() => Math.floor((props.data.width / 2) / props.panel.wi
     left: 50%;
     transform: translateX(-50%);
     line-height: 2rem;
+    font-weight: 600;
   }
 
   &-background {

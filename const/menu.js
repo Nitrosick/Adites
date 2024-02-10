@@ -7,5 +7,6 @@ export const menu = [
 
 export const submenu = [
   { id: 1, title: { en: 'masthead', de: 'impressum', hr: 'vrh jarbola' }, to: '/masthead' },
-  { id: 2, title: { en: 'privacy', de: 'datenschutzerklärung', hr: 'zaštita podataka' }, to: '/privacy' }
+  { id: 2, title: { en: 'privacy', de: 'datenschutzerklärung', hr: 'zaštita podataka' }, to: '/privacy' },
+  { id: 3, title: { en: 'calculator', de: 'rechner', hr: 'kalkulator' }, to: '/calculator' }
 ]
