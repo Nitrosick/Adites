@@ -2,7 +2,6 @@
 
 * {
   box-sizing: border-box;
-  scrollbar-width: thin;
   scroll-behavior: smooth;
 }
 
@@ -27,10 +26,16 @@ textarea {
   border: 1px solid $color-grey-3;
   width: 100%;
   padding: 1rem;
+  -webkit-appearance: none;
 
   &::placeholder {
     color: $color-grey-3;
   }
+}
+
+select {
+  cursor: pointer;
+  -webkit-appearance: none;
 }
 
 :focus,

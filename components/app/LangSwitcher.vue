@@ -38,9 +38,9 @@ onBeforeMount(() => {
   &-select {
     height: 100%;
     font-weight: 600;
+    padding: 0 1rem;
     border: none;
     background-color: transparent;
-    cursor: pointer;
   }
 }
 </style>

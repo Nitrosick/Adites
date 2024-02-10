@@ -138,38 +138,40 @@
           v-html="translates[ln].totals"
         />
         <table class="total-table">
-          <tr>
-            <td v-html="translates[ln].modules" />
-            <th>x{{ data.modulesCount }}</th>
-            <th>{{ costs.module * data.modulesCount }}€</th>
-          </tr>
-          <tr>
-            <td>WR</td>
-            <th>x{{ data.wrCount }}</th>
-            <th>{{ costs.wr * data.wrCount }}€</th>
-          </tr>
-          <tr>
-            <td v-html="translates[ln].subconstruction" />
-            <th>x{{ data.subconstructionsCount }}</th>
-            <th>{{ costs.subconstruction * data.subconstructionsCount }}€</th>
-          </tr>
-          <tr>
-            <td v-html="translates[ln].small" />
-            <th>x{{ data.smallParts }}</th>
-            <th>{{ costs.smallParts * data.smallParts }}€</th>
-          </tr>
-          <tr
-            v-for="service in servicesArray"
-            :key="service"
-          >
-            <td v-html="translates[ln][service]" />
-            <th>x1</th>
-            <th>{{ costs[service] }}€</th>
-          </tr>
-          <tr>
-            <th v-html="translates[ln].total" colspan="2" class="left" />
-            <th>{{ getTotal }}€</th>
-          </tr>
+          <tbody>
+            <tr>
+              <td v-html="translates[ln].modules" />
+              <th>x{{ data.modulesCount }}</th>
+              <th>{{ costs.module * data.modulesCount }}€</th>
+            </tr>
+            <tr>
+              <td>WR</td>
+              <th>x{{ data.wrCount }}</th>
+              <th>{{ costs.wr * data.wrCount }}€</th>
+            </tr>
+            <tr>
+              <td v-html="translates[ln].subconstruction" />
+              <th>x{{ data.subconstructionsCount }}</th>
+              <th>{{ costs.subconstruction * data.subconstructionsCount }}€</th>
+            </tr>
+            <tr>
+              <td v-html="translates[ln].small" />
+              <th>x{{ data.smallParts }}</th>
+              <th>{{ costs.smallParts * data.smallParts }}€</th>
+            </tr>
+            <tr
+              v-for="service in servicesArray"
+              :key="service"
+            >
+              <td v-html="translates[ln][service]" />
+              <th>x1</th>
+              <th>{{ costs[service] }}€</th>
+            </tr>
+            <tr>
+              <th v-html="translates[ln].total" colspan="2" class="left" />
+              <th>{{ getTotal }}€</th>
+            </tr>
+          </tbody>
         </table>
       </div>
 
