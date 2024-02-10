@@ -43,6 +43,8 @@
 </template>
 
 <script setup>
+const emit = defineEmits(['total'])
+
 const props = defineProps({
   data: { type: Object, required: true },
   panel: { type: Object, required: true }
@@ -50,8 +52,9 @@ const props = defineProps({
 
 const panelsCount = computed(() => {
   if (along.value < 1 || across.value < 1) return 0
-
-  return along.value * across.value
+  const sum = along.value * across.value * 2
+  emit('total', sum)
+  return sum
 })
 
 const along = computed(() => Math.floor(props.data.length / props.panel.length))

@@ -67,6 +67,7 @@
       <Roof
         :data="data"
         :panel="panel"
+        @total="sum => data.modulesCount = sum"
       />
 
       <div class="equipment">
@@ -105,9 +106,29 @@
           v-html="translates[ln].services"
         />
         <Checkbox
-          id="montage"
-          :label="`${translates[ln].montage} (${costs.montage}€)`"
-          v-model="data.montage"
+          id="dc-montage"
+          :label="`${translates[ln].dcMontage} (${costs.dcMontage}€)`"
+          v-model="services.dcMontage"
+        />
+        <Checkbox
+          id="ac-montage"
+          :label="`${translates[ln].acMontage} (${costs.acMontage}€)`"
+          v-model="services.acMontage"
+        />
+        <Checkbox
+          id="genaustabau"
+          :label="`${translates[ln].genaustabau} (${costs.genaustabau}€)`"
+          v-model="services.genaustabau"
+        />
+        <Checkbox
+          id="ameldung"
+          :label="`${translates[ln].ameldung} (${costs.ameldung}€)`"
+          v-model="services.ameldung"
+        />
+        <Checkbox
+          id="planning"
+          :label="`${translates[ln].planning} (${costs.planning}€)`"
+          v-model="services.planning"
         />
       </div>
 
@@ -136,6 +157,14 @@
             <td v-html="translates[ln].small" />
             <th>x{{ data.smallParts }}</th>
             <th>{{ costs.smallParts * data.smallParts }}€</th>
+          </tr>
+          <tr
+            v-for="service in servicesArray"
+            :key="service"
+          >
+            <td v-html="translates[ln][service]" />
+            <th>x1</th>
+            <th>{{ costs[service] }}€</th>
           </tr>
           <tr>
             <th v-html="translates[ln].total" colspan="2" class="left" />
@@ -168,11 +197,18 @@ const data = reactive({
   energy: 1,
   phases: 1,
   battery: false,
-  montage: false,
-  modulesCount: 20,
+  modulesCount: 0,
   wrCount: 1,
   subconstructionsCount: 1,
   smallParts: 1
+})
+
+const services = reactive({
+  dcMontage: false,
+  acMontage: false,
+  genaustabau: false,
+  ameldung: false,
+  planning: false
 })
 
 const panel = {
@@ -185,7 +221,11 @@ const costs = {
   wr: 1000,
   subconstruction: 1000,
   smallParts: 100,
-  montage: 1000
+  dcMontage: 1000,
+  acMontage: 1000,
+  genaustabau: 1000,
+  ameldung: 100,
+  planning: 500
 }
 
 const translates = {
@@ -204,7 +244,11 @@ const translates = {
     angle: 'Tilt angle',
     battery: 'Battery module',
     services: 'Additional services',
-    montage: 'Montage',
+    dcMontage: 'DC Montage',
+    acMontage: 'AC Montage ( Dramaj 50km inkl je weiter +50c/km)',
+    genaustabau: 'Genaustabau',
+    ameldung: 'Ameldung',
+    planning: 'Precise planning of DC and AC',
     total: 'Total',
     totals: 'Totals',
     modules: 'Modules',
@@ -227,7 +271,11 @@ const translates = {
     angle: 'Neigungswinkel',
     battery: 'Batteriemodul',
     services: 'Zusatzleistungen',
-    montage: 'Montage',
+    dcMontage: 'DC Montage',
+    acMontage: 'AC Montage ( Dramaj 50km inkl je weiter +50c/km)',
+    genaustabau: 'Genaustabau',
+    ameldung: 'Ameldung',
+    planning: 'Genaue planung DC und AC',
     total: 'Insgesamt',
     totals: 'Summieren',
     modules: 'Modele',
@@ -250,7 +298,11 @@ const translates = {
     angle: 'Kut nagiba',
     battery: 'Modul baterije',
     services: 'Dodatne usluge',
-    montage: 'Montaža',
+    dcMontage: 'DC Montaža',
+    acMontage: 'AC Montage ( Dramaj 50km inkl je weiter +50c/km)',
+    genaustabau: 'Genaustabau',
+    ameldung: 'Ameldung',
+    planning: 'Precizno planiranje AC i DC',
     total: 'Cijeli',
     totals: 'Ukupno',
     modules: 'Moduli',
@@ -263,12 +315,28 @@ const translates = {
 const { projectTitle } = useRuntimeConfig().public
 useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 
-const getTotal = computed(() => (
-  (costs.module * data.modulesCount) +
-  (costs.wr * data.wrCount) +
-  (costs.subconstruction * data.subconstructionsCount) +
-  (costs.smallParts * data.smallParts)
-))
+const getTotal = computed(() => {
+  let servicesSum = 0
+  for (const service of servicesArray.value) {
+    servicesSum += costs[service]
+  }
+
+  return (
+    (costs.module * data.modulesCount) +
+    (costs.wr * data.wrCount) +
+    (costs.subconstruction * data.subconstructionsCount) +
+    (costs.smallParts * data.smallParts) +
+    servicesSum
+  )
+})
+
+const servicesArray = computed(() => {
+  const result = []
+  for (const service in services) {
+    if (services[service]) result.push(service)
+  }
+  return result
+})
 </script>
 
 <style lang="scss" scoped>

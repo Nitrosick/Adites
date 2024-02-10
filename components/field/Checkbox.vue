@@ -62,8 +62,9 @@ const model = defineModel({ default: null })
 
   &-label {
     flex-grow: 1;
-    height: 100%;
-    padding: 1rem;
+    padding: 0 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
     cursor: pointer;
   }
 }
