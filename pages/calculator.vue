@@ -81,9 +81,10 @@
           <Input
             id="modules-count"
             type="number"
-            :label="translates[ln].modulesCount"
+            :label="`${translates[ln].modulesCount} (max: ${data.maxModulesCount})`"
             :required="true"
-            :attrs="{ min: 1, max: 1000 }"
+            :alert="data.modulesCount > data.maxModulesCount"
+            :attrs="{ min: 1 }"
             v-model="data.modulesCount"
           />
         </div>
@@ -225,7 +226,8 @@ const data = reactive({
   energy: 1,
   phases: 1,
   battery: false,
-  modulesCount: 0,
+  modulesCount: 1,
+  maxModulesCount: 1,
   wrCount: 1,
   subconstructionsCount: 1,
   smallParts: 1

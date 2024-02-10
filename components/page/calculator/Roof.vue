@@ -55,11 +55,13 @@ const props = defineProps({
 
 const panelsCount = computed(() => {
   if (along.value < 1 || across.value < 1) return 0
-  return along.value * across.value * 2
+  const sum = along.value * across.value * (+props.data.slopes === 2 ? 2 : 1)
+  props.data.maxModulesCount = sum
+  return sum
 })
 
 const along = computed(() => Math.floor(props.data.length / props.panel.length))
-const across = computed(() => Math.floor((props.data.width / 2) / props.panel.width))
+const across = computed(() => Math.floor((props.data.width / (+props.data.slopes === 2 ? 2 : 1)) / props.panel.width))
 </script>
 
 <style lang="scss" scoped>

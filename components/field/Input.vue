@@ -18,6 +18,7 @@
       :required="required"
       :disabled="disabled"
       class="input-field"
+      :class="{ 'input-field-error': alert }"
       v-model="model"
       v-bind="attrs"
     />
@@ -32,6 +33,7 @@ const props = defineProps({
   placeholder: { type: String, default: ''},
   required: { type: Boolean, default: false},
   disabled: { type: Boolean, default: false},
+  alert: { type: Boolean, default: false},
   attrs: { type: Object, default: () => {}}
 })
 
@@ -44,6 +46,10 @@ const model = defineModel({ default: null })
     display: block;
     font-size: $font-size-sm;
     line-height: 1.5;
+  }
+
+  &-field-error {
+    color: $color-alert;
   }
 }
 
