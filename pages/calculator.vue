@@ -213,7 +213,6 @@
       </div>
 
       <Button
-        v-if="!sended"
         :text="translates[ln].calculate"
         type="submit"
         :disabled="loading"

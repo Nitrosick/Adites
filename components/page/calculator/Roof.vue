@@ -26,11 +26,6 @@
             width: `${panelWidth}%`
           }"
         />
-        <!-- <div
-          v-for="i in panelsCount"
-          :key="i"
-          class="roof-panel"
-        /> -->
       </div>
       <div
         v-if="+data.slopes === 2"
@@ -52,11 +47,6 @@
             width: `${panelWidth}%`
           }"
         />
-        <!-- <div
-          v-for="i in panelsCount"
-          :key="i"
-          class="roof-panel"
-        /> -->
       </div>
       <span class="roof-width">{{ data.width }} m.</span>
       <span class="roof-length">{{ data.length }} m.</span>
