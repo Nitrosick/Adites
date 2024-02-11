@@ -10,10 +10,11 @@
     >
       <div
         class="roof-top"
+        :class="{
+          'roof-single-slope': +data.slopes === 1,
+          'roof-metal': data.roofType === 'metal'
+        }"
         :style="{
-          height: `${+data.slopes === 2 ? 50 : 100}%`,
-          maxHeight: `${+data.slopes === 2 ? '50%' : 'initial'}`,
-          backgroundImage: `url(/images/${data.roofType === 'tiles' ? 'tiles' : 'metal'}.jpg)`,
           backgroundSize: `${panel.width / data.length * (data.roofType === 'tiles' ? 5 : 15)}% auto`,
           gridTemplateColumns: `repeat(${along}, 1fr)`,
           gridTemplateRows: `repeat(${across}, 1fr)`
@@ -28,8 +29,8 @@
       <div
         v-if="+data.slopes === 2"
         class="roof-bottom"
+        :class="{ 'roof-metal': data.roofType === 'metal' }"
         :style="{
-          backgroundImage: `url(/images/${data.roofType === 'tiles' ? 'tiles' : 'metal'}.jpg)`,
           backgroundSize: `${panel.width / data.length * (data.roofType === 'tiles' ? 5 : 15)}% auto`,
           gridTemplateColumns: `repeat(${along}, 1fr)`,
           gridTemplateRows: `repeat(${across}, 1fr)`
@@ -105,6 +106,7 @@ const across = computed(() => Math.floor((props.data.width / (+props.data.slopes
     display: grid;
     height: 50%;
     max-height: 50%;
+    background-image: url(@/assets/images/tiles.jpg);
     background-position: left top;
     padding: 0.5rem;
   }
@@ -115,6 +117,15 @@ const across = computed(() => Math.floor((props.data.width / (+props.data.slopes
 
   &-bottom {
     filter: brightness(0.8);
+  }
+
+  &-single-slope {
+    height: 100%;
+    max-height: initial;
+  }
+
+  &-metal {
+    background-image: url(@/assets/images/metal.jpg);
   }
 
   &-panel {

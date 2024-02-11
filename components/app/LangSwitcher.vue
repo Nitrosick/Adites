@@ -21,10 +21,10 @@ watch(lang, (newLang) => {
   store.changeLanguage(newLang)
 })
 
-onBeforeMount(() => {
+onMounted(() => {
   const storageLang = localStorage.getItem('language')
 
-  if (storageLang) {
+  if (storageLang && ['en', 'de', 'hr'].includes(storageLang)) {
     store.changeLanguage(storageLang)
     lang.value = storageLang
   } else {
@@ -40,7 +40,6 @@ onBeforeMount(() => {
     font-weight: 600;
     padding: 0 1rem;
     border: none;
-    background-color: transparent;
   }
 }
 </style>

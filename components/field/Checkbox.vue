@@ -1,5 +1,8 @@
 <template>
-  <div class="checkbox-container">
+  <div
+    class="checkbox-container"
+    :title="label.length >= limit ? label : undefined"
+  >
     <div
       class="checkbox"
       :class="{ 'checkbox-disabled': disabled }"
@@ -9,7 +12,7 @@
         :for="id"
         class="checkbox-label"
       >
-        {{ label }}
+        {{ preparedLabel }}
       </label>
       <label class="checkbox-custom">
         <input
@@ -34,7 +37,13 @@ const props = defineProps({
   attrs: { type: Object, default: () => {}}
 })
 
+const limit = 30
 const model = defineModel({ default: null })
+
+const preparedLabel = computed(() => {
+  if (props.label.length < limit) return props.label
+  return props.label.substring(0, limit) + '...'
+})
 </script>
 
 <style lang="scss" scoped>
@@ -55,14 +64,10 @@ const model = defineModel({ default: null })
     display: block;
     width: 1.2rem;
     height: 1.2rem;
-    border: 1px solid $color-grey-3;
+    background-color: $color-grey-3;
     margin-right: 1rem;
     transition: background-color 0.3s;
     cursor: pointer;
-
-    &:hover {
-      background-color: $color-grey-3;
-    }
   }
 
   &-custom:has(.checkbox-field:checked) {
@@ -71,22 +76,12 @@ const model = defineModel({ default: null })
 
   &-field {
     transform: scale(0);
-    // position: relative;
-    // opacity: 0;
-    // width: 1.2rem;
-    // height: 1.2rem;
-    // margin: 0;
-    // margin-right: 1rem;
-    // padding: 0;
-    // accent-color: $color-primary;
-    // cursor: pointer;
   }
 
   &-label {
     flex-grow: 1;
     padding: 0 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap;
     cursor: pointer;
   }
 }
