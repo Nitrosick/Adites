@@ -4,93 +4,104 @@
       class="page-title"
       v-html="translates[ln].title"
     />
-    <form class="calculator-form">
-      <div>
-        <div class="customer">
-          <h3
-            class="calculator-subtitle"
-            v-html="translates[ln].customer"
-          />
-          <Input
-            id="address"
-            :label="translates[ln].address"
-            :required="true"
-            v-model="data.address"
-          />
-          <Input
-            id="phone"
-            type="tel"
-            :label="translates[ln].phone"
-            :placeholder="translates[ln].phoneMask"
-            :required="true"
-            v-model="data.phone"
-          />
-        </div>
+    <form
+      class="calculator-form"
+      @submit.prevent="onSubmit"
+    >
+      <div class="customer">
+        <h3
+          class="calculator-subtitle"
+          v-html="translates[ln].customer"
+        />
+        <Input
+          id="address"
+          :label="translates[ln].address"
+          placeholder="..."
+          :required="true"
+          v-model="data.address"
+        />
+        <Input
+          id="phone"
+          type="tel"
+          :label="translates[ln].phone"
+          :placeholder="translates[ln].phoneMask"
+          :required="true"
+          v-model="data.phone"
+        />
+        <Input
+          id="email"
+          type="email"
+          label="E-mail"
+          placeholder="email@gmail.com"
+          :required="true"
+          v-model="data.email"
+        />
+      </div>
 
-        <div class="roof-params">
-          <h3
-            class="calculator-subtitle"
-            v-html="translates[ln].roofParams"
-          />
-          <Input
-            id="length"
-            type="number"
-            :label="translates[ln].length + ' (m)'"
-            :required="true"
-            :attrs="{ min: 1, max: 500, step: 0.2 }"
-            v-model="data.length"
-          />
-          <Input
-            id="width"
-            type="number"
-            :label="translates[ln].width + ' (m)'"
-            :required="true"
-            :attrs="{ min: 1, max: 500, step: 0.2 }"
-            v-model="data.width"
-          />
-          <Select
-            id="angle"
-            :label="translates[ln].angle"
-            :options="{
-              0: '0° (horizontal)',
-              30: '30°',
-              45: '45°',
-              60: '60°',
-              90: '90° (vartical)'
-            }"
-            :defaultValue="false"
-            v-model="data.angle"
-          />
-          <Select
-            id="slopes"
-            :label="translates[ln].slopes"
-            :options="{
-              1: 1,
-              2: 2
-            }"
-            :defaultValue="false"
-            v-model="data.slopes"
-          />
-          <Select
-            id="roof-type"
-            :label="translates[ln].roofType"
-            :options="roofTypes"
-            :defaultValue="false"
-            v-model="data.roofType"
-          />
-          <Input
-            id="modules-count"
-            type="number"
-            :label="`${translates[ln].modulesCount} (max: ${data.maxModulesCount})`"
-            :required="true"
-            :alert="data.modulesCount > data.maxModulesCount"
-            :attrs="{ min: 1 }"
-            v-model="data.modulesCount"
-          />
-        </div>
+      <div class="roof-params">
+        <h3
+          class="calculator-subtitle"
+          v-html="translates[ln].roofParams"
+        />
+        <Input
+          id="length"
+          type="number"
+          :label="translates[ln].length + ' (m)'"
+          :required="true"
+          :attrs="{ min: 1, max: 500, step: 0.2 }"
+          v-model="data.length"
+        />
+        <Input
+          id="width"
+          type="number"
+          :label="translates[ln].width + ' (m)'"
+          :required="true"
+          :attrs="{ min: 1, max: 500, step: 0.2 }"
+          v-model="data.width"
+        />
+        <Select
+          id="angle"
+          :label="translates[ln].angle"
+          :options="{
+            0: '0° (horizontal)',
+            30: '30°',
+            45: '45°',
+            60: '60°',
+            90: '90° (vartical)'
+          }"
+          :defaultValue="false"
+          v-model="data.angle"
+        />
+        <Select
+          id="slopes"
+          :label="translates[ln].slopes"
+          :options="{
+            1: 1,
+            2: 2
+          }"
+          :defaultValue="false"
+          v-model="data.slopes"
+        />
+        <Select
+          id="roof-type"
+          :label="translates[ln].roofType"
+          :options="roofTypes"
+          :defaultValue="false"
+          v-model="data.roofType"
+        />
+        <Input
+          id="modules-count"
+          type="number"
+          :label="`${translates[ln].modulesCount} (max: ${data.maxModulesCount})`"
+          :required="true"
+          :alert="data.modulesCount > data.maxModulesCount"
+          :attrs="{ min: 1 }"
+          v-model="data.modulesCount"
+        />
       </div>
 
       <Roof
+        v-if="!sended"
         :data="data"
         :panel="panel"
       />
@@ -122,7 +133,22 @@
           id="battery"
           :label="translates[ln].battery"
           class="battery"
-          v-model="data.battery"
+          v-model="additional.battery"
+        />
+        <Checkbox
+          id="wr"
+          label="WR"
+          v-model="additional.wr"
+        />
+        <Checkbox
+          id="subconstruction"
+          :label="translates[ln].subconstruction"
+          v-model="additional.subconstruction"
+        />
+        <Checkbox
+          id="small"
+          :label="translates[ln].smallParts"
+          v-model="additional.smallParts"
         />
       </div>
 
@@ -134,27 +160,27 @@
         <Checkbox
           id="dc-montage"
           :label="`${translates[ln].dcMontage} (${costs.dcMontage}€)`"
-          v-model="services.dcMontage"
+          v-model="additional.dcMontage"
         />
         <Checkbox
           id="ac-montage"
           :label="`${translates[ln].acMontage} (${costs.acMontage}€)`"
-          v-model="services.acMontage"
+          v-model="additional.acMontage"
         />
         <Checkbox
           id="genaustabau"
           :label="`${translates[ln].genaustabau} (${costs.genaustabau}€)`"
-          v-model="services.genaustabau"
+          v-model="additional.genaustabau"
         />
         <Checkbox
           id="ameldung"
           :label="`${translates[ln].ameldung} (${costs.ameldung}€)`"
-          v-model="services.ameldung"
+          v-model="additional.ameldung"
         />
         <Checkbox
           id="planning"
           :label="`${translates[ln].planning} (${costs.planning}€)`"
-          v-model="services.planning"
+          v-model="additional.planning"
         />
       </div>
 
@@ -168,42 +194,29 @@
             <tr>
               <td v-html="translates[ln].modules" />
               <th>x{{ data.modulesCount }}</th>
-              <th>{{ costs.module * data.modulesCount }}€</th>
-            </tr>
-            <tr>
-              <td>WR</td>
-              <th>x{{ data.wrCount }}</th>
-              <th>{{ costs.wr * data.wrCount }}€</th>
-            </tr>
-            <tr>
-              <td v-html="translates[ln].subconstruction" />
-              <th>x{{ data.subconstructionsCount }}</th>
-              <th>{{ costs.subconstruction * data.subconstructionsCount }}€</th>
-            </tr>
-            <tr>
-              <td v-html="translates[ln].small" />
-              <th>x{{ data.smallParts }}</th>
-              <th>{{ costs.smallParts * data.smallParts }}€</th>
+              <th>{{ sended ? (costs.module * data.modulesCount) + '€' : '-' }}</th>
             </tr>
             <tr
-              v-for="service in servicesArray"
-              :key="service"
+              v-for="a in additionalArr"
+              :key="a"
             >
-              <td v-html="translates[ln][service]" />
+              <td v-html="translates[ln][a]" />
               <th>x1</th>
-              <th>{{ costs[service] }}€</th>
+              <th>{{ sended ? costs[a] + '€' : '-' }}</th>
             </tr>
             <tr>
               <th v-html="translates[ln].total" colspan="2" class="left" />
-              <th>{{ getTotal }}€</th>
+              <th>{{ sended ? getTotal + '€' : '-' }}</th>
             </tr>
           </tbody>
         </table>
       </div>
 
       <Button
-        :text="translates[ln].order"
+        v-if="!sended"
+        :text="translates[ln].calculate"
         type="submit"
+        :disabled="loading"
         class="button"
       />
     </form>
@@ -214,27 +227,34 @@
 import Roof from '@/components/page/calculator/Roof.vue'
 
 const store = useMainStore()
+const { $api } = useNuxtApp()
 const ln = computed(() => store.language)
+const loading = ref(false)
+const sended = ref(false)
 
 const data = reactive({
   address: null,
   phone: null,
+  email: null,
+
   length: 2,
   width: 1,
   angle: 0,
   slopes: 2,
   roofType: 'tiles',
+
   energy: 1,
   phases: 1,
-  battery: false,
   modulesCount: 1,
-  maxModulesCount: 1,
-  wrCount: 1,
-  subconstructionsCount: 1,
-  smallParts: 1
+  maxModulesCount: 1
 })
 
-const services = reactive({
+const additional = reactive({
+  battery: false,
+  wr: false,
+  subconstruction: false,
+  smallParts: false,
+
   dcMontage: false,
   acMontage: false,
   genaustabau: false,
@@ -242,21 +262,23 @@ const services = reactive({
   planning: false
 })
 
-const panel = {
-  length: 1.13,
-  width: 1.73
-}
-
 const costs = {
   module: 50,
+  battery: 300,
   wr: 1000,
   subconstruction: 1000,
   smallParts: 100,
+
   dcMontage: 1000,
   acMontage: 1000,
   genaustabau: 1000,
   ameldung: 100,
   planning: 500
+}
+
+const panel = {
+  length: 1.13,
+  width: 1.73
 }
 
 const translates = {
@@ -285,12 +307,14 @@ const translates = {
     total: 'Total',
     totals: 'Totals',
     modules: 'Modules',
+    wr: 'WR',
     subconstruction: 'Set subconstruction',
-    small: 'Small parts',
-    order: 'Order',
+    smallParts: 'Small parts',
     roofType: 'Roof type',
     tiles: 'Tiles',
-    metal: 'Metal'
+    metal: 'Metal',
+    order: 'Order',
+    calculate: 'Calculate'
   },
   de: {
     title: 'Solarpanel-rechner',
@@ -317,12 +341,14 @@ const translates = {
     total: 'Insgesamt',
     totals: 'Summieren',
     modules: 'Modele',
+    wr: 'WR',
     subconstruction: 'Set unterconstruktion',
-    small: 'Kleinteilen',
-    order: 'Bestellen',
+    smallParts: 'Kleinteilen',
     roofType: 'Dachtyp',
     tiles: 'Dachziegel',
-    metal: 'Metall'
+    metal: 'Metall',
+    order: 'Bestellen',
+    calculate: 'Berechnen'
   },
   hr: {
     title: 'Kalkulator solarnih panela',
@@ -349,37 +375,37 @@ const translates = {
     total: 'Cijeli',
     totals: 'Ukupno',
     modules: 'Moduli',
+    wr: 'WR',
     subconstruction: 'Ugradite podkonstrukciju',
-    small: 'Mali detalji',
-    order: 'Narudžba',
+    smallParts: 'Mali detalji',
     roofType: 'Vrsta krova',
     tiles: 'Crijep',
-    metal: 'Metal'
+    metal: 'Metal',
+    order: 'Narudžba',
+    calculate: 'Izračunati'
   }
 }
+
+onMounted(() => {
+  const lsSended = localStorage.getItem('calc-form-sended')
+  if (lsSended) sended.value = true
+})
 
 const { projectTitle } = useRuntimeConfig().public
 useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 
 const getTotal = computed(() => {
-  let servicesSum = 0
-  for (const service of servicesArray.value) {
-    servicesSum += costs[service]
+  let sum = 0
+  for (const a of additionalArr.value) {
+    sum += costs[a]
   }
-
-  return (
-    (costs.module * data.modulesCount) +
-    (costs.wr * data.wrCount) +
-    (costs.subconstruction * data.subconstructionsCount) +
-    (costs.smallParts * data.smallParts) +
-    servicesSum
-  )
+  return (costs.module * data.modulesCount) + sum
 })
 
-const servicesArray = computed(() => {
+const additionalArr = computed(() => {
   const result = []
-  for (const service in services) {
-    if (services[service]) result.push(service)
+  for (const a in additional) {
+    if (additional[a]) result.push(a)
   }
   return result
 })
@@ -388,6 +414,27 @@ const roofTypes = computed(() => ({
   tiles: translates[ln.value].tiles,
   metal: translates[ln.value].metal
 }))
+
+const onSubmit = async () => {
+  loading.value = true
+
+  const [, err] = await $api('https://formcarry.com/s/zf6KiY049l', {
+    email: data.email,
+    phone: data.phone,
+    address: data.address
+  })
+
+  if (err) {
+    console.error(err)
+    loading.value = false
+    return
+  }
+
+  sended.value = true
+  loading.value = false
+  localStorage.setItem('calc-form-sended', true)
+  window.scrollTo(0, 0)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -410,7 +457,6 @@ const roofTypes = computed(() => ({
   }
 }
 
-.customer,
 .services {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -418,6 +464,7 @@ const roofTypes = computed(() => ({
   margin-bottom: 2rem;
 }
 
+.customer,
 .roof-params,
 .equipment {
   display: grid;

@@ -2,11 +2,7 @@
   <div class="roof">
     <div
       class="roof-background"
-      :style="{
-        aspectRatio: `${data.length}/${data.width}`,
-        width: data.length >= data.width ? '100%' : 'auto',
-        height: data.length > data.width ? 'auto' : '80vh'
-      }"
+      :style="{ aspectRatio: `${data.length}/${data.width}` }"
     >
       <div
         class="roof-top"
@@ -23,8 +19,18 @@
         <div
           v-for="i in panelsCount"
           :key="i"
-          class="roof-panel"
+          class="roof-panel-slot"
+          :class="{ 'roof-panel': i <= data.modulesCount }"
+          :style="{
+            aspectRatio: `${panel.length}/${panel.width}`,
+            width: `${panelWidth}%`
+          }"
         />
+        <!-- <div
+          v-for="i in panelsCount"
+          :key="i"
+          class="roof-panel"
+        /> -->
       </div>
       <div
         v-if="+data.slopes === 2"
@@ -39,8 +45,18 @@
         <div
           v-for="i in panelsCount"
           :key="i"
-          class="roof-panel"
+          class="roof-panel-slot"
+          :class="{ 'roof-panel': i + panelsCount <= data.modulesCount }"
+          :style="{
+            aspectRatio: `${panel.length}/${panel.width}`,
+            width: `${panelWidth}%`
+          }"
         />
+        <!-- <div
+          v-for="i in panelsCount"
+          :key="i"
+          class="roof-panel"
+        /> -->
       </div>
       <span class="roof-width">{{ data.width }} m.</span>
       <span class="roof-length">{{ data.length }} m.</span>
@@ -57,12 +73,14 @@ const props = defineProps({
 const panelsCount = computed(() => {
   if (along.value < 1 || across.value < 1) return 0
   const sum = along.value * across.value * (+props.data.slopes === 2 ? 2 : 1)
+  const result = +props.data.slopes === 2 ? sum / 2 : sum
   props.data.maxModulesCount = sum
-  return sum
+  return result
 })
 
 const along = computed(() => Math.floor(props.data.length / props.panel.length))
 const across = computed(() => Math.floor((props.data.width / (+props.data.slopes === 2 ? 2 : 1)) / props.panel.width))
+const panelWidth = computed(() => (100 / props.data.length) * (along.value * props.panel.length) / along.value)
 </script>
 
 <style lang="scss" scoped>
@@ -93,6 +111,7 @@ const across = computed(() => Math.floor((props.data.width / (+props.data.slopes
   }
 
   &-background {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -103,12 +122,14 @@ const across = computed(() => Math.floor((props.data.width / (+props.data.slopes
 
   &-top,
   &-bottom {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
     height: 50%;
     max-height: 50%;
     background-image: url(@/assets/images/tiles.jpg);
     background-position: left top;
-    padding: 0.5rem;
+    padding: 2px;
   }
 
   &-top {
@@ -122,15 +143,18 @@ const across = computed(() => Math.floor((props.data.width / (+props.data.slopes
   &-single-slope {
     height: 100%;
     max-height: initial;
+    transform: scale(1, 1);
   }
 
   &-metal {
     background-image: url(@/assets/images/metal.jpg);
   }
 
+  &-panel-slot {
+    outline: 1px solid $color-grey-3;
+  }
+
   &-panel {
-    width: 100%;
-    height: 100%;
     background: url(@/assets/images/panel.jpg) center / contain no-repeat;
   }
 }

@@ -21,6 +21,12 @@
         TEL +385 514 524 61
       </a>
       <a
+        href="tel:+385992274056"
+        class="footer-link"
+      >
+        WhatsApp +385 99 227 4056
+      </a>
+      <a
         href="mailto:info@adites.hr"
         class="footer-link"
       >
