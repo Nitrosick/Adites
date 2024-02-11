@@ -40,6 +40,7 @@ onMounted(() => {
     font-weight: 600;
     padding: 0 1rem;
     border: none;
+    background-color: transparent;
   }
 }
 </style>

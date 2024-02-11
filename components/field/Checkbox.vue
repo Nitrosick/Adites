@@ -1,31 +1,27 @@
 <template>
   <div
-    class="checkbox-container"
+    class="checkbox"
+    :class="{ 'checkbox-disabled': disabled }"
     :title="label.length >= limit ? label : undefined"
   >
-    <div
-      class="checkbox"
-      :class="{ 'checkbox-disabled': disabled }"
+    <label
+      v-if="label"
+      :for="id"
+      class="checkbox-label"
     >
-      <label
-        v-if="label"
-        :for="id"
-        class="checkbox-label"
-      >
-        {{ preparedLabel }}
-      </label>
-      <label class="checkbox-custom">
-        <input
-          type="checkbox"
-          :name="id"
-          :id="id"
-          :disabled="disabled"
-          class="checkbox-field"
-          v-model="model"
-          v-bind="attrs"
-        />
-      </label>
-    </div>
+      {{ preparedLabel }}
+    </label>
+    <label class="checkbox-custom">
+      <input
+        type="checkbox"
+        :name="id"
+        :id="id"
+        :disabled="disabled"
+        class="checkbox-field"
+        v-model="model"
+        v-bind="attrs"
+      />
+    </label>
   </div>
 </template>
 
@@ -47,13 +43,6 @@ const preparedLabel = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-.checkbox-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
 .checkbox {
   display: flex;
   align-items: center;

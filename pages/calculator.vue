@@ -121,6 +121,7 @@
         <Checkbox
           id="battery"
           :label="translates[ln].battery"
+          class="battery"
           v-model="data.battery"
         />
       </div>
@@ -441,6 +442,10 @@ const roofTypes = computed(() => ({
   }
 }
 
+.battery {
+  margin-top: 19px;
+}
+
 .button {
   align-self: flex-end;
 }
@@ -451,6 +456,10 @@ const roofTypes = computed(() => ({
   .roof-params,
   .equipment {
     grid-template-columns: 1fr;
+  }
+
+  .battery {
+    margin-top: 0;
   }
 }
 </style>
