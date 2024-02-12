@@ -4,59 +4,32 @@
     class="roof"
   >
     <div
-      class="roof-background"
-      :style="{ aspectRatio: `${data.length}/${data.width}` }"
+      :class="`roof-background roof-${data.roofType}`"
+      :style="{
+        aspectRatio: `${data[slope].length}/${data[slope].width}`,
+        backgroundSize: `${panel.width / data[slope].length * (data.roofType === 'tiles' ? 5 : 15)}% auto`,
+      }"
     >
-      <div
-        class="roof-top"
-        :class="{
-          'roof-single-slope': +data.slopes === 1,
-          'roof-metal': data.roofType === 'metal'
-        }"
-        :style="{
-          backgroundSize: `${panel.width / data.length * (data.roofType === 'tiles' ? 5 : 15)}% auto`,
-          gridTemplateColumns: `repeat(${along}, 1fr)`,
-          gridTemplateRows: `repeat(${across}, 1fr)`
-        }"
-      >
-        <div class="roof-wrapper">
-          <div
-            v-for="i in panelsCount"
-            :key="i"
-            class="roof-panel-slot"
-            :class="{ 'roof-panel': i <= data.modulesCount }"
-            :style="{
-              aspectRatio: `${panel.length}/${panel.width}`,
-              width: `${panelWidth}%`
-            }"
-          />
-        </div>
+      <div class="roof-panels-wrapper">
+        <div
+          v-for="i in panelsCount"
+          :key="i"
+          class="roof-panel-slot"
+          :class="{ 'roof-panel': i <= data[slope].modules }"
+          :style="{
+            aspectRatio: `${panel.length}/${panel.width}`,
+            width: `${panelWidth}%`
+          }"
+        />
       </div>
-      <div
+      <span
         v-if="+data.slopes === 2"
-        class="roof-bottom"
-        :class="{ 'roof-metal': data.roofType === 'metal' }"
-        :style="{
-          backgroundSize: `${panel.width / data.length * (data.roofType === 'tiles' ? 5 : 15)}% auto`,
-          gridTemplateColumns: `repeat(${along}, 1fr)`,
-          gridTemplateRows: `repeat(${across}, 1fr)`
-        }"
+        class="roof-slope-mark"
       >
-        <div class="roof-wrapper">
-          <div
-            v-for="i in panelsCount"
-            :key="i"
-            class="roof-panel-slot"
-            :class="{ 'roof-panel': i + panelsCount <= data.modulesCount }"
-            :style="{
-              aspectRatio: `${panel.length}/${panel.width}`,
-              width: `${panelWidth}%`
-            }"
-          />
-        </div>
-      </div>
-      <Ruler :distance="data.length" />
-      <Ruler type="v" :distance="data.width" />
+        {{ slope === 'first' ? 'a' : 'b' }}
+      </span>
+      <Ruler :distance="data[slope].length" />
+      <Ruler type="v" :distance="data[slope].width" />
     </div>
   </div>
 </template>
@@ -65,34 +38,50 @@
 import Ruler from '@/components/page/calculator/Ruler.vue'
 
 const props = defineProps({
+  slope: { type: String, default: 'first' },
   data: { type: Object, required: true },
   panel: { type: Object, required: true }
 })
 
 const panelsCount = computed(() => {
   if (along.value < 1 || across.value < 1) return 0
-  const sum = along.value * across.value * (+props.data.slopes === 2 ? 2 : 1)
-  const result = +props.data.slopes === 2 ? sum / 2 : sum
-  props.data.maxModulesCount = sum
-  return result
+  const { data, slope } = props
+  const sum = along.value * across.value
+  data[slope].max = sum
+  return sum
 })
 
-const along = computed(() => Math.floor(props.data.length / props.panel.length))
-const across = computed(() => Math.floor((props.data.width / (+props.data.slopes === 2 ? 2 : 1)) / props.panel.width))
-const panelWidth = computed(() => (100 / props.data.length) * (along.value * props.panel.length) / along.value)
+const along = computed(() => {
+  const { data, slope, panel } = props
+  return Math.floor(data[slope].length / panel.length)
+})
 
-const checkValues = computed(() => (
-  isFinite(props.data.length) &&
-  props.data.length > 0 &&
-  isFinite(props.data.width) &&
-  props.data.width > 0 &&
-  isFinite(props.data.modulesCount) &&
-  props.data.width >= 0
-))
+const across = computed(() => {
+  const { data, slope, panel } = props
+  return Math.floor(data[slope].width / panel.width)
+})
+
+const panelWidth = computed(() => {
+  const { data, slope, panel } = props
+  return (100 / data[slope].length) * (along.value * panel.length) / along.value
+})
+
+const checkValues = computed(() => {
+  const { data, slope } = props
+  return (
+    isFinite(data[slope].length) &&
+    data[slope].length > 0 &&
+    isFinite(data[slope].width) &&
+    data[slope].width > 0 &&
+    isFinite(data[slope].modules) &&
+    data[slope].modules >= 0
+  )
+})
 </script>
 
 <style lang="scss" scoped>
 .roof {
+  grid-column: 1/-1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,42 +89,19 @@ const checkValues = computed(() => (
   border: 1px solid $color-grey-3;
 
   &-background {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    border: 2px solid var(--color-grey-2);
+    background-position: 0 0;
+  }
+
+  &-panels-wrapper {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 2px;
-    position: relative;
-    background-color: $color-black;
-    padding: 2px;
-  }
-
-  &-wrapper {
-    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    align-items: flex-end;
-  }
-
-  &-top,
-  &-bottom {
-    height: 50%;
-    max-height: 50%;
-    background-image: url(@/assets/images/tiles.jpg);
-    background-position: left top;
-    padding: 2px;
-  }
-
-  &-bottom {
-    filter: brightness(0.8);
-    transform: scale(1, -1);
-  }
-
-  &-single-slope {
-    height: 100%;
-    max-height: initial;
-  }
-
-  &-metal {
-    background-image: url(@/assets/images/metal.jpg);
   }
 
   &-panel-slot {
@@ -144,6 +110,27 @@ const checkValues = computed(() => (
 
   &-panel {
     background: url(@/assets/images/panel.jpg) center / contain no-repeat;
+  }
+
+  &-tiles {
+    background-image: url(@/assets/images/tiles.jpg);
+  }
+
+  &-metal {
+    background-image: url(@/assets/images/metal.jpg);
+  }
+
+  &-slope-mark {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 15rem;
+    color: $color-white;
+    opacity: 0.2;
+    line-height: 0.8;
+    cursor: default;
   }
 }
 </style>

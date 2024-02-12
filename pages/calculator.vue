@@ -43,22 +43,6 @@
           class="calculator-subtitle"
           v-html="translates[ln].roofParams"
         />
-        <Input
-          id="length"
-          type="number"
-          :label="translates[ln].length + ' (m)'"
-          :required="true"
-          :attrs="{ min: 1, max: 500, step: 0.2 }"
-          v-model="data.length"
-        />
-        <Input
-          id="width"
-          type="number"
-          :label="translates[ln].width + ' (m)'"
-          :required="true"
-          :attrs="{ min: 1, max: 500, step: 0.2 }"
-          v-model="data.width"
-        />
         <Select
           id="angle"
           :label="translates[ln].angle"
@@ -89,22 +73,78 @@
           :defaultValue="false"
           v-model="data.roofType"
         />
+      </div>
+
+      <div
+        v-show="sended"
+        class="roof-slope"
+      >
         <Input
-          id="modules-count"
+          id="length_1"
           type="number"
-          :label="`${translates[ln].modulesCount} (max: ${data.maxModulesCount})`"
+          :label="translates[ln].length + ' (m)'"
           :required="true"
-          :alert="data.modulesCount > data.maxModulesCount"
+          :attrs="{ min: 1, max: 500, step: 0.2 }"
+          v-model="data.first.length"
+        />
+        <Input
+          id="width_1"
+          type="number"
+          :label="translates[ln].width + ' (m)'"
+          :required="true"
+          :attrs="{ min: 1, max: 500, step: 0.2 }"
+          v-model="data.first.width"
+        />
+        <Input
+          id="modules_1"
+          type="number"
+          :label="`${translates[ln].modulesCount} (max: ${data.first.max})`"
+          :required="true"
+          :alert="data.first.modules > data.first.max"
           :attrs="{ min: 0 }"
-          v-model="data.modulesCount"
+          v-model="data.first.modules"
+        />
+        <Roof
+          :data="data"
+          :panel="panel"
         />
       </div>
 
-      <Roof
-        v-if="sended"
-        :data="data"
-        :panel="panel"
-      />
+      <div
+        v-show="sended && +data.slopes === 2"
+        class="roof-slope"
+      >
+        <Input
+          id="length_2"
+          type="number"
+          :label="translates[ln].length + ' (m)'"
+          :required="true"
+          :attrs="{ min: 1, max: 500, step: 0.2 }"
+          v-model="data.second.length"
+        />
+        <Input
+          id="width_2"
+          type="number"
+          :label="translates[ln].width + ' (m)'"
+          :required="true"
+          :attrs="{ min: 1, max: 500, step: 0.2 }"
+          v-model="data.second.width"
+        />
+        <Input
+          id="modules_2"
+          type="number"
+          :label="`${translates[ln].modulesCount} (max: ${data.second.max})`"
+          :required="true"
+          :alert="data.second.modules > data.second.max"
+          :attrs="{ min: 0 }"
+          v-model="data.second.modules"
+        />
+        <Roof
+          slope="second"
+          :data="data"
+          :panel="panel"
+        />
+      </div>
 
       <div class="equipment">
         <h3
@@ -191,10 +231,10 @@
         />
         <table class="total-table">
           <tbody>
-            <tr v-if="data.modulesCount">
+            <tr v-if="data.first.modules || data.second.modules">
               <td v-html="translates[ln].modules" />
-              <th>x{{ data.modulesCount }}</th>
-              <th>{{ sended ? (costs.module * data.modulesCount) + '€' : '-' }}</th>
+              <th>x{{ data.first.modules + data.second.modules }}</th>
+              <th>{{ sended ? (costs.module * (data.first.modules + data.second.modules)) + '€' : '-' }}</th>
             </tr>
             <tr
               v-for="a in additionalArr"
@@ -236,16 +276,25 @@ const data = reactive({
   phone: null,
   email: null,
 
-  length: 2,
-  width: 1,
   angle: 0,
   slopes: 2,
   roofType: 'tiles',
 
+  first: {
+    length: 2,
+    width: 1,
+    modules: 0,
+    max: 0
+  },
+  second: {
+    length: 2,
+    width: 1,
+    modules: 0,
+    max: 0
+  },
+
   energy: 1,
   phases: 1,
-  modulesCount: 0,
-  maxModulesCount: 1
 })
 
 const additional = reactive({
@@ -385,6 +434,15 @@ const translates = {
   }
 }
 
+watch(() => data.slopes, (val) => {
+  if (+val === 1) {
+    data.second.length = 2
+    data.second.width = 1
+    data.second.modules = 0
+    data.second.max = 0
+  }
+})
+
 onMounted(() => {
   const lsSended = localStorage.getItem('calc-form-sended')
   if (lsSended) sended.value = true
@@ -395,10 +453,8 @@ useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 
 const getTotal = computed(() => {
   let sum = 0
-  for (const a of additionalArr.value) {
-    sum += costs[a]
-  }
-  return (costs.module * data.modulesCount) + sum
+  for (const a of additionalArr.value) { sum += costs[a] }
+  return (costs.module * (data.first.modules + data.second.modules)) + sum
 })
 
 const additionalArr = computed(() => {
@@ -465,6 +521,7 @@ const onSubmit = async () => {
 
 .customer,
 .roof-params,
+.roof-slope,
 .equipment {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
