@@ -1,5 +1,8 @@
 <template>
-  <div class="roof">
+  <div
+    v-if="checkValues"
+    class="roof"
+  >
     <div
       class="roof-background"
       :style="{ aspectRatio: `${data.length}/${data.width}` }"
@@ -16,16 +19,18 @@
           gridTemplateRows: `repeat(${across}, 1fr)`
         }"
       >
-        <div
-          v-for="i in panelsCount"
-          :key="i"
-          class="roof-panel-slot"
-          :class="{ 'roof-panel': i <= data.modulesCount }"
-          :style="{
-            aspectRatio: `${panel.length}/${panel.width}`,
-            width: `${panelWidth}%`
-          }"
-        />
+        <div class="roof-wrapper">
+          <div
+            v-for="i in panelsCount"
+            :key="i"
+            class="roof-panel-slot"
+            :class="{ 'roof-panel': i <= data.modulesCount }"
+            :style="{
+              aspectRatio: `${panel.length}/${panel.width}`,
+              width: `${panelWidth}%`
+            }"
+          />
+        </div>
       </div>
       <div
         v-if="+data.slopes === 2"
@@ -37,16 +42,18 @@
           gridTemplateRows: `repeat(${across}, 1fr)`
         }"
       >
-        <div
-          v-for="i in panelsCount"
-          :key="i"
-          class="roof-panel-slot"
-          :class="{ 'roof-panel': i + panelsCount <= data.modulesCount }"
-          :style="{
-            aspectRatio: `${panel.length}/${panel.width}`,
-            width: `${panelWidth}%`
-          }"
-        />
+        <div class="roof-wrapper">
+          <div
+            v-for="i in panelsCount"
+            :key="i"
+            class="roof-panel-slot"
+            :class="{ 'roof-panel': i + panelsCount <= data.modulesCount }"
+            :style="{
+              aspectRatio: `${panel.length}/${panel.width}`,
+              width: `${panelWidth}%`
+            }"
+          />
+        </div>
       </div>
       <Ruler :distance="data.length" />
       <Ruler type="v" :distance="data.width" />
@@ -73,6 +80,15 @@ const panelsCount = computed(() => {
 const along = computed(() => Math.floor(props.data.length / props.panel.length))
 const across = computed(() => Math.floor((props.data.width / (+props.data.slopes === 2 ? 2 : 1)) / props.panel.width))
 const panelWidth = computed(() => (100 / props.data.length) * (along.value * props.panel.length) / along.value)
+
+const checkValues = computed(() => (
+  isFinite(props.data.length) &&
+  props.data.length > 0 &&
+  isFinite(props.data.width) &&
+  props.data.width > 0 &&
+  isFinite(props.data.modulesCount) &&
+  props.data.width >= 0
+))
 </script>
 
 <style lang="scss" scoped>
@@ -93,11 +109,14 @@ const panelWidth = computed(() => (100 / props.data.length) * (along.value * pro
     padding: 2px;
   }
 
-  &-top,
-  &-bottom {
+  &-wrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
+  }
+
+  &-top,
+  &-bottom {
     height: 50%;
     max-height: 50%;
     background-image: url(@/assets/images/tiles.jpg);
@@ -105,18 +124,14 @@ const panelWidth = computed(() => (100 / props.data.length) * (along.value * pro
     padding: 2px;
   }
 
-  &-top {
-    transform: scale(1, -1);
-  }
-
   &-bottom {
     filter: brightness(0.8);
+    transform: scale(1, -1);
   }
 
   &-single-slope {
     height: 100%;
     max-height: initial;
-    transform: scale(1, 1);
   }
 
   &-metal {

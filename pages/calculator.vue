@@ -191,7 +191,7 @@
         />
         <table class="total-table">
           <tbody>
-            <tr>
+            <tr v-if="data.modulesCount">
               <td v-html="translates[ln].modules" />
               <th>x{{ data.modulesCount }}</th>
               <th>{{ sended ? (costs.module * data.modulesCount) + '€' : '-' }}</th>
