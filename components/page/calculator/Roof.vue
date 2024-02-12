@@ -48,13 +48,15 @@
           }"
         />
       </div>
-      <span class="roof-width">{{ data.width }} m.</span>
-      <span class="roof-length">{{ data.length }} m.</span>
+      <Ruler :distance="data.length" />
+      <Ruler type="v" :distance="data.width" />
     </div>
   </div>
 </template>
 
 <script setup>
+import Ruler from '@/components/page/calculator/Ruler.vue'
+
 const props = defineProps({
   data: { type: Object, required: true },
   panel: { type: Object, required: true }
@@ -78,27 +80,8 @@ const panelWidth = computed(() => (100 / props.data.length) * (along.value * pro
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 2rem 1rem 1rem 2rem;
   border: 1px solid $color-grey-3;
-
-  &-width {
-    position: absolute;
-    top: 50%;
-    left: -2rem;
-    transform: translateY(-50%);
-    writing-mode: vertical-rl;
-    line-height: 2rem;
-    font-weight: 600;
-  }
-
-  &-length {
-    position: absolute;
-    top: -2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    line-height: 2rem;
-    font-weight: 600;
-  }
 
   &-background {
     width: 100%;

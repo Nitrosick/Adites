@@ -95,13 +95,13 @@
           :label="`${translates[ln].modulesCount} (max: ${data.maxModulesCount})`"
           :required="true"
           :alert="data.modulesCount > data.maxModulesCount"
-          :attrs="{ min: 1 }"
+          :attrs="{ min: 0 }"
           v-model="data.modulesCount"
         />
       </div>
 
       <Roof
-        v-if="!sended"
+        v-if="sended"
         :data="data"
         :panel="panel"
       />
@@ -244,7 +244,7 @@ const data = reactive({
 
   energy: 1,
   phases: 1,
-  modulesCount: 1,
+  modulesCount: 0,
   maxModulesCount: 1
 })
 
