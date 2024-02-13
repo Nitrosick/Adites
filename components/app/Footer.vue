@@ -18,12 +18,14 @@
         href="tel:+38551452461"
         class="footer-link"
       >
+        <Icon img="phone-alt" />
         TEL +385 514 524 61
       </a>
       <a
         href="tel:+385992274056"
         class="footer-link"
       >
+        <Icon img="whatsapp" collection="fab" />
         WhatsApp +385 99 227 4056
       </a>
       <a
@@ -69,7 +71,6 @@ const translates = {
 
   &-oib {
     font-size: $font-size-sm;
-    opacity: 0.6;
     margin-bottom: 0.5rem;
   }
 
@@ -78,6 +79,9 @@ const translates = {
   }
 
   &-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: $color-white;
   }
 }

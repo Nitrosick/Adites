@@ -75,10 +75,12 @@
         />
       </div>
 
-      <div
-        v-show="sended"
-        class="roof-slope"
-      >
+      <div class="roof-slope">
+        <h3
+          v-if="+data.slopes === 2"
+          class="calculator-subtitle"
+          v-html="translates[ln].slope + ' 1'"
+        />
         <Input
           id="length_1"
           type="number"
@@ -105,15 +107,20 @@
           v-model="data.first.modules"
         />
         <Roof
+          v-show="sended"
           :data="data"
           :panel="panel"
         />
       </div>
 
       <div
-        v-show="sended && +data.slopes === 2"
+        v-show="+data.slopes === 2"
         class="roof-slope"
       >
+        <h3
+          class="calculator-subtitle"
+          v-html="translates[ln].slope + ' 2'"
+        />
         <Input
           id="length_2"
           type="number"
@@ -140,6 +147,7 @@
           v-model="data.second.modules"
         />
         <Roof
+          v-show="sended"
           slope="second"
           :data="data"
           :panel="panel"
@@ -343,6 +351,7 @@ const translates = {
     length: 'Length',
     width: 'Width',
     angle: 'Tilt angle',
+    slope: 'Slope',
     slopes: 'Number of roof slopes',
     modulesCount: 'Modules quantity',
     battery: 'Battery module',
@@ -377,6 +386,7 @@ const translates = {
     length: 'Länge',
     width: 'Breite',
     angle: 'Neigungswinkel',
+    slope: 'Piste',
     slopes: 'Anzahl der dachschrägen',
     modulesCount: 'Anzahl der Module',
     battery: 'Batteriemodul',
@@ -411,6 +421,7 @@ const translates = {
     length: 'Duljina',
     width: 'Širina',
     angle: 'Kut nagiba',
+    slope: 'Nagib',
     slopes: 'Broj kosina krova',
     modulesCount: 'Broj modula',
     battery: 'Modul baterije',

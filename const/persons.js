@@ -1,9 +1,9 @@
 export const persons = [
   {
-    id: 'rustam-muhamadiev',
-    name: 'Rustam Muhamadiev',
+    id: 'daniel-kirka',
+    name: 'Daniel Kirka',
     city: { en: 'Crikvenica', de: 'Crikvenica', hr: 'Crikvenica' },
-    email: 'info@adites.hr',
+    email: 'solar@adites.hr',
     phone: '+385 99 2274 056',
     photo: 'berator.jpg',
     berator: { en: 'From Crikvenica Berator', de: 'Aus Crikvenica Berator', hr: 'Iz Crikvenice Berator' },
