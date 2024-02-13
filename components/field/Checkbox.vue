@@ -47,7 +47,7 @@ const preparedLabel = computed(() => {
   display: flex;
   align-items: center;
   border: 1px solid $color-grey-3;
-  height: 55px;
+  height: 57px;
 
   &-custom {
     display: block;

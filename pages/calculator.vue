@@ -36,6 +36,14 @@
           :required="true"
           v-model="data.email"
         />
+        <Input
+          id="distance"
+          type="number"
+          :label="translates[ln].distance + ' (km)'"
+          :required="true"
+          :disabled="!data.acMontage && !data.dcMontage"
+          v-model="data.distance"
+        />
       </div>
 
       <div class="roof-params">
@@ -159,6 +167,21 @@
           class="calculator-subtitle"
           v-html="translates[ln].equipment"
         />
+        <Checkbox
+          id="battery"
+          :label="translates[ln].battery"
+          v-model="additional.battery"
+        />
+        <Checkbox
+          id="subconstruction"
+          :label="translates[ln].subconstruction"
+          v-model="additional.subconstruction"
+        />
+        <Checkbox
+          id="small"
+          :label="translates[ln].smallParts"
+          v-model="additional.smallParts"
+        />
         <Input
           id="energy"
           type="number"
@@ -177,26 +200,36 @@
           :defaultValue="false"
           v-model="data.phases"
         />
-        <Checkbox
-          id="battery"
-          :label="translates[ln].battery"
-          class="battery"
-          v-model="additional.battery"
+      </div>
+
+      <div class="wrs">
+        <h3
+          class="calculator-subtitle"
+          v-html="translates[ln].wrs"
         />
-        <Checkbox
-          id="wr"
-          label="WR"
-          v-model="additional.wr"
+        <Input
+          id="wr6kw"
+          type="number"
+          label="6 kW"
+          :required="true"
+          :attrs="{ min: 0 }"
+          v-model="data.wr6kw"
         />
-        <Checkbox
-          id="subconstruction"
-          :label="translates[ln].subconstruction"
-          v-model="additional.subconstruction"
+        <Input
+          id="wr8kw"
+          type="number"
+          label="8 kW"
+          :required="true"
+          :attrs="{ min: 0 }"
+          v-model="data.wr8kw"
         />
-        <Checkbox
-          id="small"
-          :label="translates[ln].smallParts"
-          v-model="additional.smallParts"
+        <Input
+          id="wr10kw"
+          type="number"
+          label="10 kW"
+          :required="true"
+          :attrs="{ min: 0 }"
+          v-model="data.wr10kw"
         />
       </div>
 
@@ -207,27 +240,27 @@
         />
         <Checkbox
           id="dc-montage"
-          :label="`${translates[ln].dcMontage} (${costs.dcMontage}€)`"
-          v-model="additional.dcMontage"
+          :label="`${translates[ln].dcMontage}`"
+          v-model="data.dcMontage"
         />
         <Checkbox
           id="ac-montage"
-          :label="`${translates[ln].acMontage} (${costs.acMontage}€)`"
-          v-model="additional.acMontage"
+          :label="`${translates[ln].acMontage}`"
+          v-model="data.acMontage"
         />
         <Checkbox
           id="genaustabau"
-          :label="`${translates[ln].genaustabau} (${costs.genaustabau}€)`"
+          :label="`${translates[ln].genaustabau}`"
           v-model="additional.genaustabau"
         />
         <Checkbox
           id="ameldung"
-          :label="`${translates[ln].ameldung} (${costs.ameldung}€)`"
+          :label="`${translates[ln].ameldung}`"
           v-model="additional.ameldung"
         />
         <Checkbox
           id="planning"
-          :label="`${translates[ln].planning} (${costs.planning}€)`"
+          :label="`${translates[ln].planning}`"
           v-model="additional.planning"
         />
       </div>
@@ -244,6 +277,21 @@
               <th>x{{ data.first.modules + data.second.modules }}</th>
               <th>{{ sended ? (costs.module * (data.first.modules + data.second.modules)) + '€' : '-' }}</th>
             </tr>
+            <tr v-if="data.wr6kw">
+              <td>Wechsel richter 6kw</td>
+              <th>x{{ data.wr6kw }}</th>
+              <th>{{ sended ? (costs.wr6kw * data.wr6kw) + '€' : '-' }}</th>
+            </tr>
+            <tr v-if="data.wr8kw">
+              <td>Wechsel richter 8kw</td>
+              <th>x{{ data.wr8kw }}</th>
+              <th>{{ sended ? (costs.wr8kw * data.wr8kw) + '€' : '-' }}</th>
+            </tr>
+            <tr v-if="data.wr10kw">
+              <td>Wechsel richter 10kw</td>
+              <th>x{{ data.wr10kw }}</th>
+              <th>{{ sended ? (costs.wr10kw * data.wr10kw) + '€' : '-' }}</th>
+            </tr>
             <tr
               v-for="a in additionalArr"
               :key="a"
@@ -251,6 +299,11 @@
               <td v-html="translates[ln][a]" />
               <th>x1</th>
               <th>{{ sended ? costs[a] + '€' : '-' }}</th>
+            </tr>
+            <tr v-if="getMontageCost">
+              <td v-html="translates[ln].montageAcDc" />
+              <th>x1</th>
+              <th>{{ sended ? getMontageCost + '€' : '-' }}</th>
             </tr>
             <tr>
               <th v-html="translates[ln].total" colspan="2" class="left" />
@@ -283,6 +336,7 @@ const data = reactive({
   address: null,
   phone: null,
   email: null,
+  distance: 0,
 
   angle: 0,
   slopes: 2,
@@ -301,18 +355,19 @@ const data = reactive({
     max: 0
   },
 
+  wr6kw: 0,
+  wr8kw: 0,
+  wr10kw: 0,
   energy: 1,
   phases: 1,
+  acMontage: false,
+  dcMontage: false
 })
 
 const additional = reactive({
   battery: false,
-  wr: false,
   subconstruction: false,
   smallParts: false,
-
-  dcMontage: false,
-  acMontage: false,
   genaustabau: false,
   ameldung: false,
   planning: false
@@ -321,15 +376,17 @@ const additional = reactive({
 const costs = {
   module: 50,
   battery: 300,
-  wr: 1000,
   subconstruction: 1000,
   smallParts: 100,
+  wr6kw: 100,
+  wr8kw: 150,
+  wr10kw: 200,
 
-  dcMontage: 1000,
-  acMontage: 1000,
+  montage: 1000,
   genaustabau: 1000,
   ameldung: 100,
-  planning: 500
+  planning: 500,
+  delivery: 2
 }
 
 const panel = {
@@ -344,6 +401,7 @@ const translates = {
     address: 'Address',
     phone: 'Phone',
     phoneMask: '(750) 000-0000',
+    distance: 'Distance from Dramal',
     customer: 'Customer information',
     equipment: 'Equipment and consumption',
     consumption: 'Energy consumption (kilowatts)',
@@ -357,14 +415,15 @@ const translates = {
     battery: 'Battery module',
     services: 'Additional services',
     dcMontage: 'DC Montage',
-    acMontage: 'AC Montage ( Dramaj 50km inkl je weiter +50c/km)',
+    acMontage: 'AC Montage',
+    montageAcDc: 'Montage AC/DC (Up to 50km for free, then 2€/km)',
     genaustabau: 'Genaustabau',
     ameldung: 'Ameldung',
     planning: 'Precise planning of DC and AC',
     total: 'Total',
     totals: 'Totals',
     modules: 'Modules',
-    wr: 'WR',
+    wrs: 'Wechsel richter',
     subconstruction: 'Set subconstruction',
     smallParts: 'Small parts',
     roofType: 'Roof type',
@@ -379,6 +438,7 @@ const translates = {
     address: 'Anschrift',
     phone: 'Telefon',
     phoneMask: '+(50 00) 000-00-00',
+    distance: 'Entfernung von Dramal',
     customer: 'Kundeninformationen',
     equipment: 'Ausstattung und Verbrauch',
     consumption: 'Energieverbrauch (Kilowatt)',
@@ -392,14 +452,15 @@ const translates = {
     battery: 'Batteriemodul',
     services: 'Zusatzleistungen',
     dcMontage: 'DC Montage',
-    acMontage: 'AC Montage ( Dramaj 50km inkl je weiter +50c/km)',
+    acMontage: 'AC Montage',
+    montageAcDc: 'Montage AC/DC (Dramaj 50km inkl je weiter +2€/km)',
     genaustabau: 'Genaustabau',
     ameldung: 'Ameldung',
     planning: 'Genaue planung DC und AC',
     total: 'Insgesamt',
     totals: 'Summieren',
     modules: 'Modele',
-    wr: 'WR',
+    wrs: 'Wechsel richter',
     subconstruction: 'Set unterconstruktion',
     smallParts: 'Kleinteilen',
     roofType: 'Dachtyp',
@@ -414,6 +475,7 @@ const translates = {
     address: 'Adresa',
     phone: 'Telefon',
     phoneMask: '+385-00 (0000000)',
+    distance: 'Udaljenost od Dramala',
     customer: 'Informacije o kupcima',
     equipment: 'Oprema i potrošnja',
     consumption: 'Potrošnja energije (kilovati)',
@@ -427,14 +489,15 @@ const translates = {
     battery: 'Modul baterije',
     services: 'Dodatne usluge',
     dcMontage: 'DC Montaža',
-    acMontage: 'AC Montage ( Dramaj 50km inkl je weiter +50c/km)',
+    acMontage: 'AC Montaža',
+    montageAcDc: 'Montaža AC/DC (Do 50km besplatno, zatim 2€/km)',
     genaustabau: 'Genaustabau',
     ameldung: 'Ameldung',
     planning: 'Precizno planiranje AC i DC',
     total: 'Cijeli',
     totals: 'Ukupno',
     modules: 'Moduli',
-    wr: 'WR',
+    wrs: 'Wechsel richter',
     subconstruction: 'Ugradite podkonstrukciju',
     smallParts: 'Mali detalji',
     roofType: 'Vrsta krova',
@@ -454,6 +517,12 @@ watch(() => data.slopes, (val) => {
   }
 })
 
+watch(() => [data.first.modules, data.second.modules], ([first, second]) => {
+  const sum = first + second
+  if (sum < 10) return
+  data.wr8kw = Math.floor(sum / 10)
+})
+
 onMounted(() => {
   const lsSended = localStorage.getItem('calc-form-sended')
   if (lsSended) sended.value = true
@@ -462,10 +531,19 @@ onMounted(() => {
 const { projectTitle } = useRuntimeConfig().public
 useHead({ title: () => `${projectTitle} | ${translates[ln.value].title}` })
 
+const getMontageCost = computed(() => {
+  const delivery = data.distance <= 50 ? 0 : (data.distance - 50) * costs.delivery
+  const ac = !data.acMontage ? 0 : costs.montage
+  const dc = !data.dcMontage ? 0 : costs.montage
+  if (!ac && !dc) return 0
+  return delivery + ac + dc
+})
+
 const getTotal = computed(() => {
   let sum = 0
   for (const a of additionalArr.value) { sum += costs[a] }
-  return (costs.module * (data.first.modules + data.second.modules)) + sum
+  const wrs = (costs.wr6kw * data.wr6kw) + (costs.wr8kw * data.wr8kw) + (costs.wr10kw * data.wr10kw)
+  return (costs.module * (data.first.modules + data.second.modules)) + sum + wrs + getMontageCost.value
 })
 
 const additionalArr = computed(() => {
@@ -485,9 +563,8 @@ const onSubmit = async () => {
   loading.value = true
 
   const [, err] = await $api('https://formcarry.com/s/zf6KiY049l', {
-    email: data.email,
-    phone: data.phone,
-    address: data.address
+    ...data,
+    ...additional
   })
 
   if (err) {
@@ -523,6 +600,7 @@ const onSubmit = async () => {
   }
 }
 
+.customer,
 .services {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -530,10 +608,10 @@ const onSubmit = async () => {
   margin-bottom: 2rem;
 }
 
-.customer,
 .roof-params,
 .roof-slope,
-.equipment {
+.equipment,
+.wrs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -554,10 +632,6 @@ const onSubmit = async () => {
       text-align: left;
     }
   }
-}
-
-.battery {
-  margin-top: 19px;
 }
 
 .button {
