@@ -185,9 +185,9 @@
           v-html="translates[ln].equipment"
         />
         <Checkbox
-          id="battery"
-          :label="translates[ln].battery"
-          v-model="additional.battery"
+          id="has-modules"
+          :label="translates[ln].modules"
+          v-model="data.hasModules"
         />
         <Checkbox
           id="subconstruction"
@@ -203,6 +203,12 @@
           id="wr"
           :label="translates[ln].wrs"
           v-model="data.wr"
+        />
+        <Select
+          id="battery"
+          :label="translates[ln].battery"
+          :options="batteries"
+          v-model="data.battery"
         />
       </div>
 
@@ -296,37 +302,49 @@
         />
         <table class="total-table">
           <tbody>
-            <tr v-if="data.first.modules || data.second.modules">
+            <tr v-if="data.hasModules">
               <td v-html="translates[ln].modules" />
               <th>x{{ data.first.modules + data.second.modules }}</th>
               <th>{{ sended ? (costs.module * (data.first.modules + data.second.modules)) + '€' : '-' }}</th>
             </tr>
+            <tr v-if="data.battery">
+              <td v-html="translates[ln].battery" />
+              <th>{{ batteries[data.battery] }}</th>
+              <th>{{ sended ? costs.batteries[data.battery] + '€' : '-' }}</th>
+            </tr>
             <tr v-if="data.wr6kw">
               <td>Wechsel richter 6kw</td>
               <th>x{{ data.wr6kw }}</th>
-              <th>{{ sended ? (costs.wr6kw * data.wr6kw) + '€' : '-' }}</th>
+              <th>{{ costs.wr6kw * data.wr6kw }}€</th>
             </tr>
-            <tr v-if="data.wr8kw">
+
+            <tr v-if="data.wr8kw && sended">
               <td>Wechsel richter 8kw</td>
               <th>x{{ data.wr8kw }}</th>
-              <th>{{ sended ? (costs.wr8kw * data.wr8kw) + '€' : '-' }}</th>
+              <th>{{ costs.wr8kw * data.wr8kw }}€</th>
             </tr>
+            <tr v-else-if="data.wr8kw && !sended">
+              <td>Wechsel richter</td>
+              <th class="check">&check;</th>
+              <th>-</th>
+            </tr>
+
             <tr v-if="data.wr10kw">
               <td>Wechsel richter 10kw</td>
               <th>x{{ data.wr10kw }}</th>
-              <th>{{ sended ? (costs.wr10kw * data.wr10kw) + '€' : '-' }}</th>
+              <th>{{ costs.wr10kw * data.wr10kw }}€</th>
             </tr>
             <tr
               v-for="a in additionalArr"
               :key="a"
             >
               <td v-html="translates[ln][a]" />
-              <th>x1</th>
+              <th class="check">&check;</th>
               <th>{{ sended ? costs[a] + '€' : '-' }}</th>
             </tr>
             <tr v-if="getMontageCost">
               <td v-html="translates[ln].montageAcDc" />
-              <th>x1</th>
+              <th class="check">&check;</th>
               <th>{{ sended ? getMontageCost + '€' : '-' }}</th>
             </tr>
             <tr>
@@ -354,7 +372,8 @@ const store = useMainStore()
 const { $api } = useNuxtApp()
 const ln = computed(() => store.language)
 const loading = ref(false)
-const sended = ref(true)
+const sended = ref(false)
+const autofilled = ref(false)
 
 const data = reactive({
   address: null,
@@ -379,6 +398,8 @@ const data = reactive({
     max: 0
   },
 
+  hasModules: false,
+  battery: null,
   wr: false,
   wr6kw: 0,
   wr8kw: 0,
@@ -390,7 +411,6 @@ const data = reactive({
 })
 
 const additional = reactive({
-  battery: false,
   subconstruction: false,
   smallParts: false,
   gerust: false,
@@ -403,6 +423,7 @@ const costs = {
   battery: 300,
   subconstruction: 1000,
   smallParts: 100,
+
   wr6kw: 100,
   wr8kw: 150,
   wr10kw: 200,
@@ -411,12 +432,26 @@ const costs = {
   gerust: 1000,
   ameldung: 100,
   planning: 500,
-  delivery: 2
+  delivery: 2,
+
+  batteries: {
+    5: 50,
+    10: 100,
+    15: 140,
+    20: 180,
+  }
 }
 
 const panel = {
   length: 1.13,
   width: 1.73
+}
+
+const batteries = {
+  5: '5 kWt',
+  10: '10 kWt',
+  15: '15 kWt',
+  20: '20 kWt'
 }
 
 const translates = {
@@ -437,6 +472,7 @@ const translates = {
     angle: 'Tilt angle',
     slope: 'Slope',
     slopes: 'Number of roof slopes',
+    modules: 'Modules',
     modulesCount: 'Modules quantity',
     battery: 'Battery module',
     services: 'Additional services',
@@ -476,6 +512,7 @@ const translates = {
     angle: 'Neigungswinkel',
     slope: 'Piste',
     slopes: 'Anzahl der dachschrägen',
+    modules: 'Funktionsbausteine',
     modulesCount: 'Anzahl der Module',
     battery: 'Batteriemodul',
     services: 'Zusatzleistungen',
@@ -515,6 +552,7 @@ const translates = {
     angle: 'Kut nagiba',
     slope: 'Nagib',
     slopes: 'Broj kosina krova',
+    modules: 'Moduli',
     modulesCount: 'Broj modula',
     battery: 'Modul baterije',
     services: 'Dodatne usluge',
@@ -548,14 +586,28 @@ watch(() => data.slopes, (val) => {
   }
 })
 
-watch(() => [data.first.modules, data.second.modules, data.wr], ([first, second, wr]) => {
+watch(() => [data.first.modules, data.second.modules], ([first, second]) => {
   const sum = first + second
-  if (!sended.value || !wr) {
-    data.wr8kw = 0
-    return
+
+  if (!autofilled.value && sum) {
+    data.hasModules = true
+    data.wr = true
+    additional.subconstruction = true
+    additional.smallParts = true
+    additional.ameldung = true
+    autofilled.value = true
   }
+
   if (!sum) data.wr8kw = 0
   else data.wr8kw = Math.ceil(sum / 10)
+})
+
+watch(() => data.wr, (val) => {
+  if (!val) {
+    data.wr6kw = 0
+    data.wr8kw = 0
+    data.wr10kw = 0
+  }
 })
 
 onMounted(() => {
@@ -578,7 +630,9 @@ const getTotal = computed(() => {
   let sum = 0
   for (const a of additionalArr.value) { sum += costs[a] }
   const wrs = (costs.wr6kw * data.wr6kw) + (costs.wr8kw * data.wr8kw) + (costs.wr10kw * data.wr10kw)
-  return (costs.module * (data.first.modules + data.second.modules)) + sum + wrs + getMontageCost.value
+  const modules = !data.hasModules ? 0 : (costs.module * (data.first.modules + data.second.modules))
+  const batteries = !data.battery ? 0 : costs.batteries[data.battery]
+  return sum + wrs + modules + batteries + getMontageCost.value
 })
 
 const additionalArr = computed(() => {
@@ -679,6 +733,11 @@ const onSubmit = async () => {
   margin-top: 19px;
 }
 
+.check {
+  color: $color-primary;
+  font-size: $font-size-lg;
+}
+
 @include breakpoint-md {
   .customer,
   .consumption,
@@ -691,7 +750,7 @@ const onSubmit = async () => {
     grid-template-columns: 1fr;
   }
 
-  .battery {
+  .montage-field {
     margin-top: 0;
   }
 }
