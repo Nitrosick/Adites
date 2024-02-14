@@ -48,6 +48,10 @@ const model = defineModel({ default: null })
     line-height: 1.5;
   }
 
+  &-field {
+    max-height: 57px;
+  }
+
   &-field-error {
     color: $color-alert;
   }

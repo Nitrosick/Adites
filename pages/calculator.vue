@@ -36,14 +36,6 @@
           :required="true"
           v-model="data.email"
         />
-        <Input
-          id="distance"
-          type="number"
-          :label="translates[ln].distance + ' (km)'"
-          :required="true"
-          :disabled="!data.acMontage && !data.dcMontage"
-          v-model="data.distance"
-        />
       </div>
 
       <div class="roof-params">
@@ -162,6 +154,31 @@
         />
       </div>
 
+      <div class="consumption">
+        <h3
+          class="calculator-subtitle"
+          v-html="translates[ln].consumption"
+        />
+        <Input
+          id="energy"
+          type="number"
+          :label="translates[ln].consumptionKw"
+          :required="true"
+          :attrs="{ min: 1 }"
+          v-model="data.energy"
+        />
+        <Select
+          id="phases"
+          :label="translates[ln].phases"
+          :options="{
+            1: '1-Phase',
+            2: '3-Phase'
+          }"
+          :defaultValue="false"
+          v-model="data.phases"
+        />
+      </div>
+
       <div class="equipment">
         <h3
           class="calculator-subtitle"
@@ -182,27 +199,17 @@
           :label="translates[ln].smallParts"
           v-model="additional.smallParts"
         />
-        <Input
-          id="energy"
-          type="number"
-          :label="translates[ln].consumption"
-          :required="true"
-          :attrs="{ min: 1 }"
-          v-model="data.energy"
-        />
-        <Select
-          id="phases"
-          :label="translates[ln].phases"
-          :options="{
-            1: '1-Phase',
-            2: '3-Phase'
-          }"
-          :defaultValue="false"
-          v-model="data.phases"
+        <Checkbox
+          id="wr"
+          :label="translates[ln].wrs"
+          v-model="data.wr"
         />
       </div>
 
-      <div class="wrs">
+      <div
+        v-show="sended && data.wr"
+        class="wrs"
+      >
         <h3
           class="calculator-subtitle"
           v-html="translates[ln].wrs"
@@ -233,20 +240,37 @@
         />
       </div>
 
-      <div class="services">
+      <div class="montage">
         <h3
           class="calculator-subtitle"
-          v-html="translates[ln].services"
+          v-html="translates[ln].montage"
         />
         <Checkbox
           id="dc-montage"
           :label="`${translates[ln].dcMontage}`"
           v-model="data.dcMontage"
+          class="montage-field"
         />
         <Checkbox
           id="ac-montage"
           :label="`${translates[ln].acMontage}`"
           v-model="data.acMontage"
+          class="montage-field"
+        />
+        <Input
+          id="distance"
+          type="number"
+          :label="translates[ln].distance + ' (km)'"
+          :required="true"
+          :disabled="!data.acMontage && !data.dcMontage"
+          v-model="data.distance"
+        />
+      </div>
+
+      <div class="services">
+        <h3
+          class="calculator-subtitle"
+          v-html="translates[ln].services"
         />
         <Checkbox
           id="genaustabau"
@@ -355,6 +379,7 @@ const data = reactive({
     max: 0
   },
 
+  wr: false,
   wr6kw: 0,
   wr8kw: 0,
   wr10kw: 0,
@@ -403,8 +428,9 @@ const translates = {
     phoneMask: '(750) 000-0000',
     distance: 'Distance from Dramal',
     customer: 'Customer information',
-    equipment: 'Equipment and consumption',
-    consumption: 'Energy consumption (kilowatts)',
+    equipment: 'Equipment',
+    consumption: 'Consumption',
+    consumptionKw: 'Energy consumption (kilowatts)',
     phases: 'Number of phases',
     length: 'Length',
     width: 'Width',
@@ -414,6 +440,7 @@ const translates = {
     modulesCount: 'Modules quantity',
     battery: 'Battery module',
     services: 'Additional services',
+    montage: 'Montage',
     dcMontage: 'DC Montage',
     acMontage: 'AC Montage',
     montageAcDc: 'Montage AC/DC (Up to 50km for free, then 2€/km)',
@@ -440,8 +467,9 @@ const translates = {
     phoneMask: '+(50 00) 000-00-00',
     distance: 'Entfernung von Dramal',
     customer: 'Kundeninformationen',
-    equipment: 'Ausstattung und Verbrauch',
-    consumption: 'Energieverbrauch (Kilowatt)',
+    equipment: 'Ausstattung',
+    consumption: 'Verbrauch',
+    consumptionKw: 'Energieverbrauch (Kilowatt)',
     phases: 'Anzahl der phasen',
     length: 'Länge',
     width: 'Breite',
@@ -451,6 +479,7 @@ const translates = {
     modulesCount: 'Anzahl der Module',
     battery: 'Batteriemodul',
     services: 'Zusatzleistungen',
+    montage: 'Montage',
     dcMontage: 'DC Montage',
     acMontage: 'AC Montage',
     montageAcDc: 'Montage AC/DC (Dramaj 50km inkl je weiter +2€/km)',
@@ -477,8 +506,9 @@ const translates = {
     phoneMask: '+385-00 (0000000)',
     distance: 'Udaljenost od Dramala',
     customer: 'Informacije o kupcima',
-    equipment: 'Oprema i potrošnja',
-    consumption: 'Potrošnja energije (kilovati)',
+    equipment: 'Oprema',
+    consumption: 'Potrošnja',
+    consumptionKw: 'Potrošnja energije (kilovati)',
     phases: 'Broj faza',
     length: 'Duljina',
     width: 'Širina',
@@ -488,6 +518,7 @@ const translates = {
     modulesCount: 'Broj modula',
     battery: 'Modul baterije',
     services: 'Dodatne usluge',
+    montage: 'Montaža',
     dcMontage: 'DC Montaža',
     acMontage: 'AC Montaža',
     montageAcDc: 'Montaža AC/DC (Do 50km besplatno, zatim 2€/km)',
@@ -600,18 +631,19 @@ const onSubmit = async () => {
   }
 }
 
-.customer,
-.services {
+.consumption,
+.equipment {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  margin-bottom: 2rem;
 }
 
+.customer,
 .roof-params,
 .roof-slope,
-.equipment,
-.wrs {
+.wrs,
+.montage,
+.services {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -638,11 +670,19 @@ const onSubmit = async () => {
   align-self: flex-end;
 }
 
+.montage-field {
+  margin-top: 19px;
+}
+
 @include breakpoint-md {
   .customer,
-  .services,
+  .consumption,
+  .equipment,
   .roof-params,
-  .equipment {
+  .roof-slope,
+  .wrs,
+  .montage,
+  .services {
     grid-template-columns: 1fr;
   }
 

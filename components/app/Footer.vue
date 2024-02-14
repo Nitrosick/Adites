@@ -29,10 +29,10 @@
         WhatsApp +385 99 227 4056
       </a>
       <a
-        href="mailto:info@adites.hr"
+        href="mailto:solar@adites.hr"
         class="footer-link"
       >
-        info@adites.hr
+        solar@adites.hr
       </a>
     </div>
   </div>

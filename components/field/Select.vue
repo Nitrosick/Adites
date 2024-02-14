@@ -60,6 +60,7 @@ const model = defineModel({ required: true })
     font-family: $font-main;
     border: 1px solid $color-grey-3;
     width: 100%;
+    max-height: 57px;
     padding: 1rem;
   }
 }
