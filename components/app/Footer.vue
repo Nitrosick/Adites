@@ -18,15 +18,15 @@
         href="tel:+38551452461"
         class="footer-link"
       >
-        <Icon img="phone-alt" />
+        <Icon img="home" />
         TEL +385 514 524 61
       </a>
       <a
         href="tel:+385992274056"
         class="footer-link"
       >
-        <Icon img="whatsapp" collection="fab" />
-        WhatsApp +385 99 227 4056
+        <Icon img="mobile-alt" />
+        Mob & WhatsApp +385 99 227 4056
       </a>
       <a
         href="mailto:solar@adites.hr"
