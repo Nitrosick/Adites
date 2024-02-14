@@ -273,9 +273,9 @@
           v-html="translates[ln].services"
         />
         <Checkbox
-          id="genaustabau"
-          :label="`${translates[ln].genaustabau}`"
-          v-model="additional.genaustabau"
+          id="gerust"
+          :label="`${translates[ln].gerust}`"
+          v-model="additional.gerust"
         />
         <Checkbox
           id="ameldung"
@@ -393,7 +393,7 @@ const additional = reactive({
   battery: false,
   subconstruction: false,
   smallParts: false,
-  genaustabau: false,
+  gerust: false,
   ameldung: false,
   planning: false
 })
@@ -408,7 +408,7 @@ const costs = {
   wr10kw: 200,
 
   montage: 1000,
-  genaustabau: 1000,
+  gerust: 1000,
   ameldung: 100,
   planning: 500,
   delivery: 2
@@ -444,7 +444,7 @@ const translates = {
     dcMontage: 'DC Montage',
     acMontage: 'AC Montage',
     montageAcDc: 'Montage AC/DC (Up to 50km for free, then 2€/km)',
-    genaustabau: 'Genaustabau',
+    gerust: 'Gerüst',
     ameldung: 'Ameldung',
     planning: 'Precise planning of DC and AC',
     total: 'Total',
@@ -483,7 +483,7 @@ const translates = {
     dcMontage: 'DC Montage',
     acMontage: 'AC Montage',
     montageAcDc: 'Montage AC/DC (Dramaj 50km inkl je weiter +2€/km)',
-    genaustabau: 'Genaustabau',
+    gerust: 'Gerüst',
     ameldung: 'Ameldung',
     planning: 'Genaue planung DC und AC',
     total: 'Insgesamt',
@@ -522,7 +522,7 @@ const translates = {
     dcMontage: 'DC Montaža',
     acMontage: 'AC Montaža',
     montageAcDc: 'Montaža AC/DC (Do 50km besplatno, zatim 2€/km)',
-    genaustabau: 'Genaustabau',
+    gerust: 'Gerüst',
     ameldung: 'Ameldung',
     planning: 'Precizno planiranje AC i DC',
     total: 'Cijeli',
@@ -548,8 +548,12 @@ watch(() => data.slopes, (val) => {
   }
 })
 
-watch(() => [data.first.modules, data.second.modules], ([first, second]) => {
+watch(() => [data.first.modules, data.second.modules, data.wr], ([first, second, wr]) => {
   const sum = first + second
+  if (!sended.value || !wr) {
+    data.wr8kw = 0
+    return
+  }
   if (sum < 10) return
   data.wr8kw = Math.floor(sum / 10)
 })
