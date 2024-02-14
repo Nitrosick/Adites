@@ -354,7 +354,7 @@ const store = useMainStore()
 const { $api } = useNuxtApp()
 const ln = computed(() => store.language)
 const loading = ref(false)
-const sended = ref(false)
+const sended = ref(true)
 
 const data = reactive({
   address: null,
@@ -554,8 +554,8 @@ watch(() => [data.first.modules, data.second.modules, data.wr], ([first, second,
     data.wr8kw = 0
     return
   }
-  if (sum < 10) return
-  data.wr8kw = Math.floor(sum / 10)
+  if (!sum) data.wr8kw = 0
+  else data.wr8kw = Math.ceil(sum / 10)
 })
 
 onMounted(() => {
@@ -611,6 +611,7 @@ const onSubmit = async () => {
   sended.value = true
   loading.value = false
   localStorage.setItem('calc-form-sended', true)
+  data.wr = true
   window.scrollTo(0, 0)
 }
 </script>
